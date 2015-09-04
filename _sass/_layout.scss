@@ -143,6 +143,16 @@
     }
 }
 
+#scroll-arrow {
+    width: 90px;
+    height: auto;
+    opacity: .5;
+    &:hover, &:active {
+        opacity: .9;
+
+    }
+}
+
 /* Home Page */
 
 
