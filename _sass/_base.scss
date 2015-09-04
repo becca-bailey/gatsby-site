@@ -12,13 +12,24 @@ dl, dd, ol, ul, figure {
 
 h1 {
     font: 3.5em $header-font-2;
+
 }
 h2 {
     font: italic 2.5em $header-font-2;
+
 }
 h3 {
     font: 3em 700 Lato;
     font-weight: 700 !important;
+}
+
+@include media-query($on-palm) {
+     h1 {
+        font: 2.5em $header-font-2 !important;
+    }
+     h2 {
+        font: 1.8em $header-font-2 !important;
+     }
 }
 
 .quote {
@@ -33,6 +44,7 @@ h3 {
 .button {
     padding: 10px;
     width: 300px;
+    max-width: 60%;
     text-align: center;
     margin: 50px auto;
     text-transform: lowercase;
