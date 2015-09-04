@@ -3,7 +3,8 @@ layout: default
 ---
 
 <div class="home">
-    <section id="first-child">
+  <div id="content">
+    <section id="writing">
       <h1 class="page-heading">Writing</h1>
       <a href="http://www.beccanelsonwrites.com"><img src="{{ site.baseurl }}/writing mockup.png" /></a>
       <div class="description">
@@ -29,38 +30,37 @@ layout: default
         </a>
     </section>
   
-  <section id="about">
-    <h1 class="page-heading">About Me</h1>
-    <img src="{{ site.baseurl }}/Nelson Bio.jpg">
-      <h2>This is my story.</h2>
-      <p>People ask me sometimes why I chose to become a web developer, and I usually tell them it was an accident. I was a teacher for about five years before I caught the bug. I woke up one day, and wanted to be more in charge of my career and my life.</p>
+    <section id="about">
+      <h1 class="page-heading">About Me</h1>
+      <img src="{{ site.baseurl }}/Nelson Bio.jpg">
+        <h2>This is my story.</h2>
+        <p>People ask me sometimes why I chose to become a web developer, and I usually tell them it was an accident. I was a teacher for about five years before I caught the bug. I woke up one day, and wanted to be more in charge of my career and my life.</p>
 
-      </p>I started by teaching myself some HTML, CSS and JavaScript. I thought that was super fun, so I enrolled in more classes, and I am currently a student at Dev Bootcamp in Chicago. I got hooked on code, and my life has never been quite the same.</p>
-      <a href="http://www.beccanelsonwrites.com/wp-content/uploads/2015/07/Nelson-Resume-and-References.pdf">
-        <div class="button">Download Résumé</div>
-      </a>
-  </section>
-  <section id="posts">
-    <h1 class="page-heading">Blog</h1>
+        </p>I started by teaching myself some HTML, CSS and JavaScript. I thought that was super fun, so I enrolled in more classes, and I am currently a student at Dev Bootcamp in Chicago. I got hooked on code, and my life has never been quite the same.</p>
+        <a href="http://www.beccanelsonwrites.com/wp-content/uploads/2015/07/Nelson-Resume-and-References.pdf">
+          <div class="button">Download Résumé</div>
+        </a>
+    </section>
+    <section id="posts">
+      <h1 class="page-heading">Blog</h1>
 
-    <ul class="post-list">
-      {% for post in site.posts %}
-        <li>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <ul class="post-list">
+        {% for post in site.posts %}
+          <li>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-          <h3>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-          </h3>
-          <p class="description">
-            {{ post.content | strip_html | truncatewords:40 }}
-            <br><a href="{{ post.url | prepend: site.baseurl }}" class="link">Read more...</a>
-          </p>
-        </li>
-      {% endfor %}
-    </ul>
+            <h3>
+              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h3>
+            <p class="description">
+              {{ post.content | strip_html | truncatewords:40 }}
+              <br><a href="{{ post.url | prepend: site.baseurl }}" class="link">Read more...</a>
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-  </section>
-
-
+      <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    </section>
+  </div>
 </div>
