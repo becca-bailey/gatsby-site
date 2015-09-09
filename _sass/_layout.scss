@@ -19,11 +19,11 @@
 }
 
 #title-area {
-    padding-top: 15%;
+    padding-top: 9%;
     padding-bottom: 3%;
     max-height: 100vh;
-    @include media-query($on-laptop) {
-        padding-top: 30%;
+    @include media-query($on-palm) {
+        padding-top: 10%;
     }
     a.site-title {
         font: 900 4em $header-font;
@@ -48,7 +48,7 @@
         width: 80%;
         @include media-query($on-laptop) {
             font-size: 2em;
-            
+
         }
     }
 }
@@ -62,7 +62,7 @@
     max-width: 100%;
     width: 100%;
     justify-content: space-around;
-    padding-bottom: 5%;
+    padding-bottom: 3%;
 
 
     .menu-icon {
