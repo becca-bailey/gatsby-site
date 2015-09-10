@@ -19,7 +19,7 @@
 }
 
 #title-area {
-    padding-top: 9%;
+    padding-top: 13%;
     padding-bottom: 3%;
     max-height: 100vh;
     @include media-query($on-palm) {
@@ -162,7 +162,7 @@
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
+    // border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
 }
 
