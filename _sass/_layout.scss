@@ -19,7 +19,7 @@
 }
 
 #title-area {
-    padding-top: 13%;
+    padding-top: 16%;
     padding-bottom: 3%;
     max-height: 100vh;
     @include media-query($on-palm) {
@@ -79,8 +79,9 @@
         padding: 0 30px;
         border: 2px solid transparent;
         &:hover, &:active {
-            border: 2px solid $brand-color;
-            background-color: rgba(255, 255, 255, .3);
+            // border: 2px solid $brand-color;
+            // background-color: rgba(255, 255, 255, .3);
+            opacity: .5;
 
         }
 
