@@ -16,7 +16,29 @@ Git is the most common program for version control.  Git allows you store your c
 
 GitHub is a community.  As we write code and become better developers, we're not doing it alone—we're sharing the experience with others, too.  And that, to me, is the best part.
 
-**For more information:**
+
+##Helpful Commands
+`git init`
+Initializes a git repository in a folder.  Pro Tip: To delete a git repository, delete the hidden folder called .git.
+
+`git status`
+Checks the status of your repository and lists untracked or changed files.
+
+`git add [file name]`
+Adds files to the staging area.  You can specify individual files, or add all files by using
+`git add .`
+
+`git commit -m "commit message"`
+Commits all tracked files and changes to the repository.
+
+`git remote add [repository url]`
+Connects your local repo to your repo on GitHub.
+
+`git push origin [branch name]`
+Pushes you local repository to a branch on GitHub.  For example, to push to the master branch, you would enter `git push origin master`.
+
+
+##For more information:
 
 [How to Get Your Site Online for Free with GitHub Pages](http://learntocodewith.me/tutorials/github-pages/)
 
