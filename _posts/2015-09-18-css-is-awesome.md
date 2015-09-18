@@ -2,7 +2,7 @@
 layout: post
 title:  "CSS is Awesome"
 description: "Becca's Favorite CSS Tricks"
-date:   2015-09-10
+date:   2015-09-18
 categories: dev-bootcamp git
 ---
 
