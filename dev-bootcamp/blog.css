@@ -1,0 +1,75 @@
+
+/* Layout */
+
+#blog {
+	max-width: 70%;
+	float: left;
+	box-sizing: border-box;
+}
+
+#sidebar {
+	float: right;
+	max-width: 30%;
+	padding-left: 5%;
+	box-sizing: border-box !important;
+	text-align: center;
+}
+
+figure {
+	margin: 0 auto !important;
+	width: 100%;
+}
+
+header h1.blog-title {
+	margin-bottom: 20px !important;
+}
+
+/*Social Icons */
+
+.blog-social-icons li img {
+	width: 40px;
+}
+
+/* Sidebar Styles */
+
+
+#sidebar section {
+	margin-bottom: 60px;
+}
+
+#about-photo {
+	padding: 5%;
+	max-width: 200px;
+}
+
+#sidebar p {
+	font-size: 1.2em;
+}
+
+#sidebar h3 {
+	color: #F62459;
+}
+
+#sidebar h4 {
+	margin-top: 0;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 600px) {
+	#blog {
+		max-width: 100%;
+		float: none;
+	}
+
+	#sidebar {
+		max-width: 100%;
+		float: none;
+	}
+
+	#sidebar img {
+		max-width: 200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
