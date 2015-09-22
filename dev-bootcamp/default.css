@@ -1,0 +1,170 @@
+/* Main Styles */
+body {
+	box-sizing: border-box;
+	font-family: Lato;
+}
+
+.main {
+	max-width: 72%;
+	margin: 0 auto;
+}
+
+footer {
+	clear: both !important;
+	padding: 50px 0;
+	text-align: center;
+	width: 100%;
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: gray;
+}
+
+a:hover, a:active {
+	color: #F62459;
+}
+
+/* Typography */
+
+p {
+	font: 300 1.7em Lato, sans-serif;
+}
+
+small {
+	font-size: 1em;
+}
+
+h1 {
+	font: 4em 'Playfair Display', serif;
+ }
+
+h2 {
+	font: 300 italic 3em Lato, sans-serif;
+ }
+
+ h3 {
+ 	font: 700 2em Lato, sans-serif;
+ }
+
+ h4 {
+ 	font: 700 1.5em Lato, sans-serif;
+ }
+
+/* Header Styles */
+
+header {
+	text-align: center;
+}
+
+header h1 {
+	color: #F62459;
+	margin-bottom: 40px;
+}
+
+.social-icons, nav ul {
+	padding-left: 0;
+}
+
+.social-icons li {
+	display: inline;
+	padding: 0 10px;
+	opacity: .7;
+}
+
+.social-icons li:hover {
+	opacity: .5;
+}
+
+#main-title {
+	font-size: 6em;
+ }
+
+/*Site Navigation*/
+
+nav ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 20px;
+}		
+
+nav li {
+	list-style-type: none;
+	text-align: center;
+	font: 300 1.2em Lato, sans-serif;
+	text-transform: uppercase;
+	line-height: 1.5em;
+}
+
+nav li a:hover {
+	color: #F62459;
+}
+
+/*Link Icons*/
+
+#link-icons {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	height: auto;
+	padding: 0;
+}
+
+#link-icons .link-icon {
+	text-align: center;
+	list-style-type: none;
+	margin: 25px;
+	height: 250px;
+	width: 250px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#link-icons h2 {
+	height: 250px;
+	width: 250px;
+	background-color: rgba(255, 255, 255, .7);
+	padding-top: 35%;
+	visibility: hidden;
+ }
+
+#blog-link {
+	background-image: url(images/typewriter.png);
+ }
+
+
+ #about-link {
+ 	background-image: url(images/about.png);
+ }
+
+#projects-link {
+	background-image: url(images/projects.png);
+}
+ 
+#blog-link:hover h2, #about-link:hover h2, #projects-link:hover h2 {
+ 	visibility: visible;
+ }
+
+ /* Home Content */
+
+ #about {
+ 	text-align: center;
+ 	background-color: #f8f8f8;
+	margin: 40px 0 0 0;
+ 	padding: 40px 0;
+ }
+
+/*Media Queries*/
+
+@media screen and (max-width: 900px) {
+	#main {
+		max-width: 80%;
+	}
+}
