@@ -88,10 +88,13 @@ header h1 {
 
 nav ul {
 	display: flex;
+	display: -webkit-flex;
 	flex-direction: row;
+	-webkit-flex-direction: row;
 	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
 	justify-content: space-around;
-	padding: 20px;
+	-webkit-justify-content: space-around;
 }		
 
 nav li {
@@ -100,6 +103,7 @@ nav li {
 	font: 300 1.2em Lato, sans-serif;
 	text-transform: uppercase;
 	line-height: 1.5em;
+	padding: 10px;
 }
 
 nav li a:hover {
@@ -110,9 +114,13 @@ nav li a:hover {
 
 #link-icons {
 	display: flex;
+	display: -webkit-flex;
 	flex-direction: row;
+	-webkit-flex-direction: row;
 	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
 	justify-content: space-around;
+	-webkit-justify-content: space-around;
 	height: auto;
 	padding: 0;
 }
@@ -163,8 +171,3 @@ nav li a:hover {
 
 /*Media Queries*/
 
-@media screen and (max-width: 900px) {
-	#main {
-		max-width: 80%;
-	}
-}

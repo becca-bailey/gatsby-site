@@ -56,6 +56,15 @@ header h1.blog-title {
 
 /* Media Queries */
 
+@media screen and (max-width: 900px) {
+	#main {
+		max-width: 80%;
+	}
+	#blog-link h2, #about-link h2, #projects-link h2 {
+	 	visibility: visible;
+	}
+}
+
 @media screen and (max-width: 600px) {
 	#blog {
 		max-width: 100%;
@@ -72,4 +81,5 @@ header h1.blog-title {
 		margin-left: auto;
 		margin-right: auto;
 	}
+
 }
