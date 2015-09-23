@@ -33,7 +33,7 @@ header h1.blog-title {
 /* Sidebar Styles */
 
 
-#sidebar section {
+#sidebar div {
 	margin-bottom: 60px;
 }
 
