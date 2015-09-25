@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+        {{ content }}
+
+        <center><div id="scroll-arrow">
+          <a href="#header"><img src=" {{ site.baseurl }}/up4.png" /></a>
+        </div></center>
+
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
