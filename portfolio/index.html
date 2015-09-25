@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div class="home">
+  <div id="content">
+    <section id="writing">
+      <div class="wrapper">
+        <h1 class="page-heading">Writing</h1>
+        <a href="http://www.beccanelsonwrites.com"><img src="{{ site.baseurl }}/writing mockup.png" /></a>
+        <div class="description">
+          <h2>My first love was writing.</h2>
+          <p> I write for my own blog, and I am a contributor to a few other publications, including <a href="http://www.therisingblog.com">The Rising</a> and <a href="http://www.bedlammag.com">Bedlam Magazine</a>.
+
+          <!-- <blockquote>&ldquo;Becca has been an incredible member of our team at The Rising blog—from the very beginning, she showed a dedication and enthusiasm for our mission and work that was contagious and so encouraging. She is a brilliant writer with a strong sense of commitment and loyalty to her work and our team. She has added so much talent, heart and wisdom to our team and I would highly recommend her to anyone.&rdquo;<br>
+            <em>—Rachel Dawson, Chief of Story at <a href="http://www.rethinkcreative.org">Rethink Creative</a>.</em></blockquote> -->
+
+          <a href="http://www.beccanelsonwrites.com/writing">
+            <div class="button">Read Published Writing</div>
+          </a>
+        </div>
+    </section>
+    <section id="design">
+      <div class="wrapper">
+        <h1 class="page-heading">Design</h1>
+        <a href="http://www.beccanelsonmakesthings.com"><img src="{{ site.baseurl }}/design-mockup.png"></a>
+
+        <h2>I'm great at WordPress.</h2>
+        <p>In July, I started a WordPress help blog.  I have been working with clients, doing small fixes, editing PHP templates, transferring and setting up new blogs.  You can click to link below to see my current portfolio.</p>
+        <a href="http://www.beccanelsonmakesthings.com/portfolio">
+          <div class="button">See Portfolio</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrapper">
+        <h1 class="page-heading">About Me</h1>
+        <img src="{{ site.baseurl }}/Nelson Bio.jpg">
+        <h2>This is my story.</h2>
+        <p>People ask me sometimes why I chose to become a web developer, and I usually tell them it was an accident. I was a teacher for about five years before I caught the bug. I woke up one day, and wanted to be more in charge of my career and my life.</p>
+
+        </p>I started by teaching myself some HTML, CSS and JavaScript. I thought that was super fun, so I enrolled in more classes, and I am currently a student at Dev Bootcamp in Chicago. I got hooked on code, and my life has never been quite the same.</p>
+        <a href="http://www.beccanelsonwrites.com/wp-content/uploads/2015/07/Nelson-Resume-and-References.pdf">
+          <div class="button">Download Résumé</div>
+        </a>
+      </div>
+    </section>
+    <section id="posts">
+      <div class="wrapper">
+        <h1 class="page-heading">Blog</h1>
+
+        <ul class="post-list">
+          {% for post in site.posts %}
+            <li>
+              <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+              <h3>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              </h3>
+              <p class="description">
+                {{ post.content | strip_html | truncatewords:40 }}
+                <br><a href="{{ post.url | prepend: site.baseurl }}" class="link">Read more...</a>
+              </p>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+      </div>
+    </section>
+  </div>
+</div>
