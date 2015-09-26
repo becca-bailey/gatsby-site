@@ -24,6 +24,23 @@ header h1.blog-title {
 	margin-bottom: 20px !important;
 }
 
+.post-title {
+	margin-bottom: 10px;
+}
+
+.description {
+	font-style: italic;
+	margin: 0 auto;
+}
+
+.post-meta {
+	color: #F62459;
+}
+
+.post-content {
+	margin-top: 80px;
+}
+
 /*Social Icons */
 
 .blog-social-icons li img {
@@ -52,6 +69,10 @@ header h1.blog-title {
 
 #sidebar h4 {
 	margin-top: 0;
+}
+
+.recent-post-title {
+	margin-bottom: 0;
 }
 
 /* Media Queries */
