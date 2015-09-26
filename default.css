@@ -29,10 +29,14 @@ a:hover, a:active {
 	color: #F62459;
 }
 
+code {
+	color: #049372;
+}
+
 /* Typography */
 
 p {
-	font: 300 1.7em Lato, sans-serif;
+	font: 300 1.4em Lato, sans-serif;
 }
 
 small {
