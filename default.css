@@ -36,7 +36,7 @@ code {
 /* Typography */
 
 p {
-	font: 300 1.4em Lato, sans-serif;
+	font: 300 1.4em/1.5em Lato, sans-serif;
 }
 
 small {
