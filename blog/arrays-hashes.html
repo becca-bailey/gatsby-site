@@ -31,26 +31,43 @@
       </header>
       <div id="blog">
         <article>
-          <h2 class="post-title">Gitting it Together: Reflections on Version Control</h2>
-          <p class="post-meta"><strong>September 10, 2015</strong></p>
+          <h2 class="post-title">Ruby Organizational Skills</h2>
+          <h3 class="description">Using Arrays and Hashes</h3>
+          <p class="post-meta"><strong>October 4, 2015</strong></p>
           <div class="post-content">
-            <p>When I first started to explore web development, I remember searching for templates and code samples, which inevitably led me to GitHub. I had this idea that only "real" developers used GitHub, and it was this wonderful universe for the highly-intelligent super-humans who know how to use it. Now that I have discovered version control, I still think about it that way, except I now count myself among the highly intelligent super-humans who know how to use it.</p>
+            
+            <p>In Ruby (and other programming languages), arrays and hashes are ways of organizing data.  An array is simply a container for holding data. Allow me to demonstrate this concept, and show off my stellar household organizational skills in the process.</p>
 
-            <p>So, apart from making you look like a "real" developer, version control just makes sense. It's like a time machine that allows you go track changes and store all the earlier versions of your files. It also helps to resolve arguments on a team, as you don't have to worry about overwriting anyone else's code or sending multiple copies of a file back and forth. Seeing everyone's changes in one place makes your life much easier.</p>
+            <h2>Arrays</h2>
 
-            <p>Git is the most common program for version control. Git allows you store your changes in "commits", or snapshots of your files as they exist right now. This can be a code, text, or even an image file. You can keep these commits to yourself on your own computer, or you can show off your stuff by pushing these commits to GitHub.</p>
+            <img src="../images/stuff-box.jpg" />
 
-            <p><strong>Very Important Note:</strong> Git is NOT the same thing as GitHub. Git is a program you can use on your own computer without ever posting anything on GitHub. Pushing to GitHub is optional, though like I said, it makes you look like a highly-intelligent super-human.</p>
+            <p>This is a box full of stuff.  You can tell how organized I am at the moment, because in this box I have about 27 balls of yarn, a pair of socks, a box of colored pencils, a bag of trail mix, and the movie “500 Days of Summer.”  I could turn this box into an array like this.</p>
 
-            <p>GitHub is a community. As we write code and become better developers, we're not doing it alone—we're sharing the experience with others, too. And that, to me, is the best part.</p>
+            <code>box = [“yarn”, “socks”, “colored pencils”, “trail mix, “500 Days of Summer”]</code>
 
-            <h3>For more information:</h3>
+            <p>Note that the items in my array, like the items in my house, are in no particular order.  Also, an array can contain strings of text (like in my example), numbers, booleans (true or false statements), and even other arrays.  </p>
 
-            <a href="http://learntocodewith.me/tutorials/github-pages/"><p>How to Get Your Site Online for Free with GitHub Pages</p></a>
-            <a href="https://help.github.com/categories/bootcamp/"><p>GitHub Bootcamp</p></a>
+            <p>Each item in the array has a number, starting with zero.  For example, if I told my program to <code>return box[0]</code>, it would return the first item, which is <code>"yarn"</code>.  I could also count backwards, and access the last item using the number -1.  </p> 
 
-          </div>
+            <h2>Hashes</h2>
 
+            <p>Now, let's say I was an organized person who labeled every item by type.  Instead of a random list, I would have something more like this.</p>
+
+            <code>box = { "material" => "yarn", "clothing" => "socks", "art supply" => "colored pencils", "snack" => "trail mix", "movie" => "500 Days of Summer" }</code>
+
+            <p>
+            This would be a hash.  Hashes are great for storing information that has a clear identifier, such as <code>"name" => "Becca"</code>.  This is called a <em>key</em>, and a <em>value</em>.  Instead of using a number to access data like you would for an array, you would access information using its key.  For example, <code>return box["snack"]</code> would return <code>"trail mix"</code>
+            </p>
+
+            <p>There is a lot more information to be found about constructing arrays and hashes, adding and removing data, and using Ruby methods to iterate through them, so I have inclded some more resources here.</p>
+
+            <p><strong>For more information:</strong></p>
+
+            <p><a href="http://www.sitepoint.com/guide-ruby-collections-ii-hashes-sets-ranges/">A Guide to Ruby Collections, II: Hashes, Sets and Ranges</a></p>
+
+            <p><a href="http://www.slideshare.net/nirusuma/ruby-arrays-hashes-examples-16776638">Ruby's Arrays and Hashes with Examples</a></p>
+       
         </article>
         
       </div>
