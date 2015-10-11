@@ -31,26 +31,58 @@
       </header>
       <div id="blog">
         <article>
-          <h2 class="post-title">Gitting it Together: Reflections on Version Control</h2>
-          <p class="post-meta"><strong>September 10, 2015</strong></p>
+          <h2 class="post-title">Map and Collect</h2>
+          <h3 class="description">Two Methods That Do the Same Thing</h3>
+          <p class="post-meta"><strong>October 11, 2015</strong></p>
           <div class="post-content">
-            <p>When I first started to explore web development, I remember searching for templates and code samples, which inevitably led me to GitHub. I had this idea that only "real" developers used GitHub, and it was this wonderful universe for the highly-intelligent super-humans who know how to use it. Now that I have discovered version control, I still think about it that way, except I now count myself among the highly intelligent super-humans who know how to use it.</p>
+            
+            <p>If you're new to Ruby, you may have noticed there are a lot of different methods you can use, particulary when working with arrays.  Here's a new one I discovered this week.</p>
 
-            <p>So, apart from making you look like a "real" developer, version control just makes sense. It's like a time machine that allows you go track changes and store all the earlier versions of your files. It also helps to resolve arguments on a team, as you don't have to worry about overwriting anyone else's code or sending multiple copies of a file back and forth. Seeing everyone's changes in one place makes your life much easier.</p>
+            <p>Let's say you have an array of numbers, and you need to add ten to each one.</p>
 
-            <p>Git is the most common program for version control. Git allows you store your changes in "commits", or snapshots of your files as they exist right now. This can be a code, text, or even an image file. You can keep these commits to yourself on your own computer, or you can show off your stuff by pushing these commits to GitHub.</p>
+            <code>numbers=[26, 3, 90, 45, 15]</code>
 
-            <p><strong>Very Important Note:</strong> Git is NOT the same thing as GitHub. Git is a program you can use on your own computer without ever posting anything on GitHub. Pushing to GitHub is optional, though like I said, it makes you look like a highly-intelligent super-human.</p>
+            <p>You could use the <code>each</code> method to print them out, like this.</p>
 
-            <p>GitHub is a community. As we write code and become better developers, we're not doing it alone—we're sharing the experience with others, too. And that, to me, is the best part.</p>
+            <code>numbers.each do |n| <br>
+            &nbsp;&nbsp;n += 10 <br>
+            &nbsp;&nbsp;p n + " " <br>
+            end <br>
+            => 36 13 100 55 25 </code>
 
-            <h3>For more information:</h3>
+            <p>But what if you still wanted an array?  This is where you can use the <code>map</code> method to apply a code block to each item in an array.</p>
 
-            <a href="http://learntocodewith.me/tutorials/github-pages/"><p>How to Get Your Site Online for Free with GitHub Pages</p></a>
-            <a href="https://help.github.com/categories/bootcamp/"><p>GitHub Bootcamp</p></a>
+            <code>numbers.map { |n| n += 10 } <br>
+            => [36, 13, 100, 55, 25]</code>
 
-          </div>
+            <p>But, now look what happens when we print the array.</p>
 
+            <code>p numbers <br>
+            => [26, 3, 90, 45, 15]</code>
+
+           <p>Ruby will return the original array, becuase map is by default a non-destructive method.  If you want to make a method destructive (or as we like to say—"dangerous"), you can add a <code>!</code>, also called a <em>bang</em>.  This sybol doesn't just mean you're doing something enthusiastically—it also means you are changing the original array.  Now let's see what happens.</p>
+
+            <code>numbers.map! { |n| n += 10 } <br>
+            => [36, 13, 100, 55, 25] <br>
+            p numbers <br>
+            => [36, 13, 100, 55, 25]</code>
+
+            <p>Now, I have one more trick to show you.</p>
+
+            <code>numbers.collect! { |n| n += 10 } <br>
+            => [36, 13, 100, 55, 25] </code><br>
+
+            <p>See what I did there?  The <code>collect</code> method does the same thing as <code>map</code>.  "What's the difference?" you might ask.  My brilliant answer:  there is none.  They are exactly the same.  <em>Why, Ruby.... whyyyyy??</em> </p>
+
+            <p>Did you now that before?  Well, you do now.</p>
+
+
+            <p><strong>For more information:</strong></p>
+
+            <p><a href="http://www.gotealeaf.com/books/ruby/read/arrays">Tealeaf Academy: Arrays</a></p>
+
+            <p><a href="http://ruby-doc.org/core-2.2.3/Enumerable.html">Ruby Enumerables Documentation</a></p>
+       
         </article>
         
       </div>
