@@ -173,5 +173,26 @@ nav li a:hover {
  	padding: 40px 0;
  }
 
+ /* Contact Page */
+
+ #contact {
+ 	text-align: center;
+ }
+
+ #contact-icons {
+ 	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	list-style: none;
+	text-align: center;
+}		
+
 /*Media Queries*/
+
+
 
