@@ -179,7 +179,11 @@ nav li a:hover {
  	text-align: center;
  }
 
- #contact-icons {
+ #contact ul, #about-photos-1, #about-photos-2 {
+	padding-left: 0;
+ }
+
+ #contact-icons, #about-photos-1, #about-photos-2 {
  	display: flex;
 	display: -webkit-flex;
 	flex-direction: row;
@@ -191,6 +195,18 @@ nav li a:hover {
 	list-style: none;
 	text-align: center;
 }		
+
+/* About Page */
+
+.about-photo {
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+#about-page h2 {
+	text-align: center;
+}
+
 
 /*Media Queries*/
 
