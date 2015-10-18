@@ -73,6 +73,15 @@ header h1.blog-title {
 
 .recent-post-title {
 	margin-bottom: 0;
+	font-size: 20px;
+}
+
+.recent-post-meta {
+	margin-top: 0;
+}
+
+.recent-post-title, .recent-post-meta {
+	text-align: left;
 }
 
 /* Media Queries */

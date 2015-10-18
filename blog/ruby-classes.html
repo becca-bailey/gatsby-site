@@ -22,7 +22,7 @@
           <ul>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../blog.html">Blog</a></li>
-            <li><a href="../about.html">About Me</a></li>
+            <li><a href="about.html">About Me</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="../contact.html">Contact</a></li>
           </ul>
@@ -31,74 +31,61 @@
       </header>
       <div id="blog">
         <article>
-          <h2 class="post-title">Classy Development</h2>
-          <h3 class="description">IDs and Classes in HTML and CSS</h3>
-          <p class="post-meta"><strong>September 10, 2015</strong></p>
+          <h2 class="post-title">Classes, Objects, and Kitties</h2>
+          <h3 class="description">Object-Oriented Ruby: Cat Edition</h3>
+          <p class="post-meta"><strong>October 17, 2015</strong></p>
           <div class="post-content">
             
-            <h3>&ldquo;What is the difference between a class and an ID?&rdquo;</h3>
+            <p>While learning Ruby, one of the hardest concepts for me to grasp has been "object-oriented programming".  At first it seemed pretty unnecessary, and it made more sense just to keep creating regular old local variables and telling the coputer what to do.</p>
 
-            <p>If this question has been keeping you up at night, I've got some answers for you. </p>
+            <center><img src="../images/cat-meme.jpg" alt="Cat Programmer"></center>
 
-            <p>Simple Answer:</p>
+            <p>But, in an object-oriented languae like Ruby or JavaScript, that makes about as much sense as being this cat, trying to program a computer.  So instead, I'm going to program this cat.</p>
 
-            <h4>An ID is an identifier you can only use once, but you can use a class more than once.</h4>
+            <p>First, I need to create a class.</p>
 
-            <p>I bet you never saw that one coming.  But, in case you need a little more explanation, here's the more complicated answer.</p>
+            <code>class Cat</code>
 
-            <h3>Using an ID</h3>
+            <p>This makes 'Cat' an object (or in this case, a warm-blooded quadriped).  We're going to give this cat a name, a breed, and a status.</p>
 
-            <pre><code>&lt;h1 id="site-title"&gt;My Awesome Website&lt;/h1&gt;</code></pre>
+            <code>attr_reader :name, :breed, :status <br>
+            def Initialize(name, breed) <br>
+            &nbsp;&nbsp;@name = name <br>
+            &nbsp;&nbsp;@breed = breed <br>
+            &nbsp;&nbsp;@hungry? = true<br>
+            &nbsp;&nbsp;@mood = 'unhappy' <br>
+            end</code>
 
-            <p><strong>This is the only site title on the page.</strong>  There is not another one, nor is there another element with the exact same styling.  I can do whatever I want to this site title, and it won't affect any other elements on the page.  That ID is now a 'hook' I can use when I write CSS.  </p>
+            <p>In English, this means that we can access the cat's name, breed and status outside of the class.  Also, they are now <em>instance variables</em>, meaning they can be accessed in other methods within the class.  I can now create a new cat.</p>
 
-            <code>
-              #site-title {<br>
-                &nbsp;&nbsp;&nbsp;font-family: Papyrus, fantasy;<br>
-                &nbsp;&nbsp;&nbsp;font-size: 50px;<br>
-                &nbsp;&nbsp;&nbsp;color: lime;<br>
-              }
+            <code>gilbert = Cat.new('Gilbert', 'American Shorthair')</code> <br> <br>
+
+            <code>gilbert.name<br> 
+            => "Gilbert" <br><br>
+            gilbert.breed <br>
+            => "American Shorthair"
             </code>
 
-            <p>So in other words, if I wanted to display my title in huge, lime green Papyrus, it would only apply to this one element.  If you wanted to write more than one element on your page with 50px lime green Papyrus, it wouldn't work properly.  Plus, it would just look terrible.  </p>
+            <p>Note that if I wanted to change Gilbert's name to Phil, I couldn't do that unless I changed :name to attr_accessor.  I don't really want to do that, though.  Now, I have a hungry and unhappy cat.  How can I fix that, I wonder?  Maybe I should write a method that goes inside the Cat class.</p> 
 
-            <p>ID's do have one more trick up their sleeve, which is site navigation.  If you want to navigate to a specific place on a page, you can link to an ID.  This is an example from my homepage.</p>
+            <code>def feed <br>
+            &nbsp;&nbsp;@hungry? = false <br>
+            end <br><br>
+            def pet <br>
+            &nbsp;&nbsp;@mood = 'happy' <br>
+            end</code>
 
-            <code>&lt;a href="#about"&gt;About Me&lt;/a&gt;</code>
+            <p>Now, I can feed and pet my cat by calling these methods outside of the class.</p>
 
-            <h3>Using a Class</h3>
+            <code>gilbert.feed <br>
+            gilbert.pet <br> <br>
+            gilbert.hungry? <br>
+            => false <br> <br>
+            gilbert.mood <br>
+            => "happy"</code>
 
-            <p>Most of the time when you write CSS rules, you will be using classes.  It's just classier, if you ask me.  Unlike an ID, a class allows you to apply styling to more than one element.</p>
-
-            <code>&lt;p class="quote"&gt;I think this is brilliant, so I am quoting it.&lt;/p&gt;<br><br>
-            &lt;p class="quote"&gt;I am quoting this, too, becuase it makes me look smarter.&lt;/p&gt;</code>
-
-            <p>If I apply styles to the quote class, it will apply to both paragraphs, as well as any other elements on my site with the same class.</p>
-
-            <code>
-              .quote {<br>
-                &nbsp;&nbsp;&nbsp;font-weight: bold;<br>
-                &nbsp;&nbsp;&nbsp;color: purple;<br>
-                &nbsp;&nbsp;&nbsp;backgroud-color: orange;<br>
-              }
-            </code>
-
-            <p>Now, all of my quotes are purple with an orange background.  Beautiful.  I can also target more specific classes by including the parent elements, too. </p>
-
-            <code>
-              header .quote {<br>
-                &nbsp;&nbsp;&nbsp;font-size: 5em;<br>
-              }
-            </code>
-
-            <p>Now the quotes in my header would have the quote styles PLUS the additional style I just gave it.  Pretty neat, huh?  </p>
-
-            <p><strong>For more information:</strong></p>
-
-            <p><a href="https://css-tricks.com/the-difference-between-id-and-class/">CSS Tricks: The Difference Between ID and Class</a></p>
-
-          </div>
-
+            <p>See, now I have a happy kitty.  Isn't it amazing what classes can do?  If only real pets were this easily pleased.  </p>
+       
         </article>
         
       </div>
