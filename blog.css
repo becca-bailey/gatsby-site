@@ -29,7 +29,8 @@ header h1.blog-title {
 }
 
 .description {
-	font-style: italic;
+	font: 3em Sacramento;
+	text-transform: lowercase;
 	margin: 0 auto;
 }
 
