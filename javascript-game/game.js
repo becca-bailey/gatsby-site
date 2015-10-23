@@ -95,18 +95,7 @@ var check = {
 		    console.log(check.checkArray);
 		}
 	},
-	smallStraight: function() {
-		var ssArray = [];
-		for(var i = 0; i < 5; i++ ) {
-			if (game.keepArray[i] === game.keepArray[i-1] + 1) {
-				ssArray.push(game.keepArray[i]);
-			}
-		}
-		if (ssArray.length === 3) {
-			textArea.innerHTML = game.keepArray + "<br><h2>Small straight!</h2>";
-		}
-	},
-	largeStraight: function() {
+	straight: function() {
 		var count = 0;
 		for(var i = 0; i < 5; i++ ) {
 			if (game.keepArray[i] === game.keepArray[i-1] + 1) {
@@ -114,7 +103,10 @@ var check = {
 			}
 		}
 		if (count === 4) {
-			textArea.innerHTML ="<h2>Large straight!</h2>";
+			textArea.innerHTML = game.keepArray + "<br><h2>Large straight!</h2>";
+		}
+		if (count === 3) {
+			textArea.innerHTML = game.keepArray + "<br><h2>Small straight!</h2>";
 		}
 	},
 	yahtzee: function() {
@@ -143,24 +135,9 @@ var check = {
 	},
 	checkAll: function() {
 		check.yahtzee();
-		check.largeStraight();
-		check.smallStraight();
+		check.straight();
 		check.fullHouse();
 		check.fourOfKind();
 		check.threeOfKind();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

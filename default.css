@@ -185,7 +185,7 @@ nav li a:hover {
 	padding-left: 0;
  }
 
- #contact-icons, #about-photos-1, #about-photos-2 {
+ #contact-icons, #about-photos-1, #about-photos-2, #project-images {
  	display: flex;
 	display: -webkit-flex;
 	flex-direction: row;
@@ -207,6 +207,19 @@ nav li a:hover {
 
 #about-page h2 {
 	text-align: center;
+}
+
+/* Projects Page */
+
+#project-images li {
+	width: 400px;
+	text-align: left;
+}
+
+#project-images li img {
+	background-color: #f8f8f8;
+	border-radius: 50%;
+
 }
 
 
