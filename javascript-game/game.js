@@ -1,7 +1,7 @@
 
 var playButton = document.getElementById("play-button");
 var textArea = document.getElementById("text-area");
-playButton.onclick = function() {
+playButton.addEventListener("click", function() {
 	textArea.innerHTML = "";
 	game.keepArray = [];
 	game.roll();
@@ -9,7 +9,7 @@ playButton.onclick = function() {
 	game.menu();
 	game.keepAll();
 	check.checkAll();
-}
+});
 
 var game = {
 	rollArray: [],
@@ -70,7 +70,7 @@ var game = {
 			game.removeNum();
 			break;
 		case "q":
-			invalid;
+			throw new Error();
 			break;
 		default:
 			textArea.innerHTML = "Invalid input.  Please try again. <br> You are keeping: " + game.keepArray.sort() + 
