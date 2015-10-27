@@ -147,6 +147,7 @@ nav li a:hover {
 	visibility: hidden;
 	font: 4em Sacramento, Lato;
 	text-transform: lowercase;
+	margin: 0;
  }
 
 #blog-link {

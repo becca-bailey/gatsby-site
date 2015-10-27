@@ -51,27 +51,27 @@
 
             <p>This makes 'Cat' an object (or in this case, a warm-blooded quadriped).  We're going to give this cat a name, a breed, and a status.</p>
 
-            <pre><code class="html">
-            attr_reader :name, :breed, :hungry?, :mood
-            def Initialize(name, breed)
-              @name = name 
-              @breed = breed 
-              @hungry? = true
-              @mood = 'unhappy' 
-            end
-            </code></pre>
+  <pre><code class="html">
+  attr_reader :name, :breed, :hungry?, :mood
+  def Initialize(name, breed)
+    @name = name 
+    @breed = breed 
+    @hungry? = true
+    @mood = 'unhappy' 
+  end
+  </code></pre>
 
             <p>In English, this means that we can access the cat's name, breed and status outside of the class.  Also, they are now <em>instance variables</em>, meaning they can be accessed in other methods within the class.  I can now create a new cat.</p>
 
-            <pre><code>
-            gilbert = Cat.new('Gilbert', 'American Shorthair')
+  <pre><code>
+  gilbert = Cat.new('Gilbert', 'American Shorthair')
 
-            gilbert.name
-            => "Gilbert" 
+  gilbert.name
+  => "Gilbert" 
 
-            gilbert.breed 
-            => "American Shorthair"
-            </code>
+  gilbert.breed 
+  => "American Shorthair"
+  </code>
 
             <p>Note that if I wanted to change Gilbert's name to Phil, I couldn't do that unless I changed :name to attr_accessor.  I don't really want to do that, though.  Now, I have a hungry and unhappy cat.  How can I fix that, I wonder?  Maybe I should write a method that goes inside the Cat class.</p> 
 
