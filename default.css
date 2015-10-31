@@ -35,7 +35,7 @@ a:hover, a:active {
 
 /* Typography */
 
-p {
+p, li {
 	font: 300 1.4em/1.5em Lato, sans-serif;
 }
 
@@ -226,6 +226,10 @@ img.project-photo {
 	font-size: 4em;
 	font-family: Sacramento;
 	text-transform: lowercase;
+}
+
+.hljs {
+  background: none !important;
 }
 
 /*Media Queries*/

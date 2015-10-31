@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="../default.css" />
     <link rel="stylesheet" href="../blog.css" />
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900|Lato:100,100italic,300,300italic,700,700italic|Sacramento' rel='stylesheet' type='text/css'> 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.8.0/styles/default.min.css">
-    <script src="//cdn.jsdelivr.net/highlight.js/8.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="../highlight/styles/paraiso.light.css">
+    <script src="../highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
@@ -47,11 +47,11 @@
 
             <p>First, I need to create a class.</p>
 
-            <code>class Cat</code>
+            <code class="ruby">class Cat</code>
 
             <p>This makes 'Cat' an object (or in this case, a warm-blooded quadriped).  We're going to give this cat a name, a breed, and a status.</p>
 
-  <pre><code class="html">
+  <pre><code class="ruby">
   attr_reader :name, :breed, :hungry?, :mood
   def Initialize(name, breed)
     @name = name 
@@ -63,7 +63,7 @@
 
             <p>In English, this means that we can access the cat's name, breed and status outside of the class.  Also, they are now <em>instance variables</em>, meaning they can be accessed in other methods within the class.  I can now create a new cat.</p>
 
-  <pre><code>
+  <pre><code class="ruby">
   gilbert = Cat.new('Gilbert', 'American Shorthair')
 
   gilbert.name
@@ -71,25 +71,32 @@
 
   gilbert.breed 
   => "American Shorthair"
-  </code>
+  </code></pre>
 
             <p>Note that if I wanted to change Gilbert's name to Phil, I couldn't do that unless I changed :name to attr_accessor.  I don't really want to do that, though.  Now, I have a hungry and unhappy cat.  How can I fix that, I wonder?  Maybe I should write a method that goes inside the Cat class.</p> 
 
-            <code>def feed <br>
-            &nbsp;&nbsp;@hungry? = false <br>
-            end <br><br>
-            def pet <br>
-            &nbsp;&nbsp;@mood = 'happy' <br>
-            end</code>
+<pre><code class="ruby">
+def feed
+  @hungry? = false
+end
+
+def pet
+  @mood = 'happy'
+end
+</code></pre>
 
             <p>Now, I can feed and pet my cat by calling these methods outside of the class.</p>
 
-            <code>gilbert.feed <br>
-            gilbert.pet <br> <br>
-            gilbert.hungry? <br>
-            => false <br> <br>
-            gilbert.mood <br>
-            => "happy"</code>
+<pre><code class="ruby">
+gilbert.feed
+gilbert.pet
+
+gilbert.hungry?
+=> false
+
+gilbert.mood
+=> "happy"
+</code></pre>
 
             <p>See, now I have a happy kitty.  Isn't it amazing what classes can do?  If only real pets were this easily pleased.  </p>
        
@@ -107,18 +114,16 @@
         </div>
         <div id="recent-posts">
           <h3>Recent Posts</h3>
+          <h4 class="recent-post-title"><a href="tech.html">On the Rails</a></h4>
+          <p class="recent-post-meta">October 31, 2015</p>
+          <h4 class="recent-post-title"><a href="javascript.html">It's Just Not My Type</a></h4>
+          <p class="recent-post-meta">October 24, 2015</p>
           <h4 class="recent-post-title"><a href="ruby-classes.html">Classes, Objects, and Kitties</a></h4>
           <p class="recent-post-meta">October 17, 2015</p>
           <h4 class="recent-post-title"><a href="enumerable-methods.html">Map and Collect</a></h4>
           <p class="recent-post-meta">October 11, 2015</p>
           <h4 class="recent-post-title"><a href="arrays-hashes.html">Ruby Organizational Skills</a></h4>
           <p class="recent-post-meta">October 4, 2015</p>
-          <h4 class="recent-post-title"><a href="diversity-in-tech.html">Diversity in Tech</a></h4>
-          <p class="recent-post-meta">October 2, 2015</p>
-          <h4 class="recent-post-title"><a href="css-concepts.html">Classy Development</a></h4>
-          <p class="recent-post-meta">August 26, 2015/p>
-          <h4 class="recent-post-title"><a href="git.html">Gitting It Together</a></h4>
-          <p class="recent-post-meta">August 10, 2015</p>
         </div>
         <div id="links">
           <h3>Links</h3>
