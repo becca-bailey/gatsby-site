@@ -32,14 +32,26 @@ header h1.blog-title {
 	font: 3em Sacramento;
 	text-transform: lowercase;
 	margin: 0 auto;
-}
-
-.post-meta {
-	color: #F62459;
+	margin-left: 110px;
+	line-height: 50px;
 }
 
 .post-content {
 	margin-top: 80px;
+}
+
+.date {
+	color: white;
+	background-color: #F62459;
+	height: 70px;
+	width: 70px;
+	line-height: 70px;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 50%;
+	float: left;
+	margin-right: 40px;
+	margin-top: 20px;
 }
 
 /*Social Icons */
