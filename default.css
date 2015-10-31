@@ -217,12 +217,16 @@ nav li a:hover {
 	text-align: left;
 }
 
-#project-images li img {
-	background-color: #f8f8f8;
-	border-radius: 50%;
-
+img.project-photo {
+	margin-bottom: 20px;
 }
 
+#projects-header {
+	text-align: center;
+	font-size: 4em;
+	font-family: Sacramento;
+	text-transform: lowercase;
+}
 
 /*Media Queries*/
 

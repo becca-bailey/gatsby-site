@@ -92,5 +92,15 @@ code.tag {
   background: none !important;
 }
 
+@media screen and (max-width: 800px) {
+	#col-1 {
+		float: none;
+		width: 100%;
+	}
+	#col-2 {
+		float: none;
+		width: 100%;
+	}
+}
 
 
