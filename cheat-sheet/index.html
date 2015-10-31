@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Becca Nelson - Dev Bootcamp</title>
+    <link rel="stylesheet" href="../reset.css" />
+    <link rel="stylesheet" href="../default.css" />
+    <link rel="stylesheet" href="cheat-sheet.css" />
+    <link href='https://fonts.googleapis.com/css?family=Rancho|Lato:100,100italic,300,300italic,700,700italic' rel='stylesheet' type='text/css'> 
+    <link rel="stylesheet" href="highlight/styles/paraiso.light.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div class="main">
+      <header>
+        <h1 class="blog-title">Programming Cheat Sheet</h1>
+      </header>
+      <div id="col-1">
+        <section id="html">
+          <div id="html_icon" class="icon">
+            <img src="images/laptopcomputer9.png" alt="HTML">
+            <img class="arrow" src="images/down53.png" alt="Down">
+          </div>
+          <div id ="html_text" class="text">
+            <h2>Basic Setup</h2>
+  <pre><code class="html">
+  &lt;!DOCTYPE html&gt;
+      &lt;head&gt;
+          &lt;meta charset="utf-8"&gt;
+          &lt;title&gt;My Site&lt;/title&gt;
+          &lt;meta name="description" content="Site Description"&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+          &lt;h1&gt;My Site&lt;/h1&gt;
+          &lt;p&gt;Site Content&lt;/p&gt;
+      &lt;/body&gt;
+  &lt;/html&gt;
+  </code></pre>    
+          <h2>Classes & ID's</h2> 
+  <pre><code>
+  &lt;h1 id="title"&gt; 
+    => One title in the document
+  &lt;div class="blue"&gt; 
+    => Multiple divs with the same style
+  </code></pre>  
+          <h2>Common HTML5 Tags</h2>
+          <code class="tag">&lt;article&gt;</code>
+          <code class="tag">&lt;aside&gt;</code>
+          <code class="tag">&lt;figure&gt;</code>
+          <code class="tag">&lt;footer&gt;</code>
+          <code class="tag">&lt;header&gt;</code>
+          <code class="tag">&lt;main&gt;</code>
+          <code class="tag">&lt;nav&gt;</code>
+          <code class="tag">&lt;section&gt;</code>
+          </div>   
+        </section>
+        <section id="javascript">
+          <div id="javascript_icon" class="icon">
+            <img src="images/fileformat7.png" alt="JavaScript">
+            <img class="arrow" src="images/down53.png" alt="Down">
+          </div>
+          <div id="javascript_text" class="text">
+<h2>Loops</h2>
+<pre><code class="javascript">
+  for (var counter = 1; counter < 11; counter++) {
+    console.log(counter);
+  }
+</code></pre>
+<pre><code class="javascript">
+  i = 1
+  while (i <= 10) {
+    console.log(i);
+  }
+</code></pre>
+<pre><code class="javascript">
+  var loopCondition = false
+  do {
+    console.log("looping");
+  } while(loopCondition)
+
+  => "looping" 
+  //loops one time, even if condition is false
+</code></pre>
+<h2>Flow Control</h2>
+<pre><code class="javascript">
+  if (condition) {
+    //do something;
+  }
+  else if (another condition) {
+    //do something else;
+  }
+  else {
+    //do something else;
+  }
+</code></pre>
+<pre><code class="javascript">
+  switch(variable) {
+    case 'condition':
+      //do something;
+      break;
+    case 'condition two':
+      //do something else;
+      break;
+    default: 
+      //do this by default;
+      break
+  }
+</code></pre>
+<h2>Objects</h2>
+<pre><code class="javascript">
+  //Literal constructor
+  var me = {
+    name: "Becca",
+    age: 27
+  }
+
+  //new Object constructor
+  var me = new Object();
+  me.name = "Becca";
+  me.age = 27;
+</code></pre>
+<h3>Iterating through Objects</h3>
+<pre><code class="javascript">
+  var list = function(obj) {
+    for (var info in obj) {
+      console.log(info);
+    }
+  }
+</code></pre>
+<h3>Object Constructor Methods</h3>
+<pre><code class="javascript">
+  function Rectangle(height, width) {
+    this.height = height;
+    this.width = width;
+    this.calcArea = function() {
+      return this.height * this.width
+    }
+    this.calcPerimeter = function() {
+      return this.height * 2 + this.width * 2;
+    }
+  }
+
+  var rect = new Rectangle(7, 3);
+  var area = rect.calcArea();
+  var perimeter = rect.calcPerimeter();
+  console.log("Area = " + area);
+  console.log("Perimeter = " + perimeter);
+
+  => Area = 21
+  => Perimeter = 20
+</code></pre>
+<h3>Prototypes and Inheritance</h3>
+<pre><code class="javascript">
+  function Animal(name, numLegs) {
+    this.name = name;
+    this.numLegs = numLegs;
+  }
+
+  function Penguin(name) {
+    this.name = name;
+    this.numLegs = 2;
+  }
+
+  Penguin.prototype = new Animal();
+  // Penguin is new instance of Animal
+  var spot = new Penguin("Spot");
+  console.log(spot.numLegs);
+
+  => 2
+</code></pre>
+          </div>
+        </div>
+      </section>
+        <div id="col-2">
+          <section id="css">
+            <div id = "css_icon" class="icon">
+              <img src="images/css4.png" alt="CSS">
+              <img class="arrow" src="images/down53.png" alt="Down">
+            </div>          
+              <div id = "css_text" class="text">
+             <h2>Types of Selectors</h2> 
+             <h3>Element</h3>
+<pre><code class="css">
+  section {
+    margin-bottom: 20px;
+    border: 1px solid black;
+  }
+</code></pre>
+<h3>Class</h3>
+<pre><code class="css">
+  .selected {
+    background-color: blue;
+  }
+</code></pre>
+<h3>ID</h3>
+<pre><code class="css">
+  #site-title {
+    font: 3em 'Playfair Display';
+    color: red;
+  }
+</code></pre>
+          <h2>Common CSS Rules</h2>
+          <code class="tag"><a href="https://css-tricks.com/almanac/properties/m/margin/">margin</a></code>
+          <code class="tag"><a href="https://css-tricks.com/almanac/properties/p/padding/">padding</a></code>
+          <code class="tag"><a href="https://css-tricks.com/almanac/properties/c/color/">color</a></code>
+          <code class="tag"><a href="https://css-tricks.com/almanac/properties/f/font-style/">text-style</a></code>
+          <code class="tag"><a href="https://css-tricks.com/almanac/properties/f/font-family/">font-family</a></code>
+          </div>   
+          </section>
+          <section id="ruby">
+            <div id = "ruby-icon" class="icon">
+              <img src="images/gem.png" alt="Ruby"> 
+              <img class="arrow" src="images/down53.png" alt="Down">
+            </div>
+              <div id = "ruby_text" class="text">
+<h2>Loops</h2>
+
+<pre><code class="ruby">
+  # To print numbers 1 to 10
+
+  i = 0
+  loop do
+    i += 1
+    print "#{i} "
+    break if i = 10
+  end
+</pre></code>
+<pre><code class="ruby">
+  i = 1
+  while i <= 10
+    print i + " "
+    i += 1
+  end
+</pre></code>
+<pre><code class="ruby">
+  for i in 1..10
+    print i + " ";
+  end
+</pre></code>
+<pre><code class="ruby">
+  (1..10).each { |i| print i + " " }
+</pre></code>
+<pre><code class="ruby">
+  => 1 2 3 4 5 6 7 8 9 10
+</pre></code>
+
+<h2>Methods</h2>
+
+<pre><code class="ruby">
+  def square(n)
+    puts n * 2
+  end
+
+  square(5)
+
+  => 25
+</pre></code>  
+
+<h2>Arrays</h2>
+
+<h3>Create an Array</h3>
+
+<pre><code class="ruby">
+  cities = ["Chicago", "New York", "San Francisco"]
+</pre></code>
+
+<pre><code class="ruby">
+  cities = Array.new
+  cities[0] = "Chicago"
+  cities[1] = "New York",
+  cities[2] = "San Francisco"
+
+  => cities = ["Chicago", "New York", "San Francisco"]
+</pre></code>
+<pre><code class="ruby">
+  numbers = %w[one two three]
+
+  =>["one", "two", "three"]
+</pre></code>
+<pre><code class="ruby">
+  (1..10).to_a
+
+  => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre></code>
+
+<h3>Accessing Elements</h3>
+<pre><code class="ruby">
+  puts cities[0]
+  puts cities[1]
+  puts cities[2]
+</pre></code>
+<pre><code class="ruby">
+  => Chicago
+  => New York
+  => San Francisco
+</pre></code>
+
+<h3>Iterating</h3>
+
+<pre><code class="ruby">
+  cities.each { |city| print "#{city}  " }
+
+  => Chicago  New York  San Francisco
+</pre></code>
+
+<h3>Nested Arrays</h3>
+
+<pre><code class="ruby">
+  complement = [["red", "green"]["orange", "blue"]["purple", "yellow"]]
+</pre></code>
+<pre><code class="ruby">
+  complement.each do |sub_array|
+    sub_array.each do |color|
+      puts color
+    end
+  end
+
+  => red
+  => green
+  => orange
+  => blue
+  => purple
+  => yellow
+</pre></code>
+
+<h2>Common Array Methods</h2>
+
+<code class="tag">.length</code>
+<code class="tag">.map</code>
+<code class="tag">.concat</code>
+<code class="tag">.delete</code>
+<code class="tag">.flatten</code>
+<code class="tag">.index</code>
+<code class="tag">.pop</code>
+<code class="tag">.push</code>
+<code class="tag">.reverse</code>
+<code class="tag">.sample</code>
+
+<h2>Hashes</h2>
+
+<pre><code class="ruby">
+  # Literal Notation
+
+  my_hash = { name: "Becca", 
+              age: "27",
+              location: "Chicago"
+            }
+</pre></code>
+<pre><code class="ruby">
+  # Hash.new method
+
+  my_hash = Hash.new
+  my_hash["Becca"] = :name
+  puts my_hash["Becca"]
+
+  => :name
+</pre></code>
+<h3>Accessing Elements</h3>
+<pre><code class="ruby">
+  puts my_hash[:name]
+
+  => Becca
+</pre></code>
+<h3>Iterating</h3>
+<pre><code class="ruby">
+  my_hash.each { |key, value| puts "#{key}: #{value}" }
+
+  => name: Becca
+  => age: 27
+  => location: Chicago
+</pre></code> 
+
+<h2>Flow Control</h2>   
+
+<pre><code class="ruby">
+  x = 10; y = 15
+  x > y ? greatest = x : greatest = y
+  puts "The greater number is #{greatest}."
+
+  => "The greater number is 15."
+</pre></code>    
+
+<h2>Enumerables</h2>   
+
+<pre><code class="ruby">
+  <code class="tag">.all?</code> # checks if condition is true for all
+  %w[ant bear cat].all? { |word| word.length >= 3 }
+
+  => true
+
+  <code class="tag">.any?</code> # checks if condition is true for any
+  <code class="tag">.chunk</code> # groups like items together
+  <code class="tag">.count</code> # returns number of true instances
+  ary = [1, 2, 3, 4]
+  ary.count { |x| x % 2 === 0 }
+
+  => 2
+
+  <code class="tag">.drop</code> # drops items from an array
+  ary = [1, 2, 3, 4, 5, 6]
+  ary.drop(3)
+
+  => [4, 5, 6]
+
+  <code class="tag">.reduce</code> # performs an operation on each item
+  (5..10).reduce(:+)
+
+  => 45
+
+  <code class="tag">.inject</code> # performs an operation on each item
+  (5..10).inject { |sum, n| sum + n }
+
+  => 45
+
+</pre></code> 
+
+<h2>Procs</h2>
+
+<pre><code class="ruby">
+  hi = Proc.new do
+    puts "Hello!"
+  end
+
+  hi.call
+
+  => "Hello!"
+</pre></code> 
+
+            </div> 
+              </div>
+          </div>
+          <footer>
+          <small>Copyright &copy; 2015 Becca Nelson</small>
+        </section>
+      </footer>
+    </div> <!-- Main -->
+    <script src="cheat-sheet.js"></script>
+  </body>
+</html>
