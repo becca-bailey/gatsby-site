@@ -232,6 +232,18 @@ img.project-photo {
   background: none !important;
 }
 
+.btn {
+	text-align: center;
+	background-color: #F62459;
+	padding: 20px;
+	width: 300px;
+	color: white;
+	font-weight: bold;
+	border-radius: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /*Media Queries*/
 
 
