@@ -145,7 +145,7 @@ nav li a:hover {
 	background-color: rgba(255, 255, 255, .7);
 	padding-top: 35%;
 	visibility: hidden;
-	font: 4em Sacramento, Lato;
+	font-family: Sacramento, Lato;
 	text-transform: lowercase;
 	margin: 0;
  }
