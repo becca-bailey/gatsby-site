@@ -1,18 +1,17 @@
 # Site settings
 title: Becca Nelson
 email: beccanelson88@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: "Writer, web developer, frequent reader and people-watcher on the CTA.  This site was made by Becca with some help from Jekyll."
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://beccanelson.github.io" # the base hostname & protocol for your site
 twitter_username: beccaliz
 github_username:  beccanelson
 facebook_username: beccanelsonwriter
 instagram_username: beccawonders
+disqus_username: beccanelsongithub
 paginate: 8
 paginate_path: "/blog/:num"
+permalink: /:title
 
 # Build settings
 markdown: kramdown
