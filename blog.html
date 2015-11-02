@@ -1,118 +1,53 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Becca Nelson - Dev Bootcamp</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="default.css" />
-    <link rel="stylesheet" href="blog.css" />
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900|Lato:100,100italic,300,300italic,700,700italic|Sacramento' rel='stylesheet' type='text/css'> 
-  </head>
-  <body>
-    <div class="main">
-      <header>
-        <h1 class="blog-title">Becca Nelson</h1>
-        <ul class="social-icons blog-social-icons">
-          <li><a href="http://www.twitter.com/beccaliz"><img src="images/twitter-icon.png" alt="Twitter"></a></li>
-          <li><a href="https://www.facebook.com/beccanelson88"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
-          <li><a href="http://www.instagram.com/beccawonders"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
-          <li><a href="http://www.github.com/beccanelson"><img src="images/GitHub-icon.png" alt="GitHub"></a></li>
-        </ul>
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">About Me</a></li>
-            <li><a href="projects/index.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        </nav>
-      </header>
-      <div id="blog">
-       <article>
-          <div class="date">10/31</div>
-          <h2 class="post-title"><a href="blog/tech.html">On the Rails</h2></a>
-          <h3 class="description">What is Ruby on Rails?</h3>
-        </article>
-        <article>
-          <div class="date">10/24</div>
-          <h2 class="post-title"><a href="blog/javascript.html">It's Just Not My Type</h2></a>
-          <h3 class="description">Type Conversion in JavaScript</h3>
-        </article>
-        <article>
-          <div class="date">10/17</div>
-          <h2 class="post-title"><a href="blog/ruby-classes.html">Classes, Objects, and Kitties</h2></a>
-          <h3 class="description">Object-Oriented Ruby: Cat Edition</h3> 
-        </article>
-        <article>
-          <div class="date">10/11</div>
-          <h2 class="post-title"><a href="blog/enumerable-methods.html">Map and Collect</h2></a>
-          <h3 class="description">Two Methods that Do the Same Thing</h3>
-        </article>
-        <article>
-          <div class="date">10/4</div>
-          <a href="blog/arrays-hashes.html"><h2 class="post-title">Ruby Organizational Skills</h2></a>
-            <h3 class="description">Using Arrays and Hashes</h3>
-        </article>
-        <article>
-          <div class="date">10/2</div>
-          <a href="blog/diversity-in-tech.html"><h2 class="post-title">Diversity in Tech</h2></a>
-          <h3 class="description">Minorities, "Brogrammer Culture", and what we can do about it.</h3>
-        </article>
-        <article>
-          <div class="date">9/10</div>
-          <a href="blog/css-concepts.html"><h2 class="post-title">Classy Development</h2></a>
-          <h3 class="description">ID's and Classes in HTML and CSS</h3>
-        </article>
-        <article>
-          <div class="date">9/10</div>
-          <a href="blog/git.html"><h2 class="post-title">Gitting It Together</h2></a>
-          <h3 class="description">Reflections on Version Control</h3>
-        </article>
-        
-      </div>
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
 
-      <aside id="sidebar">
-        <div>
-          <figure id="about-me">
-            <img id="about-photo" src="images/about.png" alt="About Me">
-            <h3>Hi, I'm Becca!</h3>
-            <p>I am a writer, developer, and occasional music teacher in Chicago.  I am currently a student at Dev Bootcamp.</p>
-          </figure>
-        </div>
-        <div id="recent-posts">
-          <h3>Recent Posts</h3>
-          <h4 class="recent-post-title"><a href="blog/tech.html">On the Rails</a></h4>
-            <p class="recent-post-meta">October 31, 2015</p>
-          <h4 class="recent-post-title"><a href="blog/javascript.html">It's Just Not My Type</a></h4>
-            <p class="recent-post-meta">October 24, 2015</p>
-          <h4 class="recent-post-title"><a href="blog/ruby-classes.html">Classes, Objects, and Kitties</a></h4>
-            <p class="recent-post-meta">October 17, 2015</p>
-          <h4 class="recent-post-title"><a href="blog/enumerable-methods.html">Map and Collect</a></h4>
-            <p class="recent-post-meta">October 11, 2015</p>
-          <h4 class="recent-post-title"><a href="blog/arrays-hashes.html">Ruby Organizational Skills</a></h4>
-            <p class="recent-post-meta">October 4, 2015</p>
-        </div>
-        <div id="links">
-          <h3>Links</h3>
-          <figure class="link">
-            <a href="http://www.beccanelsonwrites.com">
-              <img class="link-photo" src="images/writing mockup.png" alt="Blog">
-              <h4>Blog</h4>
-            </a>
-          </figure>
-          <figure class="link">
-            <a href="http://www.beccanelsonmakesthings.com">
-              <img class="link-photo" src="images/design-mockup.png" alt="Design">
-              <h4>Design</h4>
-            </a>
-          </figure>
-        </div>
-      </aside>
-      <footer>
-        <small>Copyright &copy; 2015 Becca Nelson</small>
-      </footer>
-    </div> <!-- Main -->
-  </body>
-</html>
+<div class="main">
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <div class="date">{{ post.date | date: "%b %-d" }}</div>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        <h3 class="description">{{ post.description }}</h3>
+        <p class="excerpt">
+          {{ post.content | strip_html | truncatewords:40 }}
+          <a href="{{ post.url | prepend: site.baseurl }}" class="link">Read more</a>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+  {% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a rel="prev" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% else %}
+    <span>&laquo; Prev</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ '/archives' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a rel="next" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% else %}
+    <span>Next &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}
+
+</div>

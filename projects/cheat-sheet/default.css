@@ -80,8 +80,10 @@ header h1 {
 	opacity: .5;
 }
 
-#main-title {
+.site-title {
 	font-size: 6em;
+	font-family: 'Playfair Display';
+	color: #F62459;
  }
 
 /*Site Navigation*/
@@ -147,7 +149,7 @@ nav li a:hover {
  }
 
 #blog-link {
-	background-image: url(images/typewriter.png);
+	background-image: url({{ site.baseurl }}/images/typewriter.png);
  }
 
 

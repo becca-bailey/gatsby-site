@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "Ruby Organizational Skills"
+description: "Using Arrays and Hashes"
+date:   2015-10-2
+categories: dev-bootcamp ruby
+---
+
+<p>In Ruby (and other programming languages), arrays and hashes are ways of organizing data.  An array is simply a container for holding data. Allow me to demonstrate this concept, and show off my stellar household organizational skills in the process.</p>
+
+<h2>Arrays</h2>
+
+<img src="{{site.baseurl}}/images/stuff-box.jpg" />
+
+<p>This is a box full of stuff.  You can tell how organized I am at the moment, because in this box I have about 27 balls of yarn, a pair of socks, a box of colored pencils, a bag of trail mix, and the movie “500 Days of Summer.”  I could turn this box into an array like this.</p>
+
+<code>box = [“yarn”, “socks”, “colored pencils”, “trail mix, “500 Days of Summer”]</code>
+
+<p>Note that the items in my array, like the items in my house, are in no particular order.  Also, an array can contain strings of text (like in my example), numbers, booleans (true or false statements), and even other arrays.  </p>
+
+<p>Each item in the array has a number, starting with zero.  For example, if I told my program to <code>return box[0]</code>, it would return the first item, which is <code>"yarn"</code>.  I could also count backwards, and access the last item using the number -1.  </p> 
+
+<h2>Hashes</h2>
+
+<p>Now, let's say I was an organized person who labeled every item by type.  Instead of a random list, I would have something more like this.</p>
+
+<code>box = { "material" => "yarn", "clothing" => "socks", "art supply" => "colored pencils", "snack" => "trail mix", "movie" => "500 Days of Summer" }</code>
+
+<p>
+This would be a hash.  Hashes are great for storing information that has a clear identifier, such as <code>"name" => "Becca"</code>.  This is called a <em>key</em>, and a <em>value</em>.  Instead of using a number to access data like you would for an array, you would access information using its key.  For example, <code>return box["snack"]</code> would return <code>"trail mix"</code>
+</p>
+
+<p>There is a lot more information to be found about constructing arrays and hashes, adding and removing data, and using Ruby methods to iterate through them, so I have inclded some more resources here.</p>
+
+<p><strong>For more information:</strong></p>
+
+<p><a href="http://www.sitepoint.com/guide-ruby-collections-ii-hashes-sets-ranges/">A Guide to Ruby Collections, II: Hashes, Sets and Ranges</a></p>
+
+<p><a href="http://www.slideshare.net/nirusuma/ruby-arrays-hashes-examples-16776638">Ruby's Arrays and Hashes with Examples</a></p>

@@ -1,64 +1,37 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Becca Nelson - Dev Bootcamp</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="default.css" />
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900|Lato:100,100italic,300,300italic|Sacramento' rel='stylesheet' type='text/css'> 
-  </head>
-  <body>
-    <div class="main">
-      <header>
-        <h1 id="main-title">Becca Nelson</h1>
-        <ul class="social-icons">
-          <li><a href="http://www.twitter.com/beccaliz"><img src="images/twitter-icon.png" alt="Twitter"></a></li>
-          <li><a href="https://www.facebook.com/beccanelson88"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
-          <li><a href="http://www.instagram.com/beccawonders"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
-          <li><a href="http://www.github.com/beccanelson"><img src="images/GitHub-icon.png" alt="GitHub"></a></li>
-        </ul>
-      </header>
+---
+layout: home
+---
 
-      <ul id="link-icons">
-        <li class="link-icon" id="blog-link">
-          <a href="blog.html">
-            <h2 class="icon-text">Blog</h2>
-          </a>
-        </li>
-        <li class="link-icon" id="about-link">
-          <a href="about.html">
-            <h2 class="icon-text">About</h2>
-          </a>
-        </li>
-        <li class="link-icon" id="projects-link">
-          <a href="projects/index.html">
-            <h2 class="icon-text">Projects</h2>
-          </a>
-        </li>
-      </ul>
-    </div> <!-- Main -->
+<div class="home">
+  <header>
+    <h1 id="main-title">{{ site.title }}</h1>  
+    <ul class="social-icons">
+      <li><a href="http://www.twitter.com/beccaliz"><img src="{{site.baseurl}}/images/twitter-icon.png" alt="Twitter"></a></li>
+      <li><a href="https://www.facebook.com/beccanelson88"><img src="{{site.baseurl}}/images/facebook-icon.png" alt="Facebook"></a></li>
+      <li><a href="http://www.instagram.com/beccawonders"><img src="{{site.baseurl}}/images/instagram-icon.png" alt="Instagram"></a></li>
+      <li><a href="http://www.github.com/beccanelson"><img src="{{site.baseurl}}/images/GitHub-icon.png" alt="GitHub"></a></li>
+    </ul>
+  </header>
 
-    <section id="about">
-      <div class="main">
-        <h1>This is my story.</h1>
-        <p>People ask me sometimes why I chose to become a web developer, and I usually tell them it was an accident. I was a teacher for about five years before I caught the bug. I woke up one day, and wanted to be more in charge of my career and my life.</p>
+  <ul id="link-icons">
+    <li class="link-icon" id="blog-link">
+      <a href="{{site.basurl}}/blog">
+        <h2 class="icon-text">Blog</h2>
+      </a>
+    </li>
+    <li class="link-icon" id="about-link">
+      <a href="{{site.baseurl}}/about">
+        <h2 class="icon-text">About</h2>
+      </a>
+    </li>
+    <li class="link-icon" id="projects-link">
+      <a href="{{site.baseurl}}/projects">
+        <h2 class="icon-text">Projects</h2>
+      </a>
+    </li>
+  </ul>
 
-        <p>I started by teaching myself some HTML, CSS and JavaScript. I thought that was super fun, so I enrolled in more classes, and I am currently a student at Dev Bootcamp in Chicago. I got hooked on code, and my life has never been quite the same.</p>
-      </div>
-    </section>
-    <div class="main">
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="index.html#about">About Me</a></li>
-            <li><a href="projects/">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <footer>
-        <small>Copyright &copy; 2015 Becca Nelson</small>
-      </footer>
-    </div> <!-- Main -->
-  </body>
-</html>
+  {% include navigation.html %}
+  
+
+</div>
