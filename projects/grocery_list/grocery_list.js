@@ -88,9 +88,6 @@ removeItem.addEventListener("click", function() {
 		if (listItems[i].checked) {
 			delete groceryLists[listName][listItems[i].value];
 		}
-		else {
-			alert("Please check the item(s) you want to delete.")
-		}
 	}
 	printList(groceryLists[listName]);
 });
@@ -119,9 +116,6 @@ updateQuantity.addEventListener("click", function() {
 	for (var i = 0; i < listItems.length; i++) {
 		if (listItems[i].checked) {
 			groceryLists[listName][listItems[i].value] = quantity;
-		}
-		else {
-			alert("Please check the item(s) you want to update.")
 		}
 	}
 	printList(groceryLists[listName]);
