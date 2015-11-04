@@ -39,7 +39,7 @@ button {
 	border-radius: 10px;
 	border: none;
 	text-transform: lowercase;
-	margin: 20px;
+	margin: 10px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -47,7 +47,7 @@ button {
 select {
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50px;
+	margin-top: 30px;
 	font-size: 1.2em;
 	min-width: 200px;
 }
@@ -58,4 +58,10 @@ ul li {
 	font-size: 1.2em;
 	text-align: left;
 
+}
+
+.print {
+	text-align: left;
+	font-family: Helvetica, sans-serif;
+	font-size: 1.5em;
 }
