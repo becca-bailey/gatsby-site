@@ -18,8 +18,8 @@
 /* Typography */
 
 h1 {
-    font: 3em 'Playfair Display', serif;
- }
+    font: 300 2.7em $base-font-family;
+}
 
 h2 {
     font: 300 2em $base-font-family;
@@ -103,13 +103,21 @@ h2 {
 
  /* Blog Styles */
 
+ .post-list {
+    margin-top: 30px;
+ }
+
+ #sidebar {
+    margin-top: 20px;
+ }
+
  .post-list h2 {
     margin-bottom: 0;
  }
 
  .date {
     color: white;
-    background-color: #F62459;
+    background-color: $brand-color;
     height: 80px;
     width: 80px;
     line-height: 80px;
@@ -276,6 +284,11 @@ ul.posts {
     padding-top: 40px;
 }
 
+#blog-title, #main-title, .post-title {
+    font-weight: 900;
+    font-family: 'Playfair Display';
+}
+
 #blog-title {
     color: $brand-color;
 }
@@ -380,7 +393,12 @@ ul.posts {
 }
 
 .page-title {
-    text-align: center;
+    text-align: right;
+    font-size: 2em;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid black;
+    width: 100%;
 }
 
 
