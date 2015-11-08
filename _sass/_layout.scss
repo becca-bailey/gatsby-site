@@ -36,6 +36,7 @@ h2 {
  a {
     text-decoration: none;
     color: gray;
+    transition: color 0.3s ease;
     &:hover {
         text-decoration: none;
         color: $brand-color;
@@ -117,11 +118,16 @@ textarea {
     h2 {
         line-height: 250px;
         background-color: rgba(255, 255, 255, .7);
-        visibility: hidden;
+        // visibility: hidden;
         font-family: Sacramento, Lato;
         color: $brand-color;
         text-transform: lowercase;
         font-size: 3em;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        &:hover {
+            opacity: 100;
+        }
     }
     #blog-link {
         background-image: url(../images/typewriter.png);
@@ -133,6 +139,7 @@ textarea {
         background-image: url(../images/projects.png);
     }
 }
+
 
 #blog-link:hover h2, #about-link:hover h2, #projects-link:hover h2 {
     visibility: visible;
@@ -336,6 +343,7 @@ ul.posts {
 .social-icons {
     margin-left: 0 !important;
     li {
+        transition: opacity 0.3s ease;
         display: inline;
         padding: 10px;
         opacity: .7;

@@ -1,7 +1,7 @@
 # Site settings
 title: Becca Nelson
 email: beccanelson88@gmail.com
-description: "Writer, web developer, frequent reader and people-watcher on the CTA.  This site was made by Becca with some help from Jekyll."
+description: "Writer, web developer, frequent reader and people-watcher on the CTA."
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://beccanelson.github.io" # the base hostname & protocol for your site
 twitter_username: beccaliz
@@ -9,8 +9,6 @@ github_username:  beccanelson
 facebook_username: beccanelsonwriter
 instagram_username: beccawonders
 disqus_username: beccanelsongithub
-paginate: 8
-paginate_path: "/blog/:num"
 permalink: /:title
 
 # Build settings
