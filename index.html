@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: no-header
 ---
 
 <div class="home">
@@ -20,7 +20,7 @@ layout: home
       </a>
     </li>
     <li class="link-icon" id="about-link">
-      <a href="{{site.baseurl}}/about">
+      <a href="#about">
         <h2 class="icon-text">About</h2>
       </a>
     </li>
@@ -30,6 +30,60 @@ layout: home
       </a>
     </li>
   </ul>
+</div> <!-- Home -->
+</div> <!-- Wrapper -->
+<div id="about">
+  <div class="wrapper">
+    <div class="path-container">
+      <div class="row">
+        <div class="large-12 columns ">
+          <h1> About Me</h1>
+        </div>
+      </div>
+      <div class="row path-item">
+        <div class="large-7 medium-12 push-5 columns">
+          <div id="timeline-writing" class="circle circle-left "></div>
+        </div>
+        <div class="large-5 medium-12 pull-7 columns path-text left">
+          <h3>My first love was writing.</h3>
+          <p>I write for my own blog, and am currently a regular contributor to a blog called <a href="http://www.therisingblog.com">The Rising</a>.</p>
+          <a href="http://www.beccanelsonwrites.com/writing">Published Writing »</a>
+        </div>
+      </div>
+      <div class="row path-item">
+        <div class="large-7 medium-12 columns">
+          <div id="timeline-music" class="circle circle-right right"></div>
+        </div>
+        <div class="large-5 columns path-text right">
+          <h3>I was a Music Education major.</h3>
+          <p>I have worked as a music, art, and drama teacher at schools and non-profits in and around Chicago.  Fun fact: I spent last year working at an international school in western Guatemala. </p>
+          <a href="http://musicteachingisart.tumblr.com/">I had an integrated arts tumblr blog, and it was cool. »</a>
+        </div>
+      </div>
+      <div class="row get-feedback path-item">
+        <div class="large-7 push-5 columns">
+          <div id="timeline-wordpress" class="circle circle-left"></div>
+        </div>
+        <div class="large-5 medium-12 pull-7 columns path-text left">
+          <h3>I have worked as a freelance WordPress developer.</h3>
+          <p>I have worked with clients to do theme installation, domain migration, and HTML, CSS, and PHP fixes.</p>
+          <a href="http://www.beccanelsonmakesthings.com/portfolio">WordPress Portfolio »</a>
+        </div>
+      </div>
+      <div class="row land-job path-item">
+        <div class="large-7 columns">
+          <div id="timeline-dbc" class="circle circle-right right"></div>
+        </div>
+        <div class="large-5 medium-12 columns path-text right">
+          <h3>I am currently a student at Dev Bootcamp.</h3>
+          <p>I am learning full-stack development using Ruby on Rails, JavaScript, SQL, HTML, CSS, and more.  To learn more, check out my projects.</p>
+          <a href="{{site.baseurl}}/projects">Projects »</a>
+        </div>
+      </div>
+      <span class="line hide-for-small"></span>
+    </div>
+  </div>
+</div>
 
   {% include navigation.html %}
   
