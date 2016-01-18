@@ -10,11 +10,11 @@ As we are diving into CSS next week in Dev Bootcamp, I wanted to share some of m
 
 ##Flexbox
 
-Flexbox is a trick that does exactly what it says—makes flexible boxes.  I especially like using it for navigation menus to space items out evenly.  Also, using flexbox to display content helps to make your site more mobile responsive.  As a special added bonus, flexbox is completely compatible in all browers, prefix-free.
+Flexbox is a trick that does exactly what it says—makes flexible boxes.  I especially like using it for navigation menus to space items out evenly.  Also, using flexbox to display content helps to make your site more mobile responsive.  Flexbox is completely supported in Chrome and Firefox, but some browsers may require a prefix. For the most recent information, check out <a href="http://www.caniuse.com">http://www.caniuse.com</a>.
 
 You can use flexbox by adding a few lines of CSS to the container element.
 
-{% highlight ruby %}
+{% highlight css %}
 ul {
   display: flex;
   flex-direction: row;
@@ -32,7 +32,7 @@ For more info: [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css
 
 This one is a little trickier, as it is not supported in all browsers and involves some workarounds to show up in Firefox and Internet explorer.  The effect, however, is pretty awesome when it works.  Why use photoshop when you can use CSS?  Also, note the hover effect in my example.
 
-{% highlight ruby %}
+{% highlight css %}
  h1 {
   color: black;
   -webkit-text-fill-color: transparent;
@@ -57,7 +57,7 @@ I guess Sass isn't a CSS trick as much as it's a method of writing CSS.  Sass ad
 
 For example, Sass allows you to nest your code instead of writing long strings of identifiers.
 
-{% highlight ruby %}
+{% highlight css %}
 .box {
   width: 800px;
   .title-area {
@@ -71,7 +71,7 @@ For example, Sass allows you to nest your code instead of writing long strings o
 
 You can also use variables to replace values.  This way, if you want to change the style of the entire document, you can change the variable instead of searching for each instance of a particular style.
 
-{% highlight ruby %}
+{% highlight css %}
 $text-color: #D63B71;
 $heading-font: Lato, sans-serif;
 
