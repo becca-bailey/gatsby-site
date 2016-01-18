@@ -147,13 +147,17 @@ textarea {
  }
 
  @include media-query($on-palm) {
-    #main-title {
-        font-size: 3em;
-    }
-    #link-icons li {
-        margin: 5px;
-    }
+   #main-title {
+     font-size: 3em;
+   }
+   #link-icons li {
+     margin: 5px;
+   }
+   .icon-text {
+     visibility: visible;
+   }
  }
+
 
  /* Blog Styles */
 
@@ -267,7 +271,7 @@ ul.posts {
         text-align: left;
         margin-left: 0;
         a {
-            font-weight: bold;   
+            font-weight: bold;
         }
     }
 }
@@ -352,10 +356,23 @@ ul.posts {
             opacity: .5;
         }
     }
+
 }
 
 .blog-social-icons li img {
     width: 40px;
+}
+
+@include media-query($on-palm) {
+  .social-icons li img {
+    width: 40px;
+  }
+  #link-icons h2 {
+    opacity: 1;
+  }
+  #main-title {
+    font-size: 2.7em;
+  }
 }
 
 .site-nav {
@@ -627,3 +644,37 @@ ul.posts {
     text-align: center;
 }
 
+// Resume
+
+section, .resume-header {
+  margin-bottom: 1.5rem;
+}
+
+.skills {
+  text-align: center;
+  h4 {
+    margin-top: 1.2em;
+  }
+  i {
+    color: $brand-color;
+  }
+}
+
+.ratings {
+  margin-bottom: 1.5rem;
+}
+
+.skill {
+  padding: 1rem;
+  background-color: #ebf3f5;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.icon-javascript-alt {
+  padding-left: 0.2em;
+}
+
+#education .row {
+  margin-top: 1.5em;
+}

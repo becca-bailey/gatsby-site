@@ -8,8 +8,8 @@
 
 #resume-title {
     vertical-align: center;
-    font-family: 'Playfair Display';
-    font-weight: 900;
+    font-family: 'Lato';
+    font-weight: 100;
     color: $brand-color;
 }
 
@@ -18,24 +18,24 @@
 }
 
 
-.contact-info { 
+.contact-info {
 	margin-top: 40px;
-	#location {
-		&::before{
-			content: "";
-			display: block;
-			width: 42px;
-			height: 32px;
-			float: left;
-			background: url(../images/mail4-32.png) no-repeat;
-		}
-	}
-	#email {
-		&::before {
-			@extend #location::before;
-			background: url(../images/pin71.png) no-repeat;
-		}
-	}
+	// #location {
+	// 	&::before{
+	// 		content: "";
+	// 		display: block;
+	// 		width: 42px;
+	// 		height: 32px;
+	// 		float: left;
+	// 		background: url(../images/mail4-32.png) no-repeat;
+	// 	}
+	// }
+	// #email {
+	// 	&::before {
+	// 		@extend #location::before;
+	// 		background: url(../images/pin71.png) no-repeat;
+	// 	}
+	// }
 	p {
 		font-weight: 400;
 		vertical-align: center;
@@ -227,6 +227,3 @@ h2 {
     margin-right: auto;
   }
 }
-
-
-
