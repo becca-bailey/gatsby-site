@@ -26,7 +26,7 @@ h2 {
  }
 
  h3 {
-    font: 700 1.5em $base-font-family;
+    font: 300 1.5em $base-font-family;
  }
 
  h4 {
@@ -324,8 +324,8 @@ ul.posts {
 }
 
 #blog-title, #main-title, .post-title {
-    font-weight: 900;
-    font-family: 'Playfair Display';
+    font-weight: 100;
+    font-family: Lato;
 }
 
 #blog-title {
@@ -637,7 +637,7 @@ ul.posts {
 }
 
 .share a:hover svg {
-    fill:#0562dc
+    fill: $brand-color;
 }
 
 .comments {
