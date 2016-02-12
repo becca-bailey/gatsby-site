@@ -3,19 +3,19 @@
     <figure id="about-me">
       <img id="about-photo" src="{{site.baseurl}}/images/about.png" alt="About Me">
       <h3>Hi, I'm Becca!</h3>
-      <p>I am a writer, developer, and occasional music teacher in Chicago.  I am currently a student at Dev Bootcamp.</p>
+      <p>I am a developer, a teacher, a writer, and a recent Dev Bootcamp grad in Chicago. This is where I share my thoughts about life and technology.</p>
     </figure>
   </div>
   <div id="recent-posts">
     <h3>Recent Posts</h3>
-    <ul class="posts">  
-      {% for post in site.posts limit:5 %}  
-         <li>  
-           <a href="{{ site.baseurl }}{{ post.url }}">  
-           {{ post.title }}</a>  
+    <ul class="posts">
+      {% for post in site.posts limit:5 %}
+         <li>
+           <a href="{{ site.baseurl }}{{ post.url }}">
+           {{ post.title }}</a>
             <br><small>Posted on: {{ post.date | date: "%m-%d-%Y" }}</small>
-         </li>  
-      {% endfor %}  
+         </li>
+      {% endfor %}
     </ul>
   </div>
   <div id="links">
