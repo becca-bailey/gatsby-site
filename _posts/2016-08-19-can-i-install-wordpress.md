@@ -2,8 +2,8 @@
 layout: post
 title:  "Can I Install WordPress on my Own Computer??"
 date:   2015-08-19
-categories: dev-bootcamp risk-taking tech
-twitter_text: "Whether you're working with a developer or editing a WordPress site yourself, FTP access will make it much easier."
+categories: wordpress development tech
+twitter_text: "I wonder... Can I Install WordPress on my Own Computer?"
 ---
 ![Can I Install WordPres on my Own Computer?](/images/I-wonder...-2-1024x512.png)
 

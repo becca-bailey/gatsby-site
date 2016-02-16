@@ -3,12 +3,12 @@ layout: post
 title:  "CSS is Awesome"
 description: "Becca's Favorite CSS Tricks"
 date:   2015-09-18
-categories: dev-bootcamp git
+categories: dev-bootcamp css
 ---
 
 As we are diving into CSS next week in Dev Bootcamp, I wanted to share some of my favorite CSS tricks.
 
-##Flexbox
+## Flexbox
 
 Flexbox is a trick that does exactly what it says—makes flexible boxes.  I especially like using it for navigation menus to space items out evenly.  Also, using flexbox to display content helps to make your site more mobile responsive.  Flexbox is completely supported in Chrome and Firefox, but some browsers may require a prefix. For the most recent information, check out <a href="http://www.caniuse.com">http://www.caniuse.com</a>.
 
@@ -28,7 +28,7 @@ ul {
 
 For more info: [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-##Clipping a background image around text
+## Clipping a background image around text
 
 This one is a little trickier, as it is not supported in all browsers and involves some workarounds to show up in Firefox and Internet explorer.  The effect, however, is pretty awesome when it works.  Why use photoshop when you can use CSS?  Also, note the hover effect in my example.
 
@@ -51,7 +51,7 @@ h1:hover {
 
 For more info: [Using Background Clip for Text with CSS Fallback](http://nimbupani.com/using-background-clip-for-text-with-css-fallback.html)
 
-##Sass
+## Sass
 
 I guess Sass isn't a CSS trick as much as it's a method of writing CSS.  Sass adds nesting, variables, and conditional logic to CSS, and to me, it just makes sense!
 
@@ -87,7 +87,7 @@ I obviously can't give you a full tutorial here, but I would recommend checking 
 
 [Sass Basics course at Treehouse](http://teamtreehouse.com/library/sass-basics)
 
-##Stuff I'm still learning about
+## Stuff I'm still learning about
 
 I took a class on SVGs this week, which I think is completely fascinating, especially when combined with CSS3 animation.  I'm currently reading through [Pocket Guide to Writing SVG](http://svgpocketguide.com/), and learning more about [keyframes animation](https://css-tricks.com/snippets/css/keyframe-animation-syntax/).
 
