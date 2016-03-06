@@ -1,162 +1,121 @@
 ---
+layout: resume
 title: Résumé
 permalink: /resume/
 ---
-
-<!DOCTYPE html>
-<html>
-
-	<head>
-	  <meta charset="utf-8">
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-	  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-
-	  <link rel="stylesheet" href="{{ "/foundation/stylesheets/app.css" | prepend: site.baseurl }}">
-	  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-	  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-	  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-	  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,900|Lato:100,100italic,300,300italic,700,700italic|Sacramento' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="{{ site.baseurl }}/font-mfizz-2.2/font-mfizz.css">
-
-	</head>
-
-  	<body>
-
-    <div class="page-content">
-      <div class="wrapper">
-       	<section class="resume-header row">
-					<div class="large-2 small-12 columns">
-						<img id="resume-image" src="{{site.baseurl}}/images/about.png" alt="Hi, I'm Becca.">
+<main>
+	<section class="about fade-in-first">
+		<h2>About Me</h2>
+		<p>I am a developer, a teacher, and a writer.  Before attending Dev Bootcamp, I was a fine arts teacher at schools and non-profits in Chicago and then in Guatemala.  I started learning development as a WordPress blogger, customizing my own blog and taking on a few freelance clients.  As I became more serious about web development, I taught myself some JavaScript and PHP before learning a multitude of full-stack development skills at Dev Bootcamp in Chicago.</p>
+	</section>
+	<section id="skills">
+		<h2 class="fade-in">Skills</h2>
+		<div class="row ratings">
+			<div class="skills fade-in large-3 small-6 columns">
+				<i class="fa fa-code fa-5x"></i>
+				<h4>HTML/CSS</h4>
+				<div class="rating">
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star"></i>
+					<i class="fa fa-star-half"></i>
+				</div>
+			</div>
+			<div class="skills fade-in large-3 small-6 columns">
+				<i class="icon-javascript-alt fa fa-5x"></i>
+				<h4>JavaScript</h4>
+					<div class="rating">
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
 					</div>
-					<div class="large-7 small-12 columns">
-						<h1 id="resume-title">Becca<br>Nelson</h1>
+			</div>
+			<div class="skills fade-in large-3 small-6 columns">
+				<i class="fa fa-wordpress fa-5x"></i>
+				<h4>WordPress</h4>
+					<div class="rating">
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
 					</div>
-					<div class="large-3 small-12 columns">
-						<div class="contact-info">
-							<p id="email"><i class="fa fa-home fa-lg"></i>&nbsp;Chicago, IL</p>
-							<p id="location"><i class="fa fa-envelope fa-lg"></i><a href="{{site.baseurl}}/contact">&nbsp;Contact Me</a></p>
-						</div>
+			</div>
+			<div class="skills fade-in large-3 small-6 columns">
+				<i class="fa fa-diamond fa-5x"></i>
+				<h4>Ruby</h4>
+					<div class="rating">
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star-half"></i>
 					</div>
-				</section> <!-- resume-header row -->
-			<main>
-				<section class="about">
-					<h2>About Me</h2>
-					<p>I am a developer, a teacher, and a writer.  Before attending Dev Bootcamp, I was a fine arts teacher at schools and non-profits in Chicago and then in Guatemala.  I started learning development as a WordPress blogger, customizing my own blog and taking on a few freelance clients.  As I became more serious about web development, I taught myself some JavaScript and PHP before learning a multitude of full-stack development skills at Dev Bootcamp in Chicago.</p>
-				</section>
-				<section id="skills">
-					<h2>Skills</h2>
-					<div class="row ratings">
-						<div class="skills large-3 small-6 columns">
-							<i class="fa fa-code fa-5x"></i>
-							<h4>HTML/CSS</h4>
-							<div class="rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-half"></i>
-							</div>
-						</div>
-						<div class="skills large-3 small-6 columns">
-							<i class="icon-javascript-alt fa fa-5x"></i>
-							<h4>JavaScript</h4>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="skills large-3 small-6 columns">
-							<i class="fa fa-wordpress fa-5x"></i>
-							<h4>WordPress</h4>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="skills large-3 small-6 columns">
-							<i class="fa fa-diamond fa-5x"></i>
-							<h4>Ruby</h4>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star-half"></i>
-						</div>
-					</div>
-					<div class="row">
-						<div class="columns large-4 small-12">
-							<div class="skill">
-								Creating user interfaces Foundation, Bootstrap, and other front-end frameworks
-							</div>
-							<div class="skill">
-								Choosing appropriate typography and design elements to fit a client’s needs
-							</div>
-							<div class="skill">
-								Manipulating the user interface using JavaScript and jQuery
-							</div>
-						</div>
-						<div class="columns large-4 small-12">
-							<div class="skill">
-								Designing web applications with Sinatra and Rails using RESTful routes and practices
-							</div>
-							<div class="skill">
-								Managing SQLite and PostgreSQL databases within a Ruby application
-							</div>
-							<div class="skill">
-								Testing web applications with Rspec and deploying with Heroku
-							</div>
-						</div>
-						<div class="columns large-4 small-12">
-							<div class="skill">
-								Working with clients to fix, add functionality, and maintain WordPress sites
-							</div>
-							<div class="skill">
-								Writing content for blogs and online publications
-							</div>
-							<div class="skill">
-								Using Photoshop, Illustrator, and InDesign to create mockups, design elements, and publications
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="projects">
-					<h2><a href="{{ site.baseurl }}/projects">Projects <i class="fa fa-external-link"></i></a></h2>
-				</section>
-				<section id="education">
-					<h2>Education and Training</h2>
-					<div class="row">
-						<div class="columns small-12 medium-4">
-							<img src="http://devbootcamp.com/assets/img/devbootcamp-logo-new.png" alt="DBC" />
-							<small>September 2015 - January 2016</small>
-						</div>
-						<div class="columns small-12 medium-8">
-							<p>Completed 19-week web development program focused on full-stack development, including Ruby on Rails, JavaScript, web servers, database management, and courses in Engineering Empathy.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="columns small-12 medium-4">
-							<h4>Anderson University</h4>
-							<small>Anderson, IN</small><br>
-							<small>August 2006 - May 2010</small>
-						</div>
-						<div class="columns small-12 medium-8">
-							<p><strong>Bachelor of Music in Music Education</strong></p>
-							<p>Anderson University Honors Program</p>
-						</div>
-					</div>
-				</section>
-<center><a href="../assets/Becca's Resume.pdf"><h4><i class="fa fa-file-pdf-o"></i>&nbsp;Download PDF</h4></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns large-4 small-12">
+				<div class="skill fade-in">
+					Creating user interfaces Foundation, Bootstrap, and other front-end frameworks
+				</div>
+				<div class="skill fade-in">
+					Choosing appropriate typography and design elements to fit a client’s needs
+				</div>
+				<div class="skill fade-in">
+					Manipulating the user interface using JavaScript and jQuery
+				</div>
+			</div>
+			<div class="columns large-4 small-12">
+				<div class="skill fade-in">
+					Designing web applications with Sinatra and Rails using RESTful routes and practices
+				</div>
+				<div class="skill fade-in">
+					Managing SQLite and PostgreSQL databases within a Ruby application
+				</div>
+				<div class="skill fade-in">
+					Testing web applications with Rspec and deploying with Heroku
+				</div>
+			</div>
+			<div class="columns large-4 small-12">
+				<div class="skill fade-in">
+					Working with clients to fix, add functionality, and maintain WordPress sites
+				</div>
+				<div class="skill fade-in">
+					Writing content for blogs and online publications
+				</div>
+				<div class="skill fade-in">
+					Using Photoshop, Illustrator, and InDesign to create mockups, design elements, and publications
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="projects fade-in">
+		<h2><a href="{{ site.baseurl }}/projects">Projects <i class="fa fa-external-link"></i></a></h2>
+	</section>
+	<section id="education" class="fade-in">
+		<h2>Education and Training</h2>
+		<div class="row">
+			<div class="columns small-12 medium-4">
+				<img src="http://devbootcamp.com/assets/img/devbootcamp-logo-new.png" alt="DBC" />
+				<small>September 2015 - January 2016</small>
+			</div>
+			<div class="columns small-12 medium-8">
+				<p>Completed 19-week web development program focused on full-stack development, including Ruby on Rails, JavaScript, web servers, database management, and courses in Engineering Empathy.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns small-12 medium-4">
+				<h4>Anderson University</h4>
+				<small>Anderson, IN</small><br>
+				<small>August 2006 - May 2010</small>
+			</div>
+			<div class="columns small-12 medium-8">
+				<p><strong>Bachelor of Music in Music Education</strong></p>
+				<p>Anderson University Honors Program</p>
+			</div>
+		</div>
+	</section>
+	<center><a href="../assets/Becca's Resume.pdf"><h4><i class="fa fa-file-pdf-o"></i>&nbsp;Download PDF</h4></a>
 	</center>
 	<a href="{{ site.baseurl }}/"><i class="fa fa-arrow-circle-left"></i>&nbsp;Back</a>
-			</main>
-    	</div><!-- wrapper -->
-    </div><!-- page-content -->
-
-    {% include footer.html %}
-
-  </body>
-
-</html>
+</main>
