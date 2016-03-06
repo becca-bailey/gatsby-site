@@ -14,9 +14,6 @@ $(function() {
   });
 });
 
-$(document).ready(function() {
-  $("#skills").masonry({
-    columnWidth: 200,
-    itemSelector: '.skill'
-  });
+$(window).scroll(function(){
+  $(".top").css("opacity", 1 - $(window).scrollTop() / 500);
 });
