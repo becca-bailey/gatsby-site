@@ -9,13 +9,13 @@ twitter_text: "Diversity in Tech: Minorities, 'brogrammer culture', and what we 
 
 I think it’s interesting that I have worked in two career fields, and neither one is particularly known for its gender diversity. In the field of elementary education (especially fine arts education) the workforce is predominantly female, with very little racial diversity outside of a select few urban areas. As I interviewed for jobs, I got the sense that it was sometimes hard for the schools to make hiring decisions with so many of us coming from a similar background—many of the applicants being white females who graduated from the same universities and had the same types of work experience. Often that was exactly what they were looking for, but still, very few really stood out from the crowd.
 
-##The Problem
+## The Problem
 
 Moving into the field of technology, it’s refreshing in a way to have the opposite problem, to be in the minority once again. This comes with its advantages, but also with its problems. For example, I recently met a girl who is working as an Engineer in western Illinois. “I love my job”, she said, “but I wish less work events were at golf courses and monster truck rallies.” Though this is a bit of an extreme example, some tech companies have a similar problem. Many articles I have read talk about “brogrammer culture”, a phenomenon that happens when the workplace culture is catered more towards men.
 
 The statistics show that while it is more common to hire women for entry level positions, there are less women in leadership positions. If you look at the racial diversity statistics comparing the number of black and hispanic engineers to white and asian engineers, the numbers are even more telling. This may not imply that companies show racial preference in their hiring decisions, but it does say something about the applicant pool which largely consists of white and asian men.
 
-##What can we do?
+## What can we do?
 
 So, why is it that women and racial minorities are less likely to pursue jobs in technology? First of all, it has been suggested that tech companies can attract more women by offering more generous parental leave and better work/life balance. Many women in the workforce are trying to balance work and family, which can be difficult in a position where overtime hours are expected during big projects. This contributes not only to the number of women who pursue technology careers in the first place, but also to the number of women who are able to move up the ladder to leadership positions.
 
