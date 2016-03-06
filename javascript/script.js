@@ -15,5 +15,10 @@ $(function() {
 });
 
 $(window).scroll(function(){
-  $(".top").css("opacity", 1 - $(window).scrollTop() / 500);
+  if ($(window).width() > 1020) {
+    $(".top").css("opacity", 1 - $(window).scrollTop() / 500);
+  }
+  else {
+    $(".top").css("opacity", 1 - $(window).scrollTop() / 1000);
+  }
 });
