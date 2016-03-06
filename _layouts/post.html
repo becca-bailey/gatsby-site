@@ -5,8 +5,8 @@ layout: default
 
   <header class="post-header">
   	<div class="date">{{ page.date | date: "%b %-d" }}</div>
-    <h1 class="post-title">{{ page.title }}</h1>
-    <h3 class="description">{{ page.description }}</h3>
+    <h2 class="post-title">{{ page.title }}</h2>
+    <h4 class="description">{{ page.description }}</h4>
    <!--  <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p> -->
   </header>
 
@@ -16,6 +16,4 @@ layout: default
   {% include svg-icons.html %}
   {% include share.html %}
   {% include comments.html %}
-
-
 </div>
