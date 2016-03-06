@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
+  <div class="page-content">
+    <div class="wrapper">
 
-  {% include head.html %}
+      {% include head.html %}
 
-  <body>
+      <body>
 
-    {% include resume-header.html %}
+        {% include resume-header.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+            {{ content }}
+
+        {% include footer.html %}
+
+      </body>
     </div>
-
-    {% include footer.html %}
-
-  </body>
-
+  </div>
 </html>
