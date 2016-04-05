@@ -19,13 +19,13 @@ I’ve learned to sell myself, because over and over again, I’ve had to.
 
 My life has been hard.  Those five words are hard to say, because we’re not supposed to say them.  More often than not, we’re told to belittle these feelings and think about all the ones who have it worse than we do.
 
-*My life can’t be hard, because I don’t have cancer.
+*My life can’t be hard, because I don’t have cancer.*
 
-My life can’t be hard, because I have food in my refrigerator.
+*My life can’t be hard, because I have food in my refrigerator.*
 
-My life can’t be hard, because I haven’t experienced real problems.
+*My life can’t be hard, because I haven’t experienced real problems.*
 
-Etcetera.*
+*Etcetera.*
 
 But someone told me once that struggle isn’t a competition.  I don’t have to win in order to say I have experienced pain.  The only frame of reference we really ever have is ourselves, and I can tell you that from my own perspective, my life has been hard.
 
