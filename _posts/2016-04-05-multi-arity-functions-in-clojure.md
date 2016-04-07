@@ -21,17 +21,14 @@ First of all, an *arity* is just another name for a function argument. Writing a
 | `"mangoes" "rice-a-roni" "rocky road ice cream"` | "I like to eat mangoes, rice-a-roni, and rocky road ice cream." |
 
 <br>
-Notice how a function would need to handle a few different conditions.  First of all, we need to add an *and* before the last item, only if there are more than one. Also, thanks to the Oxford comma (which I can't possibly do without), there is a comma before the *and* only if there are more than one items in the list.
+Notice how a function would need to handle a few different conditions.  First of all, we need to add an *and* before the last item, only if there are more than one. Also, thanks to the Oxford comma (which I can't possibly do without), there is a comma before the *and* only if there are more than two items in the list.
 
 While a language like Ruby could handle this with optional arguments and flow control, it might be a longer and more complicated function than I could write with Clojure, which excels at handing lists of data. This is also called *arity overloading*
 
+We are creating a function called `favorite-foods-list`.
+
 {% highlight clojure %}
 (defn favorite-foods-list
-{% endhighlight %}
-
-We are creating a function called `favorite-foods-list`. `defn` allows you to specify a function name with special conditions, such as the ones we're about to add.
-
-{% highlight clojure %}
   ([first-item]
     (println (str "I like to eat " first-item ".")))
   ([first-item second-item]
@@ -42,7 +39,6 @@ We are creating a function called `favorite-foods-list`. `defn` allows you to sp
 
 This example is fairly straightforward. We are just concatenating strings, adding an *and*  if there are two arguments, and commas if there are three.
 
-
 `(favorite-foods-list "mangoes")`
 <br>
 &nbsp; &nbsp;`=> "I like to eat mangoes."`
@@ -52,7 +48,6 @@ This example is fairly straightforward. We are just concatenating strings, addin
 <br><br>`(favorite-foods-list "mangoes" "rice-a-roni" "rocky road ice cream")`
 <br>
 &nbsp; &nbsp;`=> "I like to eat mangoes, rice-a-roni, and rocky road ice cream."`
-
 
 <br>
 What if I wanted to add more than three arguments, though? For that, we would need a *variable-arity* function.
@@ -75,7 +70,7 @@ This creates a collection of items, which we can interact with like a list.
       (println (apply str "I like to eat " (clojure.string/join ", "(butlast items)) ", and " (last items) "."))))
 {% endhighlight %}
 
-Now, we've added some more flexibility to this function. While the conditional statements for 1 or 2 arguments work essentially the same way as the first function we wrote, the *else* condition allows for any number of arguments. Joining `butlast items` allows us to add a comma after any number of items in our list (except the last item) before adding an *and* before the last item. Now, we could input a much longer list, and still get a grammmatically correct sentence.
+Now, we've added some more flexibility to this function. While the conditional statements for 1 or 2 arguments work essentially the same way as the first function we wrote, the *else* condition allows for any number of arguments. Joining `butlast items` allows us to add a comma after any number of items in our list (except the last item) before adding an *and* before the last item. Now, we could input a much longer list, and still get a grammatically correct sentence.
 
 
 `(favorite-foods-list "mangoes" "rice-a-roni" "ice cream" "pizza" "broccoli" "grilled cheese")`
