@@ -31,7 +31,7 @@ Clojure.test comes pre-packaged with Clojure. You can write tests in the *core_t
 
 I got better feedback, but the test names were awkward.
 
-Speclj (pronounced *speckle*) on the other hand is recommended for anyone familiar with Rspec, because they have very similar syntax. You can set up a new project which includes Speclj with `lein new speclj project-name`, and run your tests with `lein spec`. I may be my obsession with grammar, but I find statements like "it returns an empty collection" easier to understand than `returns-empty-collection`.
+Speclj (pronounced *speckle*) on the other hand is recommended for anyone familiar with Rspec, because they have very similar syntax. You can set up a new project which includes Speclj with `lein new speclj project-name`, and run your tests with `lein spec`. It may be my obsession with grammar, but I find statements like "it returns an empty collection" easier to understand than `returns-empty-collection`.
 
 <script src="https://gist.github.com/beccanelson/9b3e61742ad150bedd685c6b2abf6358.js"></script>
 
