@@ -9,7 +9,7 @@ categories: clojure apprenticeship
 
 Looking over the code, the first thing I noticed was the serious need for some polymorphism.  If you're new to this, let me explain.
 
-### Polymorphism means that objects might have the same function, but it causes them to behave in slightly different ways.
+### Polymorphism allows functions to behave in slightly different ways, depending on the object that it is called on or the parameters that are passed in.
 
 In an object-oriented language like Ruby, this is fairly simple to accomplish. For example, let's say I wanted to write a simple program that prints a greeting.
 
