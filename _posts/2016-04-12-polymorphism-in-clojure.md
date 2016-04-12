@@ -87,5 +87,7 @@ Stay tuned for more polymorphism in Clojure, and a deeper dive into the Gilded R
 ## For more information:
 
 [Myles Megyesi - Polymorphism in Clojure](https://blog.8thlight.com/myles-megyesi/2012/04/26/polymorphism-in-clojure.html)
+
 [Mike Jansen - Welcome to the Gilded Rose](https://blog.8thlight.com/mike-jansen/2012/09/26/welcome-to-the-gilded-rose-in-clojure.html)
+
 [Stefan Tilkov - Clojure for OOP folks](https://speakerdeck.com/stilkov/clojure-for-oop-folks-how-to-design-clojure-programs)
