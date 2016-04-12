@@ -78,7 +78,9 @@ Note: `defmulti` requires a *dispatch function* which in this case is a map loca
   ; => :wave
  {% endhighlight %}
 
-These functions can mimic the behavior of objects which have attributes, and `defmethod` will create a method that can only be called on functions with certain attributes. For example, you can see that the person John has the language attribute `:English`, so when you call `say-hello`, he will greet you in English. Still pretty simple, right?
+These functions can mimic the behavior of objects which have attributes, and `defmethod` will create a method that can only be called on functions with certain attributes. For example, you can see that the person John has the language attribute `:English`, so when you call `say-hello`, he will greet you in English.
+
+Multimethods also allow for a default function, which allows you to call the function even if you are not passing in the expected parameters. Still pretty simple, right?
 
 Stay tuned for more polymorphism in Clojure, and a deeper dive into the Gilded Rose.
 
