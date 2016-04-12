@@ -72,7 +72,7 @@ Note: `defmulti` requires a *dispatch function* which in this case is a map loca
   ; => "Hello, my name is John!"
 
 (say-hello pablo)
-  ; => "Hello, my name is Pablo!"
+  ; => "¡Hola, me llamo Pablo!"
 
 (say-hello {})
   ; => :wave
