@@ -46,7 +46,7 @@ pablo.say_hello
 
 Simple, right? Using polymorphism, we don't have to write methods with awkward names like say_hello_in_spanish, nor do we have to remember what language a person speaks when we call the method.
 
-In a functional language like Clojure that doesn't have a clear inheritance structure, this can be a little tricker. One way of accomplishing this is multimethods. For example, here I am able to mimic the same behavior using maps to store data.
+In a functional language like Clojure that doesn't have a clear inheritance structure, this can be a little trickier. One way of accomplishing this is multimethods. For example, here I am able to mimic the same behavior using maps to store data.
 
 Note: `defmulti` requires a *dispatch function* which in this case is a map location.
 
