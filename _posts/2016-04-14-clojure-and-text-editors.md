@@ -4,6 +4,7 @@ title:  "Clojure and Text Editors"
 description: "A Love-Hate Relationship"
 date:   2016-4-14
 categories: clojure apprenticeship tools
+related: ["Polymorphism in Clojure", "How do I _____ in Clojure?", "Multi-Arity Functions in Clojure"]
 ---
 
 ## Part of the challenge of working with Clojure is making it get along with my text editor.

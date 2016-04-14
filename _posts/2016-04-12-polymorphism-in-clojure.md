@@ -4,6 +4,7 @@ title:  "Polymorphism in Clojure"
 description: "How to do different things with the same function"
 date:   2016-04-12
 categories: clojure apprenticeship
+related: ["How do I _____ in Clojure?", "Multi-Arity Functions in Clojure"]
 ---
 ## This week, I have been working on [the Gilded Rose kata in Clojure](https://github.com/mjansen401/gilded-rose-clojure).
 
