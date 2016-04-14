@@ -10,6 +10,9 @@ facebook_username: beccanelsonwriter
 instagram_username: beccawonders
 disqus_username: beccanelsongithub
 permalink: /:title
+paginate: 8
+paginate_path: "/blog/page:num/"
+gems: [jekyll-paginate]
 
 # Build settings
 markdown: kramdown

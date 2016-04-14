@@ -1,13 +1,12 @@
 ---
 layout: default
 title: Blog
-permalink: /blog/
 ---
 
 <div class="main">
 
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
       <li>
         <div class="date">{{ post.date | date: "%b %-d" }}</div>
         <h2>
