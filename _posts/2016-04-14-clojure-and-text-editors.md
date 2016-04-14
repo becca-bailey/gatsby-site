@@ -8,11 +8,11 @@ categories: clojure apprenticeship tools
 
 ## Part of the challenge of working with Clojure is making it get along with my text editor.
 
-After a couple of days of counting parentheses, I was over it. Complicating the situation even more is the fact that I am still indecisive about my text editor of choice, but that's another story.
+After a couple days of counting parentheses, I was over it. Complicating the situation even more is the fact that I am still indecisive about my text editor of choice, but that's another story.
 
 Since my apprenticeship began, I've been going back and forth between atom and vim, sometimes taking the "best of both worlds" approach and using atom with vim keybindings, which is helpful for learning, but sometimes buggy.
 
-Side note: I can see how vim is faster, and it allows you to edit your code on any machine. However, the hours I've spent over the past two weeks just trying to configure basic things like syntax highlighting and split window display have made me crabby. At the moment, I'm loving the fact that atom comes with these features by default, and has the option of adding a [built-in terminal](https://atom.io/packages/terminal-plus).
+**Side note:** I can see how vim is faster, and it allows you to edit your code on any machine. However, the hours I've spent over the past two weeks just trying to configure basic things like syntax highlighting and split window display have made me crabby. At the moment, I'm loving the fact that atom comes with these features by default, and has the option of adding a [built-in terminal](https://atom.io/packages/terminal-plus).
 
 ### First of all, let me just say that as a newbie, deciding which tools to use is hard.
 
