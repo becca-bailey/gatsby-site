@@ -51,4 +51,4 @@ Speaking of testing, it rarely occurs to me to write helper functions in my spec
 
 This function made it possible to update an entire collection and test an individual item. Pretty awesome!
 
-If you're curious, you can find the rest of my solution [here](http://github.com/beccanelson/gilded-rose-clojure)
+If you're curious, you can find the rest of my solution [here](http://github.com/beccanelson/gilded-rose-clojure).
