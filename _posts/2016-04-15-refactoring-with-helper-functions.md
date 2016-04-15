@@ -30,7 +30,7 @@ Maybe it's not the most beautifully written function ever, but allows me to spec
   (if (< (:sell-in item) 0)		    
     (call-function-times decrease-quality item 2)
     (decrease-quality item)))
-{% endhighliht %}
+{% endhighlight %}
 
 As a special added bonus, this function was really helpful when testing. When I wanted to test edge cases by running my function a given number of times, I already had a function for that!
 
