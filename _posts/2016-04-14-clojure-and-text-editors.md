@@ -7,7 +7,7 @@ categories: clojure apprenticeship tools
 related: ["Polymorphism in Clojure", "How do I _____ in Clojure?", "Multi-Arity Functions in Clojure"]
 ---
 
-## Part of the challenge of working with Clojure is making it get along with my text editor.
+### Part of the challenge of working with Clojure is making it get along with my text editor.
 
 After a couple days of counting parentheses, I was over it. Complicating the situation even more is the fact that I am still indecisive about my text editor of choice, but that's another story.
 
