@@ -6,15 +6,15 @@ date:   2016-04-12
 categories: clojure apprenticeship
 related: ["How do I _____ in Clojure?", "Multi-Arity Functions in Clojure"]
 ---
-## This week, I have been working on [the Gilded Rose kata in Clojure](https://github.com/mjansen401/gilded-rose-clojure).
+### This week, I have been working on [the Gilded Rose kata in Clojure](https://github.com/mjansen401/gilded-rose-clojure).
 
 Looking over the code, the first thing I noticed was the serious need for some polymorphism.  If you're new to this, let me explain.
 
-### Polymorphism allows functions to behave in slightly different ways, depending on the object that it is called on or the parameters that are passed in.
+#### Polymorphism allows functions to behave in slightly different ways, depending on the object that it is called on or the parameters that are passed in.
 
 In an object-oriented language like Ruby, this is fairly simple to accomplish. For example, let's say I wanted to write a simple program that prints a greeting.
 
-{% highlight ruby %}
+{% highlight ruby linenos%}
 class Person
   attr_reader :name
 
@@ -51,7 +51,7 @@ In a functional language like Clojure that doesn't have a clear inheritance stru
 
 Note: `defmulti` requires a *dispatch function* which in this case is a map location.
 
-{% highlight clojure %}
+{% highlight clojure linenos %}
 (defmulti say-hello :Language)
 
 (defn english-speaker [name] {:name name :Language :English})

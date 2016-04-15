@@ -7,11 +7,11 @@ categories: 8th-light apprenticeship clojure
 
 After I finished the [Clojure Koans](http://clojurekoans.com/), my next goal was to set up a new project and choose a testing framework. I had a lot of questions, which I wouldn't call *stupid* questions exactly, but were definitely newbie questions.
 
-## How do I start my project?
+### How do I start my project?
 
 After installing and setting up [Leiningen](https://github.com/technomancy/leiningen), you can create a new project in a directory with the `lein new app project-name` command. This will create a file structure and some boilerplate code for your project.
 
-## Where do I put my code?
+### Where do I put my code?
 
 After you create a new project, Leiningen gives you a default `-main` function, which you can run with the command `lein run`. For my purposes, I removed this function, as well as the `(:gen-class)` in the namespace above.
 
@@ -19,7 +19,7 @@ Now, you can write any functions in this file, and your test files should be abl
 
 <script src="https://gist.github.com/beccanelson/d3b57d26f2ea40a5f045631e1b5385df.js"></script>
 
-## How do I test my code?
+### How do I test my code?
 
 Actually, it may have been more appropriate to ask this question first, since we should probably be thinking about writing tests before writing any code. If you are asking this question first, I applaud you.
 
