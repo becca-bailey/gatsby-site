@@ -40,7 +40,7 @@ As a special added bonus, this function was really helpful when testing. When I 
       (should= 0 (:quality min-quality))))
 {% endhighlight %}
 
-Here, I was able to say that even if decrease the quality 100 times, it will never go below zero. It's easier than writing another loop, or copying and pasting the same function 100 times. (I'm sure it's been done before...)
+Here, I was able to say that even if I decrease the quality 100 times, it will never go below zero. It's easier than writing another loop, or copying and pasting the same function 100 times. (I'm sure it's been done before...)
 
 Speaking of testing, it rarely occurs to me to write helper functions in my spec file that are only for the purpose of testing. While it might seem silly at first to write functions to test your functions, I've become a fan.
 
