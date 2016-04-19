@@ -11,15 +11,17 @@ instagram_username: beccawonders
 disqus_username: beccanelsongithub
 permalink: /:title
 paginate: 8
-paginate_path: "/blogging/page:num/"
+paginate_path: "/developing/page:num/"
 gems: [jekyll-paginate]
 navigation:
   - title: Home
     url: /
+  - title: Blog
+    url: /developing
   - title: Contact
     url: /contact
-  - title: Blog
-    url: /blogging
+  - title: Projects
+    url: /making-things
   - title: Résumé
     url: /awesome
 
