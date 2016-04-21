@@ -4,7 +4,7 @@ title: Lost in Translation
 description: How Learning Clojure is Like Learning Spanish
 date: 2016-4-20
 categories: clojure apprenticeship refactoring
-related: ["Software Craftsmanship: A New Journey", "Web Development, Struggle, and the Art of Mountain Climbing"]
+related: ["Refactoring with Helper Functions", "Polymorphism in Clojure", "Multi-Arity Functions in Clojure"]
 twitter_text: "Lost in Translation: How Learning Clojure is Like Learning Spanish"
 ---
 
@@ -77,7 +77,7 @@ First, I think we should re-evaluate the decision to use a hash-map. Clojure exc
         (score-for-each-possible-move current-game-state)))))
 {% endhighlight %}
 
-It's an improvement, but we've still got a mess in the best-computer-move function. We can extract the function that filters the sequence and returns the key/value pair with the highest score. We can also make better use of destructuring in a let block, which allows us to return the spot associated with the highest score.
+It's an improvement, but we've still got a mess in the best-computer-move function. We can extract the function that filters the sequence and returns the key/value pair with the highest score, and we can also make better use of destructuring in a let block, which allows us to return only the spot associated with the highest score.
 
 {% highlight clojure linenos %}
 (defn score-for-each-possible-move [current-game-state]
@@ -93,7 +93,7 @@ It's an improvement, but we've still got a mess in the best-computer-move functi
       spot))
 {% endhighlight %}
 
-Perhaps there's still more that can be done, but I hope you can see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
+Perhaps there's still more that can be done, but I hope you can already see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
 
 ## For more information:
 [Clojure for the Brave and True - Do Things in Clojure](http://www.braveclojure.com/do-things/)
