@@ -10,7 +10,7 @@ twitter_text: "Lost in Translation: How Learning Clojure is Like Learning Spanis
 
 ### Last year, I tried to learn Spanish.
 
-Figuring that I was living in Central America at the time, it pretty important. Once a week, I went to Spanish school for 2 hours and had slow conversations with a woman named Isabel, who frequently stopped to correct my grammar and began every lesson by asking me if I had met any nice boys that week. To this day, I can't remember how to talk about the weather, but when in doubt I can always say *¿Encontró algunos buenos chicos esta semana?*
+Figuring that I was living in Central America at the time, it was pretty important. Once a week, I went to Spanish school for 2 hours and had slow conversations with a woman named Isabel, who frequently stopped to correct my grammar and began every lesson by asking me if I had met any nice boys that week. To this day, I can't remember how to talk about the weather, but when in doubt I can always say *¿Encontró algunos buenos chicos esta semana?*
 
 I learned that the tendency we have when learning a new language is to directly translate from our native language. When I was talking with Isabel, it always took quite a while for me go through the words one by one and translate them from Spanish to English, or vice versa. However, this doesn't always result in a correct translation. For example:
 
