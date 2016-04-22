@@ -65,35 +65,23 @@ Like translating from English to Spanish, direct translation from an object orie
 First, I think we should re-evaluate the decision to use a hash-map. Clojure excels at handling lists of data, so using `for` to return a lazy list of key-value pairs will simplify things. Better yet, we'll extract it into a separate function that gets called in our `best-computer-move` function.
 
 {% highlight clojure linenos %}
-(defn score-for-each-possible-move [current-game-state]
-  (for [possible-move (available-spots (:board current-game-state))]
-    [possible-move (minimax possible-move current-game-state)]))
+(defn score-for-each-possible-move [game-state]
+  (for [possible-move (available-spots (:board game-state))]
+    [possible-move (minimax possible-move game-state)]))
 
 (defn best-computer-move [current-game-state]
-  (first
-    (first
-      (filter
-        (fn [[spot score]] (= score (max score)))
-        (score-for-each-possible-move current-game-state)))))
+  (loop [scores (score-for-each-possible-move current-game-state)
+         max-score -10
+         spot-with-max-score nil]
+    (if (empty? scores)
+      spot-with-max-score
+      (let [[[current-spot current-score]] scores]
+        (if (> current-score max-score)
+          (recur (rest scores) current-score current-spot)
+          (recur (rest scores) max-score spot-with-max-score))))))
 {% endhighlight %}
 
-It's an improvement, but we've still got a mess in the best-computer-move function. We can extract the function that filters the sequence and returns the key/value pair with the highest score, and we can also make better use of destructuring in a let block, which allows us to return only the spot associated with the highest score.
-
-{% highlight clojure linenos %}
-(defn score-for-each-possible-move [current-game-state]
-  (for [possible-move (available-spots (:board current-game-state))]
-    [possible-move (minimax possible-move current-game-state)]))
-
-(def find-max-score
-  (fn [[spot score]] (= score (max score))))  
-
-(defn best-computer-move [current-game-state]
-  (let [[[spot score]]
-    (filter find-max-score (score-for-each-possible-move current-game-state))]
-      spot))
-{% endhighlight %}
-
-Perhaps there's still more that can be done, but I hope you can already see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
+As you can see, we've made use of destructuring inside the let block in order to name the elements inside each vector. Perhaps there's still more that can be done, but I hope you can already see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
 
 ## For more information:
 [Clojure for the Brave and True - Do Things in Clojure](http://www.braveclojure.com/do-things/)
