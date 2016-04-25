@@ -52,7 +52,7 @@ def best_computer_move(game)
     (if (= possible-moves [])
       (first (first (filter (fn [[spot score]] (= (apply max (vals scores)) score)) scores)))
       (recur
-        (assoc scores (first possible-moves) (minimax (first possible-moves) current-game-state))
+        (assoc scores (first possible-moves) (minimax (first possible-moves) current-game-scurrent-game-state 0))
         (rest possible-moves)))))
 {%endhighlight%}
 
@@ -62,26 +62,32 @@ Eeeeeeeek that's scary! Granted, this might not be the best Ruby method either, 
 
 Like translating from English to Spanish, direct translation from an object oriented language to a functional one can result in cumbersome functions that don't take advantage of functional syntax. In this case, we ended up with a big recursion loop and a lot of smaller functions for accessing values inside the game-state data structure.
 
-First, I think we should re-evaluate the decision to use a hash-map. Clojure excels at handling lists of data, so using `for` to return a lazy list of key-value pairs will simplify things. Better yet, we'll extract it into a separate function that gets called in our `best-computer-move` function.
+First, let's pull out the function which returns a hash-map of the spots and their scores.  
 
 {% highlight clojure linenos %}
-(defn score-for-each-possible-move [game-state]
-  (for [possible-move (available-spots (:board game-state))]
-    [possible-move (minimax possible-move game-state)]))
+(defn score-for-each-possible-move [original-game-state current-game-state depth]
+  (loop [scores {}
+         possible-moves (board/available-spots (:board game-state))]
+    (if (empty? possible-moves)
+      scores
+      (recur
+        (assoc scores (first possible-moves) (minimax (first possible-moves) original-game-state current-game-state 0))
+        (rest possible-moves)))))
 
 (defn best-computer-move [current-game-state]
-  (loop [scores (score-for-each-possible-move current-game-state)
-         max-score -10
-         spot-with-max-score nil]
-    (if (empty? scores)
-      spot-with-max-score
-      (let [[[current-spot current-score]] scores]
-        (if (> current-score max-score)
-          (recur (rest scores) current-score current-spot)
-          (recur (rest scores) max-score spot-with-max-score))))))
+  (let [scores (score-for-each-possible-move current-game-state)
+    (key (apply max-key val scores))))
 {% endhighlight %}
 
-As you can see, we've made use of destructuring inside the let block in order to name the elements inside each vector. Perhaps there's still more that can be done, but I hope you can already see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
+We're getting there, but there's still a lot more re-factoring that can be done to make use of clojure functions.  For example, we can use map to simplify the `score-for-each-possible-move` function.
+
+{% highlight clojure linenos %}
+(defn score-for-each-possible-move [original-game-state game-state depth]
+  (let [possible-moves (board/available-spots (:board game-state))]
+    (zipmap possible-moves (map #(minimax % original-game-state game-state (inc depth)) possible-moves))))
+{% endhighlight %}
+
+Perhaps there's still more that can be done, but I hope you can already see how gaining fluency in some of Clojure's best features makes for more readable code, and readable code beats a literal translation any day.
 
 ## For more information:
 [Clojure for the Brave and True - Do Things in Clojure](http://www.braveclojure.com/do-things/)
