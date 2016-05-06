@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memoizing in Clojure
-description: Or, how to call a function 57,657,600 times in .00011 seconds.
+description: Or, how to call a function 362,800 times in .00011 seconds.
 date: 2016-5-6
 categories: clojure testing algorithms
 related: ["Multi-Arity Functions in Clojure", "Polymorphism in Clojure", "How do I _____ in Clojure?"]
