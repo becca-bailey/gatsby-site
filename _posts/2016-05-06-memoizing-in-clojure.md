@@ -11,7 +11,7 @@ This week, I am working on optimizing my Clojure minimax algorithm for my termin
 
 At first, my goal was just to implement the algorithm and make it unbeatable. But once I did that, I discovered a problem. It was unbeatable, but it wasn't fast. Just to get an idea, on a blank three-by-three tic tac board, there are 9! (362,800) possible game states. If you want to upgrade to a four-by-four board, it has has 16! (20,922,789,888,000) possible game states, which requires 57,657,600 times more calculating power than the three-by-three board. That's CRAZY.
 
-With the original algorithm, it took about 19 seconds for minimax to return the first move given a blank board, and about 2 seconds to return the second move.
+With the original algorithm, it took about 19 seconds for minimax to return the first move given a blank three-by-three board, and about 2 seconds to return the second move.
 
 ![minimax-time](images/Screen Shot 2016-05-06 at 3.44.58 PM.png)
 
