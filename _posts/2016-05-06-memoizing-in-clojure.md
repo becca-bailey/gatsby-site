@@ -17,7 +17,7 @@ With the original algorithm, it took about 19 seconds for minimax to return the 
 
 Now, I haven't tested this, but according to my calculations, it would take 34.72 years to return the best move on a blank four-by-four board, and about 3.98 years to return the second move. So, clearly we have a problem!
 
-I did some digging, and the first thing I came across was the idea of memoizing. Basically memoizing is a way to speed up recursive functions that get called over and over again. In layman's terms, memoizing involves saving the result of each function call in a data structure of a cache. Before calling the function again, now the computer will check the stored information to see if it has called the function before with the same arguments. If it has, it will return the stored result, or if not, it will call the function.
+I did some digging, and the first thing I came across was the idea of memoizing. Basically memoizing is a way to speed up recursive functions that get called over and over again. In layman's terms, memoizing involves saving the result of each function call in a data structure or a cache. Before calling the function again, now the computer will check the stored information to see if it has called the function before with the same arguments. If it has, it will return the stored result, or if not, it will call the function.
 
 Luckily for us, Clojure has a built-in [memoize function](https://clojuredocs.org/clojure.core/memoize). In its source code, Clojure uses an [atom](http://clojure.org/reference/atoms) to store each function call in local memory.
 
