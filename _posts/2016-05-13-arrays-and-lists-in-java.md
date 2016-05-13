@@ -46,10 +46,10 @@ Notice that if I try to add any item that's not an integer, I get an error.
 coins.add("25");
 
 //=> method ArrayList.add(Integer) is not applicable
-      (argument mismatch; String cannot be converted to Integer)
+//      (argument mismatch; String cannot be converted to Integer)
 {% endhighlight %}
 
-This is great, but what if I want to initialize a data structure with existing values? This is where we might want to use a `List` instead. To put it simply, `List` is the parent of `ArrayList`, and Lists are a bit more flexible about the type of input you give them. There is a technical difference, and an ArrayList responds to a few more methods than a List, as it is a more specific data type. For the most part, though, in my 29 hours of experience, they are interchangeable.
+This is great, but what if I want to initialize a data structure with existing values? This is where we might want to use a List instead. To put it simply, `List` is the parent of `ArrayList`, and Lists are a bit more flexible about the type of input you give them. There is a technical difference, and an ArrayList responds to a few more methods than a List, as it is a more specific data type. For the most part, though, (in my 29 hours of experience) they are interchangeable.
 
 {% highlight java %}
 List<Integer> coins = Arrays.asList(25, 10, 5, 1);
