@@ -12,7 +12,7 @@ In a nutshell, Cucumber uses a language called [Gherkin](https://cucumber.io/doc
 
 With the appropriate .jar files, Cucumber can be run from the command line. In this example, though, I set up my project using Maven for IntelliJ. The full version of this project can be found [here](https://github.com/beccanelson/prime-factors-maven).
 
-{% highlight Gherkin linenos %}
+{% highlight Gherkin %}
 # prime_factors/src/test/resources/cucumber/PrimeFactors.feature
 
 Feature: Prime Factors
@@ -54,7 +54,7 @@ Now, you can take this code and put it in a Steps file. IntelliJ allows you to d
 
 Anyway, now I have a separate test file that looks like this.
 
-{% highlight Java linenos %}
+{% highlight Java %}
 // prime_factors/src/test/java/example.primefactors/Steps.java
 
 package example.primefactors;
@@ -79,7 +79,7 @@ public class Steps {
 
 Now, I can add code to my tests to make them pass. *The Cucumber for Java Book* recommends writing all of your implementation code in this test file initially before extracting it to a separate file.
 
-{% highlight Java linenos %}
+{% highlight Java %}
 // prime_factors/src/test/java/example.primefactors/Steps.java
 
 package example.primefactors;
@@ -111,7 +111,7 @@ public class Steps {
 
 Now, I have passing tests.
 
-{% highlight %}
+{% highlight Java %}
 1 Scenarios (1 passed)
 2 Steps (2 passed)
 0m0.121s
@@ -121,7 +121,7 @@ Process finished with exit code 0
 
 Now, what if I wanted to add more than one test to each scenario? The first way would be to add the keyword *And*. If I add another line to my feature, this test will still pass without adding any code.
 
-{% highlight Gherkin linenos %}
+{% highlight Gherkin %}
 # prime_factors/src/test/resources/cucumber/PrimeFactors.feature
 
 Feature: Prime Factors
@@ -133,7 +133,7 @@ Feature: Prime Factors
 
 The second method is adding *Scenario Outlines*. Basically, scenario outlines allow you to create tables of input and expected results.
 
-{% highlight Gherkin linenos %}
+{% highlight Gherkin %}
 # prime_factors/src/test/resources/cucumber/PrimeFactors.feature
 
 Feature: Prime Factors
