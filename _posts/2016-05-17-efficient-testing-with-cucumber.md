@@ -158,7 +158,7 @@ Feature: Prime Factors
       | 9         | 3, 3    |
 {% endhighlight %}
 
-I have only included a few, but ideally, we could put an infinite number of test cases into each table, and Cucumber would generate the same amount of code. However, do you see the problem with these tests that Cucumber automatically generated?
+I have only included a few, but ideally, we could put an infinite number of test cases into each table, and Cucumber would generate the same amount of code. However, do you see the problem with these tests?
 
 {% highlight java %}
 
