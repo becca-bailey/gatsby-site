@@ -161,6 +161,7 @@ Feature: Prime Factors
 I have only included a few, but ideally, we could put an infinite number of test cases into each table, and Cucumber would generate the same amount of code. However, do you see the problem with these tests?
 
 {% highlight java %}
+...
 
 @Then("^it returns list (\\d+)$")
 public void itReturnsListPrime(int factor1) throws Throwable {
@@ -210,4 +211,5 @@ This, I believe is my favorite part of testing with Cucumber. We could (impracti
 ### For more information:
 
 [Cucumber Docs - Cucumber-JVM](https://cucumber.io/docs/reference/jvm)
+
 [IntelliJ Docs - Cucumber](https://www.jetbrains.com/help/idea/2016.1/cucumber.html)
