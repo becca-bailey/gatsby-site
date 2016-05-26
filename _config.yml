@@ -10,9 +10,9 @@ facebook_username: beccanelsonwriter
 instagram_username: beccawonders
 disqus_username: beccanelsongithub
 permalink: /:title
+gems: [jekyll-paginate]
 paginate: 8
 paginate_path: "/developing/page:num/"
-gems: [jekyll-paginate]
 navigation:
   - title: Home
     url: /
