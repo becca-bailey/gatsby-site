@@ -6,7 +6,7 @@ date: 2016-6-02
 
 This year, the Chicago Public Schools voted to approve CS4All—a Computer Science education program for K-12 students, which makes it mandatory for all students to take at least one Computer Science course before they graduate.
 
-In today’s job market, it’s no wonder why Computer Science is becoming more and more important. While many industries are still laying off workers, technology is having no such problem. According to the Bureau of Labor Statistics, the Computer and IT industry is expected to grow by nearly 500,000 new jobs by 2024.
+In today’s job market, it’s no wonder why Computer Science is becoming more and more important. While many industries are still laying off workers, technology is having no such problem. According to the [Bureau of Labor Statistics](http://www.bls.gov/ooh/computer-and-information-technology/home.htm), the Computer and IT industry is expected to grow by nearly 500,000 new jobs by 2024.
 
 Inside the tech community, CS4All is considered to be a huge step forward. However, something about mandatory Computer Science education makes me a little uneasy.
 
