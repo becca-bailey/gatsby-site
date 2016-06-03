@@ -3,6 +3,7 @@ layout: post
 title: "It's Jekyllicious!"
 description: Tips and Tricks for Blogging with Jekyll
 date: 2016-6-03
+twitter_text: "It's Jekyllicious!!"
 ---
 
 ### I'm a pretty big fan of Jekyll. What is Jekyll, anyway?
