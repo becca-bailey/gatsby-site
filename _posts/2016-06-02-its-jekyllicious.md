@@ -67,6 +67,8 @@ For example, my site uses Disqus (pronounced 'discuss') to enable comments. The 
 
 There are also multiple form plugins that will save form data. I use [simple form](https://getsimpleform.com/), but [Formspree](http://formspree.io) and [FormKeep](https://formkeep.com/) also look like great options.
 
+For analytics tracking, [Google Analytics](http://google.com/analytics) provides some tracking code that can help to keep track of hits, shares, and referrals.
+
 [Click here](https://jekyllrb.com/docs/plugins/) to see a list of available Gems and plugins.
 
 ### The bottom line
