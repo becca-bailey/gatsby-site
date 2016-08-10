@@ -2,7 +2,7 @@
 layout: post
 title: iOS View Interactions
 description: Using custom view classes and interactors in Swift
-date: 2016-8-3
+date: 2016-8-7
 ---
 
 As we have been re-factoring our iOS tic tac toe application, my pair and I have been learning a lot about class architecture in Swift. While there are many opinions about this, here are some general principles we have taken away.
