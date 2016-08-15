@@ -28,4 +28,4 @@ I’m still figuring this out along the way, but here’s what I’ve learned so
 
     I’ve already mentioned priorities, but I would also like to note that there’s a difference between saying something is a priority and actually taking concrete steps to make it one. Personally, I’ve made a list of relationships, causes, and projects that are most important to me. If there’s a person on my list, I can’t just write them on the list—I need to show them that they’re a priority through my words and actions. If it’s a project or an item on my to-do list, I need to block out time in my schedule to work on it.
 
-When it comes to finding balance, there’s no one-size-fits all answer. Things will change as life and work go through different seasons, and that’s okay. I’m still don't get it right every day, but I think I’m moving in the right direction.
+When it comes to finding balance, there’s no one-size-fits-all answer. Things will change as life and work go through different seasons, and that’s okay. I’m still don't get it right every day, but I think I’m moving in the right direction.
