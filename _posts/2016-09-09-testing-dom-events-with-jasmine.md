@@ -9,7 +9,7 @@ This week, I've been continuing to work on building a Tic Tac Toe client with Ba
 For example, this is one of the functions from my `GameView` class.
 
 {% highlight javascript %}
-move: function(e) {
+function move(e) {
   var spotClicked = $(e.currentTarget);
   if (spotClicked.hasClass('enabled')) {
     this.disableAllSpots();
@@ -62,4 +62,4 @@ it("updates the model", function() {
 });
 {% endhighlight %}
 
-Pretty simple, right? Testing DOM events can be complicated, but this is a good place to start. 
+Pretty simple, right? Testing DOM events can be complicated, but this is a good place to start.
