@@ -2,7 +2,7 @@
 layout: post
 title: "Require.js vs. Browserify"
 description: My guide to relatively simple JavaScript file management
-date: 2016-8-24
+date: 2016-9-02
 ---
 
 [I wrote last week](./file-management-with-requirejs) about importing JavaScript files into your project using Require.js. While Require.js solved a lot of problems I had encountered in the past, it also created some. Require.js did not get along particularly well with my testing suite, and I found myself using a lot of workarounds to make it work. So, when I re-factored our tic-tac-toe game yesterday, I went looking for an alternative.
