@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Applying the 4 Rules of Simple Design in Elixir 
-date: 2016-09-16
+date: 2016-10-04
 ---
 
 ## So, I have a confession to make.
