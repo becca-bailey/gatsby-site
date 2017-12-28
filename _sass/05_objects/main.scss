@@ -1,0 +1,17 @@
+$content-width: 1100px;
+
+.o-main {
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+.o-main__home-content {
+  padding: $spacing-small;
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-x-large;
+
+  @media #{$medium-up} {
+    flex-direction: row;
+  }
+}
