@@ -1,0 +1,16 @@
+.c-links {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  [class^="c-link"] {
+    padding: $spacing-x-small;
+
+    &:hover {
+      path {
+        transition: all .3s ease;
+        fill: $color-red;
+      }
+    }
+  }
+}

@@ -1,54 +1,20 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
 
+@import "01_settings/media-queries";
+@import "01_settings/tokens";
 
+@import "02_tools/mixins";
 
-// Our variables
-$base-font-family: Lato, sans-serif;
-$base-font-size:   19.5px;
-$small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+@import "03_generic/normalize";
 
-$spacing-unit:     30px;
+@import "04_elements/links";
+@import "04_elements/syntax-highlighting";
+@import "04_elements/typography";
 
-$text-color:       #111;
-$background-color: #fdfdfd;
-$brand-color:      #F62459;
+@import "05_objects/main";
+@import "05_objects/positioning";
 
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
-
-// Width of the content area
-$content-width:    1100px;
-
-$small: 600px;
-$medium: 800px;
-$large: 1000px;
-
-
-
-// Using media queries with like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
-}
-
-
-
-// Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "layout",
-        "syntax-highlighting",
-        "pygments"
-;
+@import "06_components/link";
+@import "06_components/origami";
