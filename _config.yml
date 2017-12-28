@@ -2,6 +2,7 @@
 title: Becca Nelson
 email: beccanelsonmakesthings@gmail.com
 description: "Thoughts on life, creativity, and technology."
+destination: "./build"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://beccanelson.is" # the base hostname & protocol for your site
 twitter_username: beccaliz

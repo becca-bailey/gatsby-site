@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
-
-    {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-        {% include sidebar.html %}
-      </div>
+<body>
+  <div class="page-content">
+    <div class="wrapper">
+      {{ content }}
     </div>
-
-    {% include footer.html %}
-
-  </body>
-
+  </div>
+</body>
+<script src="{{ site.baseurl }}/javascript/bundle.js"></script>
 </html>
