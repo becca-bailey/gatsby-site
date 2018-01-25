@@ -1,67 +1,25 @@
 .c-origami {
-  position: relative;
-  height: 300px;
-
-  @media #{$medium-up} {
-    height: 90vh;
-    width: 50%;
-  }
+  width: 40%;
+  padding: 2rem;
 }
 
-.c-origami__border {
-  fill: $color-white;
-}
-
-.c-origami__path {
-  stroke: $color-white;
-  stroke-miterlimit:10;
-  stroke-width:2px
-
-}
-
-.c-origami--cat,
-.c-origami--bird,
-.c-origami--otter {
-  position: absolute;
-  max-width: 100%;
-}
-
-.c-origami--cat {
-  top: 0;
-  width: 12rem;
-
+.c-origami--butterfly {
   path {
-    fill: $color-purple;
-  }
-
-  @media #{$medium-up} {
-    width: 18rem;
+    stroke: $color-background;
+    stroke-width: 2px;
   }
 }
 
-.c-origami--bird {
-  width: 12rem;
-  top: 30%;
-  right: 10%;
-
-  .c-origami__body {
-    fill: $color-green;
-  }
-
-  @media #{$medium-up} {
-    width: 15rem;
-  }
+.right-wing,
+.left-wing {
+  fill: $color-primary;
 }
 
-.c-origami--otter {
-  width: 12rem;
-  top: 70%;
+.body {
+  fill: darken($color-primary, 10%);
+}
 
-  .c-origami__body {
-    fill: $color-red;
-  }
-
-  @media #{$medium-up} {
-    width: 18rem;
-  }
+.right-back-wing,
+.left-back-wing {
+  fill: lighten($color-primary, 10%);
 }

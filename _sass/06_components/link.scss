@@ -8,8 +8,8 @@
 
     &:hover {
       path {
-        transition: all .3s ease;
-        fill: $color-red;
+        transition: all $duration-slide ease;
+        fill: $color-primary;
       }
     }
   }

@@ -60,39 +60,147 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
+/* globals __VUE_SSR_CONTEXT__ */
 
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
 
-var _vue = __webpack_require__(3);
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
 
-var _vue2 = _interopRequireDefault(_vue);
-
-var _marked = __webpack_require__(6);
-
-var _marked2 = _interopRequireDefault(_marked);
-
-var _App = __webpack_require__(8);
-
-var _App2 = _interopRequireDefault(_App);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var app = new _vue2.default({
-  el: '#app',
-  render: function render(h) {
-    return h(_App2.default);
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
   }
-});
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -282,34 +390,115 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var g;
+"use strict";
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
 
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+var _Butterfly = __webpack_require__(21);
 
-module.exports = g;
+var _Butterfly2 = _interopRequireDefault(_Butterfly);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    Butterfly: _Butterfly2.default
+  },
+  mounted: function mounted() {
+    this.showButterfly = true;
+  },
+  data: function data() {
+    return {
+      showButterfly: false
+    };
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
-/* 3 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(5);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _marked = __webpack_require__(8);
+
+var _marked2 = _interopRequireDefault(_marked);
+
+var _App = __webpack_require__(9);
+
+var _App2 = _interopRequireDefault(_App);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = new _vue2.default({
+  el: '#app',
+  render: function render(h) {
+    return h(_App2.default);
+  }
+});
+
+/***/ }),
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11124,10 +11313,10 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1), __webpack_require__(2), __webpack_require__(4).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2), __webpack_require__(1), __webpack_require__(6).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -11180,13 +11369,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(5);
+__webpack_require__(7);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11376,10 +11565,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(2)))
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -12698,96 +12887,24 @@ if (true) {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Cat = __webpack_require__(17);
-
-var _Cat2 = _interopRequireDefault(_Cat);
-
-var _Bird = __webpack_require__(21);
-
-var _Bird2 = _interopRequireDefault(_Bird);
-
-var _Otter = __webpack_require__(25);
-
-var _Otter2 = _interopRequireDefault(_Otter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  components: {
-    Cat: _Cat2.default,
-    Bird: _Bird2.default,
-    Otter: _Otter2.default
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(23);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(11)
+  __webpack_require__(10)
 }
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 
 
@@ -12831,302 +12948,23 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
 /* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "o-main" }, [
-    _c("div", { staticClass: "o-main__home-content" }, [
-      _c(
-        "section",
-        { staticClass: "c-origami" },
-        [_c("cat"), _vm._v(" "), _c("bird"), _vm._v(" "), _c("otter")],
-        1
-      ),
-      _vm._v(" "),
-      _c("section", { staticClass: "c-home" }, [
-        _c("h1", { staticClass: "c-title" }, [_vm._v("Hi, I'm Becca.")]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "c-links" }, [
-          _c(
-            "a",
-            {
-              staticClass: "c-link--email",
-              attrs: { href: "mailto:beccanelson88@gmail.com" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "30",
-                    height: "23.571",
-                    viewBox: "0 -45 30 23.571",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M30-37.4v13.293a2.58 2.58 0 0 1-.787 1.892 2.58 2.58 0 0 1-1.892.786H2.68a2.58 2.58 0 0 1-1.892-.786A2.58 2.58 0 0 1 0-24.107V-37.4a8.878 8.878 0 0 0 1.69 1.457c4.041 2.745 6.814 4.67 8.321 5.776.636.468 1.153.834 1.549 1.096.396.262.923.53 1.582.804.658.273 1.272.41 1.841.41h.034c.569 0 1.183-.137 1.841-.41.659-.274 1.186-.542 1.582-.804.396-.262.913-.628 1.549-1.096 1.897-1.373 4.676-3.298 8.337-5.776A9.234 9.234 0 0 0 30-37.4zm0-4.921c0 .881-.273 1.724-.82 2.527a7.96 7.96 0 0 1-2.043 2.06l-7.835 5.44-.711.511c-.363.262-.664.474-.904.636-.24.162-.53.343-.87.544a5.066 5.066 0 0 1-.963.452c-.302.1-.58.151-.837.151h-.034a2.66 2.66 0 0 1-.837-.15 5.071 5.071 0 0 1-.962-.453c-.34-.2-.631-.382-.87-.544-.24-.162-.542-.374-.905-.636s-.6-.432-.711-.51A829.369 829.369 0 0 0 6.31-35.35a772.029 772.029 0 0 1-3.432-2.385c-.692-.47-1.344-1.114-1.958-1.934C.307-40.488 0-41.25 0-41.953c0-.87.232-1.596.695-2.176.463-.58 1.124-.871 1.984-.871H27.32c.726 0 1.354.262 1.884.787.53.524.795 1.155.795 1.892zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--github",
-              attrs: { href: "https://github.com/beccanelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "25.714",
-                    height: "25.117",
-                    viewBox: "0 -48.689 25.714 25.117",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M12.857-48.689c-2.332 0-4.484.575-6.454 1.725a12.8 12.8 0 0 0-4.679 4.679C.574-40.315 0-38.165 0-35.831c0 2.8.818 5.32 2.453 7.558 1.635 2.238 3.747 3.786 6.336 4.646.301.056.525.017.67-.117a.655.655 0 0 0 .217-.503c0-.044-.002-.348-.008-.912-.006-.564-.008-1.058-.008-1.482l-.385.067a4.925 4.925 0 0 1-.93.059 7.15 7.15 0 0 1-1.163-.117 2.605 2.605 0 0 1-1.122-.502 2.122 2.122 0 0 1-.736-1.03l-.168-.385a4.187 4.187 0 0 0-.527-.854c-.24-.312-.483-.524-.728-.636l-.118-.084a1.224 1.224 0 0 1-.217-.2.922.922 0 0 1-.15-.235c-.034-.078-.006-.142.083-.193.09-.05.251-.075.485-.075l.335.05c.223.045.5.179.829.402.33.223.6.514.812.87.257.458.566.807.929 1.047.363.24.728.36 1.096.36.369 0 .687-.028.955-.084a3.32 3.32 0 0 0 .753-.25c.112-.749.385-1.323.82-1.725a11.466 11.466 0 0 1-1.716-.302 6.838 6.838 0 0 1-1.573-.652 4.51 4.51 0 0 1-1.348-1.122c-.357-.447-.65-1.033-.879-1.758-.229-.725-.343-1.562-.343-2.511 0-1.328.44-2.478 1.323-3.449-.413-1.015-.369-2.154.133-3.415.313-.1.787-.025 1.423.226.637.251 1.103.466 1.398.645.296.178.533.329.712.452 1.038-.29 2.11-.436 3.214-.436 1.105 0 2.176.145 3.214.436l.637-.402a9.017 9.017 0 0 1 1.54-.737c.591-.223 1.043-.284 1.356-.184.502 1.261.547 2.4.134 3.415.881.971 1.322 2.12 1.322 3.449 0 .949-.114 1.788-.343 2.52-.229.73-.524 1.316-.887 1.757a4.68 4.68 0 0 1-1.356 1.114 6.838 6.838 0 0 1-1.574.652c-.508.134-1.08.235-1.716.302.58.502.87 1.294.87 2.377 0 .68-.002 1.431-.008 2.252l-.008 1.28c0 .201.072.369.218.503.145.134.368.173.67.117 2.589-.86 4.7-2.408 6.336-4.646 1.635-2.238 2.452-4.757 2.452-7.558 0-2.333-.574-4.484-1.724-6.454a12.8 12.8 0 0 0-4.68-4.68c-1.969-1.149-4.12-1.724-6.453-1.724zM4.872-30.223c.033-.078-.006-.145-.118-.201-.111-.034-.184-.022-.217.033-.034.078.005.145.117.201.1.067.173.056.218-.033zm.519.569c.078-.056.067-.145-.034-.268-.111-.1-.2-.117-.268-.05-.078.056-.067.145.034.268.111.111.2.128.268.05zm.502.753c.1-.078.1-.184 0-.318-.09-.145-.184-.178-.285-.1-.1.056-.1.156 0 .301s.196.184.285.117zm.703.703c.09-.089.067-.195-.067-.318-.134-.134-.246-.15-.335-.05-.1.09-.078.195.067.318.134.134.246.15.335.05zm.954.419c.034-.123-.039-.212-.217-.268-.168-.045-.274-.005-.318.117-.045.123.027.207.217.251.168.067.274.034.318-.1zm1.055.084c0-.145-.095-.207-.285-.184-.178 0-.268.06-.268.184 0 .145.095.206.285.184.179 0 .268-.062.268-.184zm.97-.168c-.021-.122-.122-.173-.3-.15-.179.033-.257.117-.235.25.023.135.123.18.302.135.178-.045.256-.123.234-.235zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--behance",
-              attrs: { href: "https://www.behance.net/rebeccanelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "34.286",
-                    height: "21.496",
-                    viewBox: "0 -42.958 34.286 21.496",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M30.938-39.459h-8.555v-2.076h8.555zm-4.22 5.056c-1.004 0-1.818.293-2.443.879-.625.586-.971 1.381-1.038 2.386h6.83c-.2-2.177-1.317-3.265-3.348-3.265zm.269 9.794a4.23 4.23 0 0 0 2.042-.536c.659-.357 1.083-.843 1.272-1.457h3.7c-1.116 3.427-3.499 5.14-7.148 5.14-2.389 0-4.289-.737-5.7-2.21-1.412-1.473-2.118-3.41-2.118-5.809 0-2.321.728-4.25 2.184-5.784 1.457-1.535 3.335-2.302 5.634-2.302 1.54 0 2.882.38 4.026 1.138a7.02 7.02 0 0 1 2.561 2.997c.564 1.239.846 2.623.846 4.152 0 .19-.011.452-.034.787H23.237c0 1.239.32 2.196.962 2.87.642.676 1.571 1.014 2.788 1.014zm-22.35-.837h4.956c2.288 0 3.432-.932 3.432-2.796 0-2.01-1.11-3.014-3.332-3.014H4.637zm0-8.99h4.705c.87 0 1.56-.204 2.067-.611.508-.408.762-1.041.762-1.9 0-1.608-1.06-2.411-3.181-2.411H4.637zM0-42.958h9.944c.971 0 1.836.079 2.595.235a7.122 7.122 0 0 1 2.118.795 3.739 3.739 0 0 1 1.507 1.615c.351.704.527 1.563.527 2.579 0 2.02-.96 3.487-2.88 4.403 1.273.357 2.233.998 2.88 1.925.647.926.97 2.064.97 3.415 0 .837-.136 1.599-.41 2.285-.273.686-.641 1.264-1.104 1.733a6.332 6.332 0 0 1-1.65 1.188 7.923 7.923 0 0 1-2.025.704c-.714.145-1.462.217-2.243.217H0zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--medium",
-              attrs: { href: "https://medium.com/@becca.nelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "30",
-                    height: "25.379",
-                    viewBox: "0 -48.783 30 25.379",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M9.994-44.046v19.638c0 .279-.07.516-.209.711-.14.195-.343.293-.61.293-.19 0-.375-.045-.553-.134l-7.785-3.9A1.424 1.424 0 0 1 .243-28 1.476 1.476 0 0 1 0-28.778v-19.085c0-.223.056-.413.167-.569a.56.56 0 0 1 .486-.234c.156 0 .402.083.737.25l8.554 4.287c.034.033.05.06.05.083zm1.072 1.691l8.94 14.498-8.94-4.453zM30-42.054v17.646c0 .279-.078.505-.234.678-.157.173-.369.259-.637.259a1.58 1.58 0 0 1-.786-.218l-7.383-3.683zm-.05-2.008c0 .033-1.432 2.374-4.294 7.022-2.863 4.649-4.54 7.37-5.031 8.162l-6.529-10.614 5.424-8.823c.19-.312.48-.468.87-.468a.96.96 0 0 1 .436.1l9.057 4.52c.044.022.067.056.067.1zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          )
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v(
-        "\n        I'm a software engineer who loves to design things. I am currently a Software Crafter at "
-      ),
-      _c("a", { attrs: { href: "http://8thlight.com" } }, [
-        _vm._v("8th Light")
-      ]),
-      _vm._v(".\n      ")
-    ])
-  }
-]
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1fadd468", esExports)
-  }
-}
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(12);
+var content = __webpack_require__(11);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(14)("ca470bb8", content, false);
+var update = __webpack_require__(13)("156932e5", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1fadd468\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./App.vue", function() {
-     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1fadd468\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./App.vue");
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1fadd468\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./App.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1fadd468\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./App.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -13136,21 +12974,21 @@ if(false) {
 }
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(13)(undefined);
+exports = module.exports = __webpack_require__(12)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n.c-home {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n@keyframes flyin {\n0% {\n    transform: translate3d(100vw, 100vh, 0);\n}\n}\n@keyframes flyout {\n100% {\n    transform: translate3d(100vw, 100vh, 0);\n}\n}\n@keyframes flap {\n50% {\n    transform: rotate3d(1, 1, 0, 45deg);\n}\n}\n@keyframes flap-small {\n50% {\n    transform: rotate3d(1, 1, 0, 30deg);\n}\n}\n.fly-in {\n  animation: flyin 3s ease-out both;\n}\n.fly-out {\n  animation: flyout 5s ease-in both;\n}\n.fly-in .left-wing,\n.fly-in .right-wing,\n.fly-out .left-wing,\n.fly-out .right-wing {\n  animation: flap .5s ease-in infinite;\n}\n.fly-in .left-back-wing,\n.fly-in .right-back-wing,\n.fly-out .left-back-wing,\n.fly-out .right-back-wing {\n  animation: flap-small .5s ease-in infinite;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /*
@@ -13232,7 +13070,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -13251,7 +13089,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(15)
+var listToStyles = __webpack_require__(14)
 
 /*
 type StyleObject = {
@@ -13453,7 +13291,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -13486,152 +13324,20 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
+/* 15 */,
 /* 16 */,
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b8ece264_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Cat_vue__ = __webpack_require__(20);
-var disposed = false
-var normalizeComponent = __webpack_require__(9)
-/* script */
-var __vue_script__ = null
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b8ece264_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Cat_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "javascript/components/origami/Cat.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b8ece264", Component.options)
-  } else {
-    hotAPI.reload("data-v-b8ece264", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
+/* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "c-origami--cat" }, [
-    _c(
-      "svg",
-      {
-        attrs: {
-          xmlns: "http://www.w3.org/2000/svg",
-          viewBox: "0 0 250.88 158.15"
-        }
-      },
-      [
-        _c("g", { attrs: { id: "Layer_2", "data-name": "Layer 2" } }, [
-          _c("g", { attrs: { id: "Layer_4", "data-name": "Layer 4" } }, [
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: { d: "M139.6 63.63l13.72-61.19 25.89 37.26-39.61 23.93z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: {
-                d: "M65.86 63.63l55.3 64.32 49.42-18.83-30.98-45.49H65.86z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: {
-                d:
-                  "M139.6 63.63l39.61-23.93 30.2 5.88 19.22 34.52-31.38 21.57-38.48-9.9-19.17-28.14z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: { d: "M170.58 109.12l3.8-13.33-15.61-4.02 11.81 17.35z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: {
-                d:
-                  "M170.58 109.12l17.28-9.87-13.48-3.46-3.8 13.33zm38.83-63.54l39.67-14.12-20.45 48.64-19.22-34.52zm-38.83 63.54l20.01 47.07-65.82-29.61 45.81-17.46zm6.66-3.8l20.49 43.62-12.4-5.13-14.75-34.69 6.66-3.8zm-61.58 16.23L37.78 88.17l28.08-24.54 49.8 57.92z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: {
-                d:
-                  "M37.78 88.17L2.72 9.36l63.14 54.27-28.08 24.54zm0 0l30.39 60.77 15.8-40.98-46.19-19.79z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__path",
-              attrs: {
-                d: "M83.97 107.96l10.44 4.48-9.21 36.5-10.75-16.28 9.52-24.7z"
-              }
-            })
-          ])
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b8ece264", esExports)
-  }
-}
-
-/***/ }),
+/* 20 */,
 /* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c678771_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Bird_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8bbfd22a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Butterfly_vue__ = __webpack_require__(22);
 var disposed = false
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = null
 /* template */
@@ -13646,13 +13352,13 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __vue_script__,
-  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c678771_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Bird_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8bbfd22a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Butterfly_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "javascript/components/origami/Bird.vue"
+Component.options.__file = "javascript/components/origami/Butterfly.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -13661,9 +13367,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0c678771", Component.options)
+    hotAPI.createRecord("data-v-8bbfd22a", Component.options)
   } else {
-    hotAPI.reload("data-v-0c678771", Component.options)
+    hotAPI.reload("data-v-8bbfd22a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -13682,138 +13388,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "c-origami--bird" }, [
+  return _c("div", { staticClass: "c-origami--butterfly" }, [
     _c(
       "svg",
       {
+        staticClass: "butterfly",
         attrs: {
           xmlns: "http://www.w3.org/2000/svg",
-          viewBox: "0 0 205.15 210.87"
+          viewBox: "0 0 129.51 118.48"
         }
       },
       [
-        _c("g", { attrs: { id: "Layer_2", "data-name": "Layer 2" } }, [
-          _c("g", { attrs: { id: "Layer_6", "data-name": "Layer 6" } }, [
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M42.73 134.43l67.08-98.89 18.47 73.48-85.55 25.41z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M43.81 135.06l58.61-86.41 8.47-12.48-2.29-.3 18.47 73.48.88-1.54L53 130.07l-10.6 3.15a1.25 1.25 0 0 0 .67 2.41L118 113.38l10.61-3.16a1.26 1.26 0 0 0 .87-1.53L111 35.21a1.27 1.27 0 0 0-2.29-.3l-58.59 86.41-8.47 12.48c-.9 1.33 1.26 2.58 2.16 1.26z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d: "M42.73 135.68a1.25 1.25 0 0 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M128.28 109.02l68.4-107.74-86.87 34.26 18.47 73.48z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M129.36 109.65l60-94.53 8.38-13.21c.55-.86-.38-2.24-1.41-1.84l-76.11 30-10.75 4.24a1.3 1.3 0 0 0-.88 1.54l18.47 73.48a1.25 1.25 0 0 0 2.41-.66L111 35.21l-.88 1.54 76.12-30L197 2.48 195.6.65l-60 94.53-8.39 13.21c-.88 1.36 1.29 2.61 2.15 1.26z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M128.28 109.02l75.65-72.58-31.2 2.56-44.45 70.02z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M129.16 109.9l66.16-63.47 9.49-9.11a1.26 1.26 0 0 0-.89-2.13l-25.74 2.11c-2 .16-5-.2-6.54 1.08-1 .83-1.8 2.84-2.49 3.93l-31.67 49.88-10.28 16.2c-.87 1.36 1.3 2.61 2.16 1.26L154 70.87l15.2-24c1.24-1.94 3.26-4.17 4-6.35.15-.41 1.13-1.29.06-.61s1.77.11 2.44.06l28.2-2.32-.9-2.09L136.89 99l-9.5 9.1c-1.16 1.15.61 2.9 1.77 1.8z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M128.28 109.02l9.62 87.01 29.44 13.65-39.06-100.66z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M127 109l5.46 49.42 3.32 30c.24 2.2.12 4.93.78 7.06.52 1.69 1.07 1.78 2.77 2.57l27.35 12.68c.87.4 2.27-.29 1.84-1.41l-34.14-88-4.93-12.7c-.57-1.49-3-.84-2.41.66l34.14 88 4.93 12.7 1.89-1.38-23.6-10.94c-1.46-.68-3.23-1.92-4.81-2.23s-.45.24-.45.23c-.25-2-.45-4-.68-6.08l-6.79-61.43-2.14-19.15c-.18-1.56-2.68-1.58-2.53 0z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M136.12 179.94l-93.39-45.51 85.55-25.41 7.84 70.92z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M136.75 178.86L55.05 139l-11.68-5.69-.3 2.28L118 113.38l10.61-3.16L127 109l7.84 70.92c.17 1.58 2.67 1.6 2.5 0L129.53 109a1.27 1.27 0 0 0-1.58-1.21L53 130.07l-10.6 3.15a1.27 1.27 0 0 0-.3 2.29l81.7 39.81 11.69 5.7c1.44.7 2.71-1.45 1.26-2.16z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M123.23 173.66l1.39 15.59 13.28 6.78-1.78-16.09-12.89-6.28z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M122 173.66l.74 8.23c.17 1.91-.26 6 .7 7.69s4.36 2.68 6 3.53l7.83 4c.75.38 2-.07 1.88-1.08l-.89-8.05c-.24-2.18.09-6.19-.91-8.21-.88-1.75-3.83-2.48-5.51-3.3l-8-3.89c-1.44-.7-2.71 1.45-1.26 2.16l6.83 3.33a38.07 38.07 0 0 0 4.45 2.17c1.83.59 1.16 1.16 1-.07.64 5.28 1.17 10.57 1.76 15.86l1.88-1.08-7-3.59-4.31-2.21a5.28 5.28 0 0 0-1.4-.71c-.93-.09-.11-.37.08.65-1-5-.93-10.36-1.38-15.43-.15-1.59-2.65-1.61-2.49 0z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M42.73 134.43l-19.7-35.69 41.13 4.09-21.43 31.6z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M43.81 133.8l-19.7-35.69L23 100l41.13 4.09-1.08-1.88-21.4 31.59c-.9 1.33 1.26 2.58 2.16 1.26l21.43-31.59a1.27 1.27 0 0 0-1.08-1.89L23 97.49a1.26 1.26 0 0 0-1 1.88l19.7 35.69c.73 1.41 2.89.15 2.11-1.26z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M34.65 119.79L1.3 126.94l21.73-28.2 11.62 21.05z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M34.32 118.58L1 125.74l1.41 1.84 21.7-28.21H22l11.62 21c.78 1.41 2.94.15 2.16-1.26l-11.62-21a1.27 1.27 0 0 0-2.16 0L.22 126.31c-.72.94.47 2 1.41 1.84L35 121c1.56-.34.89-2.75-.68-2.42z"
-              }
-            })
-          ])
-        ])
+        _c("path", {
+          staticClass: "right-wing",
+          attrs: {
+            d: "M66.09 47.56l41.09-46.32 6.88 46.32-23.99 32.56-23.98-32.56z"
+          }
+        }),
+        _vm._v(" "),
+        _c("path", {
+          staticClass: "left-wing",
+          attrs: {
+            d: "M57.19 53.98l32.88 26.14-38.38 15.59L1.24 80.12l55.95-26.14z"
+          }
+        }),
+        _vm._v(" "),
+        _c("path", {
+          staticClass: "body",
+          attrs: { d: "M57.19 53.98l3.85-8 5.05 1.58 23.98 32.56-32.88-26.14z" }
+        }),
+        _vm._v(" "),
+        _c("path", {
+          staticClass: "left-back-wing",
+          attrs: {
+            d: "M63.52 90.9l7.81 9.85 31.26 16.51-12.52-37.14L63.52 90.9z"
+          }
+        }),
+        _vm._v(" "),
+        _c("path", {
+          staticClass: "right-back-wing",
+          attrs: {
+            d: "M90.07 80.12l38.2 18.57-14.21-27.97-10.06-9.5-13.93 18.9z"
+          }
+        })
       ]
     )
   ])
@@ -13825,64 +13442,12 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0c678771", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-8bbfd22a", esExports)
   }
 }
 
 /***/ }),
-/* 23 */,
-/* 24 */,
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_24625fd8_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Otter_vue__ = __webpack_require__(26);
-var disposed = false
-var normalizeComponent = __webpack_require__(9)
-/* script */
-var __vue_script__ = null
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_24625fd8_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Otter_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "javascript/components/origami/Otter.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-24625fd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-24625fd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-/* 26 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13890,212 +13455,218 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "c-origami--otter" }, [
-    _c(
-      "svg",
-      {
-        attrs: {
-          xmlns: "http://www.w3.org/2000/svg",
-          viewBox: "0 0 265.88 83.48"
-        }
-      },
-      [
-        _c("g", { attrs: { id: "Layer_2", "data-name": "Layer 2" } }, [
-          _c("g", { attrs: { id: "Layer_9", "data-name": "Layer 9" } }, [
-            _c("path", {
-              staticClass: "c-origami__body",
+  return _c("div", { staticClass: "o-main" }, [
+    _c("div", { staticClass: "o-main__home-content" }, [
+      _c(
+        "section",
+        { staticClass: "c-origami" },
+        [
+          _c(
+            "transition",
+            {
               attrs: {
-                d:
-                  "M4.68 63.84l38.91 18.37 129.51-2.49 22.73-21.79 68.8-31.76L57.6 24.62 50.13 5.63 1.25 32.71l3.43 31.13z"
+                name: "butterfly-move",
+                "enter-active-class": "fly-in",
+                "leave-active-class": "fly-out"
               }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M4.05 65.18l27.74 13.1c4.57 2.16 9.13 5.49 14.28 5.39l63.77-1.22c20.55-.4 41.2-.24 61.73-1.19a4.19 4.19 0 0 0 3.11-1.06c4.36-3.26 8.16-7.82 12.09-11.59 3.15-3 6.29-7 9.91-9.51.59-.4 4.21-1.88 5.66-2.54l62.92-29c1.17-.54.53-2.32-.63-2.33l-81.2-.61-114.08-.9-7.49-.06c-.88 0-3-.44-3.85 0s.64.68.66.55c.19-1.44-1.83-4.63-2.35-6l-5-12.66a1.27 1.27 0 0 0-1.84-.74L.62 31.89A1.24 1.24 0 0 0 0 33l3.43 31.1c.17 1.59 2.67 1.6 2.5 0L4 46.56 2.83 36a20.79 20.79 0 0 0-.29-2.62c-.14-.6-1.18.88-.24.48 4.77-2 9.31-5.16 13.84-7.67l21.17-11.77L50.76 7l-1.83-.75 7.47 19a1.31 1.31 0 0 0 1.2.92l70.11.52 111.21.84 25.71.19-.63-2.37L208.42 51c-5.16 2.38-11.22 4.13-15.37 8.11l-13 12.44-5.76 5.53c-.85.81-2.9 2-1.28 1.64a25.24 25.24 0 0 1-4.92.1l-11.48.22-35.42.68-70.1 1.36a59.55 59.55 0 0 1-7.19.14c-.59-.07.06.1.3.16a6.28 6.28 0 0 1-1.2-.58c-2.09-1.1-4.28-2-6.41-3L5.31 63c-1.45-.66-2.72 1.5-1.26 2.18z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M29.29 17.18l28.31 7.44-7.47-18.99-20.84 11.55z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M29 18.64l28.31 7.44c.84.22 1.9-.61 1.54-1.53l-7.47-19a1.27 1.27 0 0 0-1.84-.74L28.66 16.36c-1.41.78-.15 2.94 1.26 2.16L50.76 7l-1.83-.75 7.47 19 1.54-1.54-28.32-7.48a1.25 1.25 0 0 0-.62 2.41z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d:
-                  "M29.29 17.18L1.25 32.71l3.43 31.13 20.9 9.87L47.02 59.8 57.6 24.62l-28.31-7.44z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M28.66 16.36L.62 31.89A1.24 1.24 0 0 0 0 33l3 27.48c.25 2.29 0 3.76 1.77 5.06 4 2.86 9.63 4.54 14.05 6.63 2.09 1 5.2 3.36 7.53 2.77 1.17-.29 2.67-1.73 3.66-2.38l7.3-4.73c3.08-2 7.79-3.94 10.27-6.67 1.45-1.59 1.77-4.6 2.38-6.63l8.82-29.32a1.27 1.27 0 0 0-.87-1.54l-28.29-7.44a1.25 1.25 0 0 0-.62 2.41l28.31 7.44-.87-1.53-9.28 30.69a23.22 23.22 0 0 1-1.31 4.35c.2-.36.86-.84-.09-.2s-1.92 1.24-2.88 1.86l-16.1 10.46c-.56.35-1.1.75-1.66 1.07.75-.44 1.42.58.34-.25C23.42 71 20.3 70.1 18 69l-9.25-4.35a11.9 11.9 0 0 0-2.68-1.27c-1.34-.17-.2.27-.18.36-1.06-5.25-1.2-10.87-1.78-16.19-.52-4.71-1.67-9.79-1.6-14.55 0 1.53-.91.89.53.4a21.48 21.48 0 0 0 3.07-1.7l9.36-5.19 14.45-8c1.41-.77.15-2.93-1.26-2.15z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M57.6 24.62l-7.2 23.95 61.06 21.5L95.9 24.62H57.6z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M56.4 24.55l-7.21 24a1.29 1.29 0 0 0 .87 1.45l61.07 21.5a1.26 1.26 0 0 0 1.54-1.5L97.1 24.55a1.28 1.28 0 0 0-1.2-.92H57.6a1.25 1.25 0 0 0 0 2.5h15.7c6.82 0 14 .7 20.83 0 .48-.05 1.24.18 1.68 0-1.35.54-.86-1.86-.82-.05.05 2 1.66 4.85 2.31 6.76l7.54 22 5.42 15.82 1.53-1.54-61.06-21.49.87 1.54 7.21-24a1.25 1.25 0 0 0-2.41-.62z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M95.9 24.62l17.43.42-1.87 45.03L95.9 24.62z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M95.9 26.13l17.43.42-1.25-1.25-1.87 45 2.46-.33L97.1 24.55c-.52-1.52-2.93-.87-2.41.66l15.57 45.45a1.25 1.25 0 0 0 2.45-.33l1.87-45a1.26 1.26 0 0 0-1.25-1.25l-17.43-.45a1.25 1.25 0 0 0 0 2.5z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M95.9 24.62l17.43-17.13v17.55l-17.43-.42z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M96.78 25.76l17.43-17.12-2.13-.89V25.3l1.25-1.25-17.43-.42a1.25 1.25 0 0 0 0 2.5l17.43.42a1.28 1.28 0 0 0 1.25-1.25V7.75a1.27 1.27 0 0 0-2.14-.88L95 24c-1.14 1.12.63 2.89 1.78 1.76zm-71.2 49.46a1.25 1.25 0 0 0 0-2.5 1.25 1.25 0 0 0 0 2.5z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M171.55 1.27l1.55 78.45 12.46-39.23-14.01-39.22z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M170.3 1.53L171.85 80a1.26 1.26 0 0 0 2.46.33l6.53-20.56 4.3-13.57c.51-1.61 1.74-3.86 1.64-5.59s-1.42-4.08-2-5.78l-4.84-13.53-7.19-20.1c-.54-1.51-2.95-.86-2.41.66L177.18 21l4.92 13.77c.67 1.88 2.09 4.29 2.24 6.28-.1-1.33-.37.64-.56 1.15-.47 1.31-.84 2.67-1.26 4l-4.4 13.8-6.22 19.65 2.45.33-1.55-78.45a1.25 1.25 0 0 0-2.5 0z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M185.56 40.49l4.98-15.45-18.99-23.77 14.01 39.22z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M186.76 41.09l4.14-12.86c1-3.1.79-3.48-1.19-6L172.43.64c-.78-1-2.5.08-2.09 1.22l14 39.23c.54 1.5 3 .85 2.41-.67l-14-39.22-2.09 1.21 16.25 20.34a32.66 32.66 0 0 1 2.57 3.25c.11.17.23-1.42-.35-.39a13.3 13.3 0 0 0-.75 2.34l-4 12.5c-.52 1.55 1.89 2.16 2.38.64z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M111.46 70.07l61-22.73-.91-22.72-58.22.42-1.87 45.03z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M111.79 71.54l61-22.73a1.29 1.29 0 0 0 .92-1.21l-.91-22.72a1.27 1.27 0 0 0-1.25-1.25l-58.22.42a1.27 1.27 0 0 0-1.25 1.25l-1.87 45c-.07 1.61 2.44 1.61 2.5 0l1.87-45-1.25 1.25 58.22-.42-1.25-1.25.74 18.6c0 .65-.29 3.11.15 3.65s1.32-.61.56-.59c-1.44 0-3.43 1.28-4.77 1.77l-42.59 15.88-13.26 4.93c-1.5.56-.85 2.98.66 2.42z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d: "M181.71 52.6l8.83-27.56 74.09 1.13-68.8 31.76-14.12-5.33z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M182.92 53.19l6.71-21c.52-1.62 1.23-3.29 1.59-5 .55-2.56.45-.3-.57-.71 1.19.48 3.5.05 4.75.07l52.89.81 16.34.25-.63-2.26-30.79 14.21c-12.26 5.66-25.16 10.68-37 17.1-.43.23-1.34.36-.52.37s-2.41-1.15-3-1.38l-10.59-4c-1.5-.57-2.15 1.84-.66 2.41l8.88 3.35c1.88.71 4.23 2.16 6.24 1.83 3.46-.58 7.56-3.49 10.71-4.94l45.56-21 12.49-5.77c1.18-.54.53-2.31-.63-2.33l-74.09-1.13a1.28 1.28 0 0 0-1.21.91l-8.82 27.57c-.57 1.52 1.86 2.17 2.35.64z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: { d: "M181.71 52.6l14.12 5.33-22.73 21.79 8.61-27.12z" }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M181.38 54.07l14.12 5.32-.5-2.09-22.78 21.8 2.09 1.21 8.61-27.12c.49-1.53-1.93-2.19-2.41-.66l-8.61 27.12a1.26 1.26 0 0 0 2.1 1.21l22.72-21.79a1.27 1.27 0 0 0-.55-2.09L182 51.66c-1.46-.57-2.11 1.84-.62 2.41z",
-                transform: "translate(0 -.26)"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__body",
-              attrs: {
-                d:
-                  "M173.1 79.72l-.64-32.38-61 22.73-61.06-21.5-3.38 11.23-21.44 13.91 18.01 8.5 129.51-2.49z"
-              }
-            }),
-            _vm._v(" "),
-            _c("path", {
-              staticClass: "c-origami__border",
-              attrs: {
-                d:
-                  "M174.35 80l-.64-32.38a1.26 1.26 0 0 0-1.58-1.2L119 66.2c-2.34.87-5.18 2.53-7.67 2.86.24 0 .65.07-.4-.25-1.34-.41-2.66-.94-4-1.4l-31.24-11-25-8.78a1.26 1.26 0 0 0-1.54.87c-1 3.23-2.3 6.5-2.95 9.81-.41 2 .53.31-.48 1.08s-2.37 1.53-3.53 2.28L25 72.89a1.26 1.26 0 0 0 0 2.16l15.19 7.17a10.71 10.71 0 0 0 5 1.47c8.38.21 16.83-.32 25.2-.48L152 81.64l21.17-.41a1.25 1.25 0 0 0 0-2.5L47.4 81.15c-1 0-2.13.13-3.17.06s.44.47-1.34-.45c-5.46-2.8-11.13-5.25-16.68-7.87v2.16L44.75 63c1.76-1.15 2.91-1.61 3.72-3.46 1.43-3.24 2.11-7 3.13-10.39l-1.54.85 53.86 19c2.07.73 4.94 2.39 7.16 2.52 1.66.09 3.53-1 5.06-1.6L147 58.44l25.84-9.63-1.58-1.21.59 32.4a1.25 1.25 0 0 0 2.5 0z",
-                transform: "translate(0 -.26)"
-              }
-            })
-          ])
+            },
+            [_vm.showButterfly ? _c("Butterfly") : _vm._e()],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("section", { staticClass: "c-home" }, [
+        _c("h1", { staticClass: "c-title" }, [_vm._v("Hi, I'm Becca.")]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _c("p"),
+        _c("div", { staticClass: "c-links" }, [
+          _c(
+            "a",
+            {
+              staticClass: "c-link--email",
+              attrs: { href: "mailto:hello@beccanelson.is" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    width: "30",
+                    height: "23.571",
+                    viewBox: "0 -45 30 23.571",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M30-37.4v13.293a2.58 2.58 0 0 1-.787 1.892 2.58 2.58 0 0 1-1.892.786H2.68a2.58 2.58 0 0 1-1.892-.786A2.58 2.58 0 0 1 0-24.107V-37.4a8.878 8.878 0 0 0 1.69 1.457c4.041 2.745 6.814 4.67 8.321 5.776.636.468 1.153.834 1.549 1.096.396.262.923.53 1.582.804.658.273 1.272.41 1.841.41h.034c.569 0 1.183-.137 1.841-.41.659-.274 1.186-.542 1.582-.804.396-.262.913-.628 1.549-1.096 1.897-1.373 4.676-3.298 8.337-5.776A9.234 9.234 0 0 0 30-37.4zm0-4.921c0 .881-.273 1.724-.82 2.527a7.96 7.96 0 0 1-2.043 2.06l-7.835 5.44-.711.511c-.363.262-.664.474-.904.636-.24.162-.53.343-.87.544a5.066 5.066 0 0 1-.963.452c-.302.1-.58.151-.837.151h-.034a2.66 2.66 0 0 1-.837-.15 5.071 5.071 0 0 1-.962-.453c-.34-.2-.631-.382-.87-.544-.24-.162-.542-.374-.905-.636s-.6-.432-.711-.51A829.369 829.369 0 0 0 6.31-35.35a772.029 772.029 0 0 1-3.432-2.385c-.692-.47-1.344-1.114-1.958-1.934C.307-40.488 0-41.25 0-41.953c0-.87.232-1.596.695-2.176.463-.58 1.124-.871 1.984-.871H27.32c.726 0 1.354.262 1.884.787.53.524.795 1.155.795 1.892zm0 0"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "c-link--linkedin",
+              attrs: { href: "https://linkedin.com/in/beccanelsonmakesthings" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "c-link--github",
+              attrs: { href: "https://github.com/beccanelson" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    width: "25.714",
+                    height: "25.117",
+                    viewBox: "0 -48.689 25.714 25.117",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M12.857-48.689c-2.332 0-4.484.575-6.454 1.725a12.8 12.8 0 0 0-4.679 4.679C.574-40.315 0-38.165 0-35.831c0 2.8.818 5.32 2.453 7.558 1.635 2.238 3.747 3.786 6.336 4.646.301.056.525.017.67-.117a.655.655 0 0 0 .217-.503c0-.044-.002-.348-.008-.912-.006-.564-.008-1.058-.008-1.482l-.385.067a4.925 4.925 0 0 1-.93.059 7.15 7.15 0 0 1-1.163-.117 2.605 2.605 0 0 1-1.122-.502 2.122 2.122 0 0 1-.736-1.03l-.168-.385a4.187 4.187 0 0 0-.527-.854c-.24-.312-.483-.524-.728-.636l-.118-.084a1.224 1.224 0 0 1-.217-.2.922.922 0 0 1-.15-.235c-.034-.078-.006-.142.083-.193.09-.05.251-.075.485-.075l.335.05c.223.045.5.179.829.402.33.223.6.514.812.87.257.458.566.807.929 1.047.363.24.728.36 1.096.36.369 0 .687-.028.955-.084a3.32 3.32 0 0 0 .753-.25c.112-.749.385-1.323.82-1.725a11.466 11.466 0 0 1-1.716-.302 6.838 6.838 0 0 1-1.573-.652 4.51 4.51 0 0 1-1.348-1.122c-.357-.447-.65-1.033-.879-1.758-.229-.725-.343-1.562-.343-2.511 0-1.328.44-2.478 1.323-3.449-.413-1.015-.369-2.154.133-3.415.313-.1.787-.025 1.423.226.637.251 1.103.466 1.398.645.296.178.533.329.712.452 1.038-.29 2.11-.436 3.214-.436 1.105 0 2.176.145 3.214.436l.637-.402a9.017 9.017 0 0 1 1.54-.737c.591-.223 1.043-.284 1.356-.184.502 1.261.547 2.4.134 3.415.881.971 1.322 2.12 1.322 3.449 0 .949-.114 1.788-.343 2.52-.229.73-.524 1.316-.887 1.757a4.68 4.68 0 0 1-1.356 1.114 6.838 6.838 0 0 1-1.574.652c-.508.134-1.08.235-1.716.302.58.502.87 1.294.87 2.377 0 .68-.002 1.431-.008 2.252l-.008 1.28c0 .201.072.369.218.503.145.134.368.173.67.117 2.589-.86 4.7-2.408 6.336-4.646 1.635-2.238 2.452-4.757 2.452-7.558 0-2.333-.574-4.484-1.724-6.454a12.8 12.8 0 0 0-4.68-4.68c-1.969-1.149-4.12-1.724-6.453-1.724zM4.872-30.223c.033-.078-.006-.145-.118-.201-.111-.034-.184-.022-.217.033-.034.078.005.145.117.201.1.067.173.056.218-.033zm.519.569c.078-.056.067-.145-.034-.268-.111-.1-.2-.117-.268-.05-.078.056-.067.145.034.268.111.111.2.128.268.05zm.502.753c.1-.078.1-.184 0-.318-.09-.145-.184-.178-.285-.1-.1.056-.1.156 0 .301s.196.184.285.117zm.703.703c.09-.089.067-.195-.067-.318-.134-.134-.246-.15-.335-.05-.1.09-.078.195.067.318.134.134.246.15.335.05zm.954.419c.034-.123-.039-.212-.217-.268-.168-.045-.274-.005-.318.117-.045.123.027.207.217.251.168.067.274.034.318-.1zm1.055.084c0-.145-.095-.207-.285-.184-.178 0-.268.06-.268.184 0 .145.095.206.285.184.179 0 .268-.062.268-.184zm.97-.168c-.021-.122-.122-.173-.3-.15-.179.033-.257.117-.235.25.023.135.123.18.302.135.178-.045.256-.123.234-.235zm0 0"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "c-link--behance",
+              attrs: { href: "https://www.behance.net/rebeccanelson" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    width: "34.286",
+                    height: "21.496",
+                    viewBox: "0 -42.958 34.286 21.496",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M30.938-39.459h-8.555v-2.076h8.555zm-4.22 5.056c-1.004 0-1.818.293-2.443.879-.625.586-.971 1.381-1.038 2.386h6.83c-.2-2.177-1.317-3.265-3.348-3.265zm.269 9.794a4.23 4.23 0 0 0 2.042-.536c.659-.357 1.083-.843 1.272-1.457h3.7c-1.116 3.427-3.499 5.14-7.148 5.14-2.389 0-4.289-.737-5.7-2.21-1.412-1.473-2.118-3.41-2.118-5.809 0-2.321.728-4.25 2.184-5.784 1.457-1.535 3.335-2.302 5.634-2.302 1.54 0 2.882.38 4.026 1.138a7.02 7.02 0 0 1 2.561 2.997c.564 1.239.846 2.623.846 4.152 0 .19-.011.452-.034.787H23.237c0 1.239.32 2.196.962 2.87.642.676 1.571 1.014 2.788 1.014zm-22.35-.837h4.956c2.288 0 3.432-.932 3.432-2.796 0-2.01-1.11-3.014-3.332-3.014H4.637zm0-8.99h4.705c.87 0 1.56-.204 2.067-.611.508-.408.762-1.041.762-1.9 0-1.608-1.06-2.411-3.181-2.411H4.637zM0-42.958h9.944c.971 0 1.836.079 2.595.235a7.122 7.122 0 0 1 2.118.795 3.739 3.739 0 0 1 1.507 1.615c.351.704.527 1.563.527 2.579 0 2.02-.96 3.487-2.88 4.403 1.273.357 2.233.998 2.88 1.925.647.926.97 2.064.97 3.415 0 .837-.136 1.599-.41 2.285-.273.686-.641 1.264-1.104 1.733a6.332 6.332 0 0 1-1.65 1.188 7.923 7.923 0 0 1-2.025.704c-.714.145-1.462.217-2.243.217H0zm0 0"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "c-link--medium",
+              attrs: { href: "https://medium.com/@becca.nelson" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    width: "30",
+                    height: "25.379",
+                    viewBox: "0 -48.783 30 25.379",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M9.994-44.046v19.638c0 .279-.07.516-.209.711-.14.195-.343.293-.61.293-.19 0-.375-.045-.553-.134l-7.785-3.9A1.424 1.424 0 0 1 .243-28 1.476 1.476 0 0 1 0-28.778v-19.085c0-.223.056-.413.167-.569a.56.56 0 0 1 .486-.234c.156 0 .402.083.737.25l8.554 4.287c.034.033.05.06.05.083zm1.072 1.691l8.94 14.498-8.94-4.453zM30-42.054v17.646c0 .279-.078.505-.234.678-.157.173-.369.259-.637.259a1.58 1.58 0 0 1-.786-.218l-7.383-3.683zm-.05-2.008c0 .033-1.432 2.374-4.294 7.022-2.863 4.649-4.54 7.37-5.031 8.162l-6.529-10.614 5.424-8.823c.19-.312.48-.468.87-.468a.96.96 0 0 1 .436.1l9.057 4.52c.044.022.067.056.067.1zm0 0"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
         ])
-      ]
-    )
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v(
+        "\n        I'm a software engineer who loves to design things. I am currently a Software Crafter at "
+      ),
+      _c("a", { attrs: { href: "http://8thlight.com" } }, [
+        _vm._v("8th Light")
+      ]),
+      _vm._v(".\n      ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("a", { attrs: { href: "/assets/resume.pdf" } }, [
+        _vm._v("\n          View my Résumé\n        ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-24625fd8", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-1fadd468", esExports)
   }
 }
 

@@ -2,20 +2,30 @@
   <div class="o-main">
     <div class="o-main__home-content">
       <section class="c-origami">
-        <cat></cat>
-        <bird></bird>
-        <otter></otter>
+        <transition name="butterfly-move"
+                    enter-active-class="fly-in"
+                    leave-active-class="fly-out">
+          <Butterfly v-if="showButterfly"></Butterfly>
+        </transition>
       </section>
       <section class="c-home">
         <h1 class="c-title">Hi, I'm Becca.</h1>
         <p>
           I'm a software engineer who loves to design things. I am currently a Software Crafter at <a href="http://8thlight.com">8th Light</a>.
         </p>
+        <p>
+          <a href="/assets/resume.pdf">
+            View my Résumé
+          </a>
+        <p>
         <div class="c-links">
-          <a class="c-link--email" href="mailto:beccanelson88@gmail.com">
+          <a class="c-link--email" href="mailto:hello@beccanelson.is">
             <svg width="30" height="23.571" viewBox="0 -45 30 23.571" xmlns="http://www.w3.org/2000/svg">
               <path d="M30-37.4v13.293a2.58 2.58 0 0 1-.787 1.892 2.58 2.58 0 0 1-1.892.786H2.68a2.58 2.58 0 0 1-1.892-.786A2.58 2.58 0 0 1 0-24.107V-37.4a8.878 8.878 0 0 0 1.69 1.457c4.041 2.745 6.814 4.67 8.321 5.776.636.468 1.153.834 1.549 1.096.396.262.923.53 1.582.804.658.273 1.272.41 1.841.41h.034c.569 0 1.183-.137 1.841-.41.659-.274 1.186-.542 1.582-.804.396-.262.913-.628 1.549-1.096 1.897-1.373 4.676-3.298 8.337-5.776A9.234 9.234 0 0 0 30-37.4zm0-4.921c0 .881-.273 1.724-.82 2.527a7.96 7.96 0 0 1-2.043 2.06l-7.835 5.44-.711.511c-.363.262-.664.474-.904.636-.24.162-.53.343-.87.544a5.066 5.066 0 0 1-.963.452c-.302.1-.58.151-.837.151h-.034a2.66 2.66 0 0 1-.837-.15 5.071 5.071 0 0 1-.962-.453c-.34-.2-.631-.382-.87-.544-.24-.162-.542-.374-.905-.636s-.6-.432-.711-.51A829.369 829.369 0 0 0 6.31-35.35a772.029 772.029 0 0 1-3.432-2.385c-.692-.47-1.344-1.114-1.958-1.934C.307-40.488 0-41.25 0-41.953c0-.87.232-1.596.695-2.176.463-.58 1.124-.871 1.984-.871H27.32c.726 0 1.354.262 1.884.787.53.524.795 1.155.795 1.892zm0 0"/>
             </svg>
+          </a>
+          <a href="https://linkedin.com/in/beccanelsonmakesthings" class="c-link--linkedin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
           </a>
           <a class="c-link--github" href="https://github.com/beccanelson">
           <svg width="25.714" height="25.117" viewBox="0 -48.689 25.714 25.117" xmlns="http://www.w3.org/2000/svg">
@@ -39,23 +49,68 @@
 </template>
 
 <script>
-import Cat from './origami/Cat.vue';
-import Bird from './origami/Bird.vue';
-import Otter from './origami/Otter.vue';
+import Butterfly from './origami/Butterfly.vue';
 
 export default {
   components: {
-    Cat,
-    Bird,
-    Otter,
+    Butterfly,
+  },
+  mounted() {
+    this.showButterfly = true;
+  },
+  data() {
+    return {
+      showButterfly: false,
+    }
   },
 }
 </script>
 
-<style>
-  .c-home {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+<style lang="scss">
+
+@mixin fly($xaxis: 0, $yaxis: 0) {
+  transform: translate3d($xaxis, $yaxis, 0);
+}
+
+@mixin flap($deg: 0) {
+  transform: rotate3d(1, 1, 0, $deg);
+}
+
+@keyframes flyin {
+  0% { @include fly(100vw, 100vh) }
+}
+
+@keyframes flyout {
+  100% { @include fly(100vw, 100vh) }
+}
+
+@keyframes flap {
+  50% { @include flap(45deg) } 
+}
+
+@keyframes flap-small {
+  50% { @include flap (30deg) }
+}
+
+.fly-in {
+  animation: flyin 3s ease-out both;
+}
+
+.fly-out {
+  animation: flyout 5s ease-in both;
+}
+
+.fly-in,
+.fly-out {
+  .left-wing,
+  .right-wing {
+    animation: flap .5s ease-in infinite;
   }
+  
+  .left-back-wing,
+  .right-back-wing {
+    animation: flap-small .5s ease-in infinite;
+  }
+}
 </style>
+

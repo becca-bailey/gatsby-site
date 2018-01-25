@@ -1,26 +1,21 @@
 // Colors
+// from https://flatuicolors.com/palette/in
 
-$color-background: #A2DED0;
-$color-purple: #663399;
-$color-green: #26C281;
-$color-blue: #1E8BC3;
-$color-orange: #F64747;
-$color-red: #F62459;
+$color-background: #9AECDB;
+$color-purple: #82589F;
+$color-green: #55E6C1;
+$color-blue: #25CCF7;
+$color-orange: #F97F51;
+$color-red: #FD7272;
 
-$color-primary: $color-red;
+$color-primary: #B33771;
 $color-primary-hover: darken($color-primary, 10%);
-$color-secondary: #626E7A;
-$color-secondary-hover: darken($color-secondary, 10%);
 $color-white: #FFF;
 $color-black: #070707;
 $color-black-hover: darken($color-black, 10%);
 $color-black-secondary: rgba($color-black, .5);
-$color-accent: #CCC;
+$color-accent: #CAD3C8;
 $color-accent-hover: darken($color-accent, 10%);
-$color-success: #58966B;
-$color-success-hover: darken($color-success, 10%);
-$color-error: #C81905;
-$color-error-hover: darken($color-error, 10%);
 
 $color-border: lighten($color-accent, 10%);
 $color-border-input: rgba($color-black, .15);
