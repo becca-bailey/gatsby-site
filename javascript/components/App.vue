@@ -77,7 +77,7 @@ export default {
 }
 
 @keyframes flyin {
-  0% { @include fly(100vw, 100vh) }
+  0% { @include fly(50vw, 45vh) }
 }
 
 @keyframes flyout {
