@@ -94,6 +94,115 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -281,115 +390,6 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -404,11 +404,21 @@ var _Butterfly = __webpack_require__(15);
 
 var _Butterfly2 = _interopRequireDefault(_Butterfly);
 
+var _MainContent = __webpack_require__(17);
+
+var _MainContent2 = _interopRequireDefault(_MainContent);
+
+var _Writing = __webpack_require__(20);
+
+var _Writing2 = _interopRequireDefault(_Writing);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    Butterfly: _Butterfly2.default
+    Butterfly: _Butterfly2.default,
+    MainContent: _MainContent2.default,
+    Writing: _Writing2.default
   },
   mounted: function mounted() {
     this.showButterfly = true;
@@ -419,40 +429,6 @@ exports.default = {
     };
   }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -11313,7 +11289,7 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1), __webpack_require__(0), __webpack_require__(6).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2), __webpack_require__(0), __webpack_require__(6).setImmediate))
 
 /***/ }),
 /* 6 */
@@ -11565,7 +11541,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(2)))
 
 /***/ }),
 /* 8 */
@@ -12898,13 +12874,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(19);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(10)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 
 
@@ -12982,7 +12958,7 @@ exports = module.exports = __webpack_require__(12)(undefined);
 
 
 // module
-exports.push([module.i, "\n@keyframes flyin {\n0% {\n    transform: translate3d(50vw, 45vh, 0);\n}\n}\n@keyframes flyout {\n100% {\n    transform: translate3d(100vw, 100vh, 0);\n}\n}\n@keyframes flap {\n50% {\n    transform: rotate3d(1, 1, 0, 45deg);\n}\n}\n@keyframes flap-small {\n50% {\n    transform: rotate3d(1, 1, 0, 30deg);\n}\n}\n.fly-in {\n  animation: flyin 3s ease-out both;\n}\n.fly-out {\n  animation: flyout 5s ease-in both;\n}\n.fly-in .left-wing,\n.fly-in .right-wing,\n.fly-out .left-wing,\n.fly-out .right-wing {\n  animation: flap .5s ease-in infinite;\n}\n.fly-in .left-back-wing,\n.fly-in .right-back-wing,\n.fly-out .left-back-wing,\n.fly-out .right-back-wing {\n  animation: flap-small .5s ease-in infinite;\n}\n", ""]);
+exports.push([module.i, "\n@keyframes flyin {\n0% {\n    transform: translate3d(50vw, 45vh, 0);\n}\n}\n@keyframes flyout {\n100% {\n    transform: translate3d(100vw, 100vh, 0);\n}\n}\n@keyframes flap {\n50% {\n    transform: rotate3d(1, 1, 0, 45deg);\n}\n}\n@keyframes flap-small {\n50% {\n    transform: rotate3d(1, 1, 0, 30deg);\n}\n}\n.fly-in {\n  animation: flyin 3s ease-out both;\n}\n.fly-out {\n  animation: flyout 5s ease-in both;\n}\n.fly-in .left-wing,\n.fly-in .right-wing,\n.fly-out .left-wing,\n.fly-out .right-wing {\n  animation: flap 0.5s ease-in infinite;\n}\n.fly-in .left-back-wing,\n.fly-in .right-back-wing,\n.fly-out .left-back-wing,\n.fly-out .right-back-wing {\n  animation: flap-small 0.5s ease-in infinite;\n}\n", ""]);
 
 // exports
 
@@ -13331,7 +13307,7 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8bbfd22a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Butterfly_vue__ = __webpack_require__(16);
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = null
 /* template */
@@ -13445,186 +13421,212 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6216a5ab_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MainContent_vue__ = __webpack_require__(18);
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6216a5ab_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MainContent_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "javascript/components/MainContent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6216a5ab", Component.options)
+  } else {
+    hotAPI.reload("data-v-6216a5ab", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "o-main" }, [
-    _c("div", { staticClass: "o-main__home-content" }, [
+  return _c("section", { staticClass: "c-home" }, [
+    _c("h1", { staticClass: "c-title" }, [_vm._v("Hi, I'm Becca.")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _c("p"),
+    _c("div", { staticClass: "c-links" }, [
       _c(
-        "section",
-        { staticClass: "c-origami" },
+        "a",
+        {
+          staticClass: "c-link--email",
+          attrs: { href: "mailto:hello@beccanelson.is" }
+        },
         [
           _c(
-            "transition",
+            "svg",
             {
               attrs: {
-                name: "butterfly-move",
-                "enter-active-class": "fly-in",
-                "leave-active-class": "fly-out"
+                width: "30",
+                height: "23.571",
+                viewBox: "0 -45 30 23.571",
+                xmlns: "http://www.w3.org/2000/svg"
               }
             },
-            [_vm.showButterfly ? _c("Butterfly") : _vm._e()],
-            1
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M30-37.4v13.293a2.58 2.58 0 0 1-.787 1.892 2.58 2.58 0 0 1-1.892.786H2.68a2.58 2.58 0 0 1-1.892-.786A2.58 2.58 0 0 1 0-24.107V-37.4a8.878 8.878 0 0 0 1.69 1.457c4.041 2.745 6.814 4.67 8.321 5.776.636.468 1.153.834 1.549 1.096.396.262.923.53 1.582.804.658.273 1.272.41 1.841.41h.034c.569 0 1.183-.137 1.841-.41.659-.274 1.186-.542 1.582-.804.396-.262.913-.628 1.549-1.096 1.897-1.373 4.676-3.298 8.337-5.776A9.234 9.234 0 0 0 30-37.4zm0-4.921c0 .881-.273 1.724-.82 2.527a7.96 7.96 0 0 1-2.043 2.06l-7.835 5.44-.711.511c-.363.262-.664.474-.904.636-.24.162-.53.343-.87.544a5.066 5.066 0 0 1-.963.452c-.302.1-.58.151-.837.151h-.034a2.66 2.66 0 0 1-.837-.15 5.071 5.071 0 0 1-.962-.453c-.34-.2-.631-.382-.87-.544-.24-.162-.542-.374-.905-.636s-.6-.432-.711-.51A829.369 829.369 0 0 0 6.31-35.35a772.029 772.029 0 0 1-3.432-2.385c-.692-.47-1.344-1.114-1.958-1.934C.307-40.488 0-41.25 0-41.953c0-.87.232-1.596.695-2.176.463-.58 1.124-.871 1.984-.871H27.32c.726 0 1.354.262 1.884.787.53.524.795 1.155.795 1.892zm0 0"
+                }
+              })
+            ]
           )
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
-      _c("section", { staticClass: "c-home" }, [
-        _c("h1", { staticClass: "c-title" }, [_vm._v("Hi, I'm Becca.")]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _c("p"),
-        _c("div", { staticClass: "c-links" }, [
+      _c(
+        "a",
+        {
+          staticClass: "c-link--linkedin",
+          attrs: { href: "https://linkedin.com/in/beccanelsonmakesthings" }
+        },
+        [
           _c(
-            "a",
+            "svg",
             {
-              staticClass: "c-link--email",
-              attrs: { href: "mailto:hello@beccanelson.is" }
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                width: "24",
+                height: "24",
+                viewBox: "0 0 24 24"
+              }
             },
             [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "30",
-                    height: "23.571",
-                    viewBox: "0 -45 30 23.571",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M30-37.4v13.293a2.58 2.58 0 0 1-.787 1.892 2.58 2.58 0 0 1-1.892.786H2.68a2.58 2.58 0 0 1-1.892-.786A2.58 2.58 0 0 1 0-24.107V-37.4a8.878 8.878 0 0 0 1.69 1.457c4.041 2.745 6.814 4.67 8.321 5.776.636.468 1.153.834 1.549 1.096.396.262.923.53 1.582.804.658.273 1.272.41 1.841.41h.034c.569 0 1.183-.137 1.841-.41.659-.274 1.186-.542 1.582-.804.396-.262.913-.628 1.549-1.096 1.897-1.373 4.676-3.298 8.337-5.776A9.234 9.234 0 0 0 30-37.4zm0-4.921c0 .881-.273 1.724-.82 2.527a7.96 7.96 0 0 1-2.043 2.06l-7.835 5.44-.711.511c-.363.262-.664.474-.904.636-.24.162-.53.343-.87.544a5.066 5.066 0 0 1-.963.452c-.302.1-.58.151-.837.151h-.034a2.66 2.66 0 0 1-.837-.15 5.071 5.071 0 0 1-.962-.453c-.34-.2-.631-.382-.87-.544-.24-.162-.542-.374-.905-.636s-.6-.432-.711-.51A829.369 829.369 0 0 0 6.31-35.35a772.029 772.029 0 0 1-3.432-2.385c-.692-.47-1.344-1.114-1.958-1.934C.307-40.488 0-41.25 0-41.953c0-.87.232-1.596.695-2.176.463-.58 1.124-.871 1.984-.871H27.32c.726 0 1.354.262 1.884.787.53.524.795 1.155.795 1.892zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--linkedin",
-              attrs: { href: "https://linkedin.com/in/beccanelsonmakesthings" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    width: "24",
-                    height: "24",
-                    viewBox: "0 0 24 24"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--github",
-              attrs: { href: "https://github.com/beccanelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "25.714",
-                    height: "25.117",
-                    viewBox: "0 -48.689 25.714 25.117",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M12.857-48.689c-2.332 0-4.484.575-6.454 1.725a12.8 12.8 0 0 0-4.679 4.679C.574-40.315 0-38.165 0-35.831c0 2.8.818 5.32 2.453 7.558 1.635 2.238 3.747 3.786 6.336 4.646.301.056.525.017.67-.117a.655.655 0 0 0 .217-.503c0-.044-.002-.348-.008-.912-.006-.564-.008-1.058-.008-1.482l-.385.067a4.925 4.925 0 0 1-.93.059 7.15 7.15 0 0 1-1.163-.117 2.605 2.605 0 0 1-1.122-.502 2.122 2.122 0 0 1-.736-1.03l-.168-.385a4.187 4.187 0 0 0-.527-.854c-.24-.312-.483-.524-.728-.636l-.118-.084a1.224 1.224 0 0 1-.217-.2.922.922 0 0 1-.15-.235c-.034-.078-.006-.142.083-.193.09-.05.251-.075.485-.075l.335.05c.223.045.5.179.829.402.33.223.6.514.812.87.257.458.566.807.929 1.047.363.24.728.36 1.096.36.369 0 .687-.028.955-.084a3.32 3.32 0 0 0 .753-.25c.112-.749.385-1.323.82-1.725a11.466 11.466 0 0 1-1.716-.302 6.838 6.838 0 0 1-1.573-.652 4.51 4.51 0 0 1-1.348-1.122c-.357-.447-.65-1.033-.879-1.758-.229-.725-.343-1.562-.343-2.511 0-1.328.44-2.478 1.323-3.449-.413-1.015-.369-2.154.133-3.415.313-.1.787-.025 1.423.226.637.251 1.103.466 1.398.645.296.178.533.329.712.452 1.038-.29 2.11-.436 3.214-.436 1.105 0 2.176.145 3.214.436l.637-.402a9.017 9.017 0 0 1 1.54-.737c.591-.223 1.043-.284 1.356-.184.502 1.261.547 2.4.134 3.415.881.971 1.322 2.12 1.322 3.449 0 .949-.114 1.788-.343 2.52-.229.73-.524 1.316-.887 1.757a4.68 4.68 0 0 1-1.356 1.114 6.838 6.838 0 0 1-1.574.652c-.508.134-1.08.235-1.716.302.58.502.87 1.294.87 2.377 0 .68-.002 1.431-.008 2.252l-.008 1.28c0 .201.072.369.218.503.145.134.368.173.67.117 2.589-.86 4.7-2.408 6.336-4.646 1.635-2.238 2.452-4.757 2.452-7.558 0-2.333-.574-4.484-1.724-6.454a12.8 12.8 0 0 0-4.68-4.68c-1.969-1.149-4.12-1.724-6.453-1.724zM4.872-30.223c.033-.078-.006-.145-.118-.201-.111-.034-.184-.022-.217.033-.034.078.005.145.117.201.1.067.173.056.218-.033zm.519.569c.078-.056.067-.145-.034-.268-.111-.1-.2-.117-.268-.05-.078.056-.067.145.034.268.111.111.2.128.268.05zm.502.753c.1-.078.1-.184 0-.318-.09-.145-.184-.178-.285-.1-.1.056-.1.156 0 .301s.196.184.285.117zm.703.703c.09-.089.067-.195-.067-.318-.134-.134-.246-.15-.335-.05-.1.09-.078.195.067.318.134.134.246.15.335.05zm.954.419c.034-.123-.039-.212-.217-.268-.168-.045-.274-.005-.318.117-.045.123.027.207.217.251.168.067.274.034.318-.1zm1.055.084c0-.145-.095-.207-.285-.184-.178 0-.268.06-.268.184 0 .145.095.206.285.184.179 0 .268-.062.268-.184zm.97-.168c-.021-.122-.122-.173-.3-.15-.179.033-.257.117-.235.25.023.135.123.18.302.135.178-.045.256-.123.234-.235zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--behance",
-              attrs: { href: "https://www.behance.net/rebeccanelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "34.286",
-                    height: "21.496",
-                    viewBox: "0 -42.958 34.286 21.496",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M30.938-39.459h-8.555v-2.076h8.555zm-4.22 5.056c-1.004 0-1.818.293-2.443.879-.625.586-.971 1.381-1.038 2.386h6.83c-.2-2.177-1.317-3.265-3.348-3.265zm.269 9.794a4.23 4.23 0 0 0 2.042-.536c.659-.357 1.083-.843 1.272-1.457h3.7c-1.116 3.427-3.499 5.14-7.148 5.14-2.389 0-4.289-.737-5.7-2.21-1.412-1.473-2.118-3.41-2.118-5.809 0-2.321.728-4.25 2.184-5.784 1.457-1.535 3.335-2.302 5.634-2.302 1.54 0 2.882.38 4.026 1.138a7.02 7.02 0 0 1 2.561 2.997c.564 1.239.846 2.623.846 4.152 0 .19-.011.452-.034.787H23.237c0 1.239.32 2.196.962 2.87.642.676 1.571 1.014 2.788 1.014zm-22.35-.837h4.956c2.288 0 3.432-.932 3.432-2.796 0-2.01-1.11-3.014-3.332-3.014H4.637zm0-8.99h4.705c.87 0 1.56-.204 2.067-.611.508-.408.762-1.041.762-1.9 0-1.608-1.06-2.411-3.181-2.411H4.637zM0-42.958h9.944c.971 0 1.836.079 2.595.235a7.122 7.122 0 0 1 2.118.795 3.739 3.739 0 0 1 1.507 1.615c.351.704.527 1.563.527 2.579 0 2.02-.96 3.487-2.88 4.403 1.273.357 2.233.998 2.88 1.925.647.926.97 2.064.97 3.415 0 .837-.136 1.599-.41 2.285-.273.686-.641 1.264-1.104 1.733a6.332 6.332 0 0 1-1.65 1.188 7.923 7.923 0 0 1-2.025.704c-.714.145-1.462.217-2.243.217H0zm0 0"
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "c-link--medium",
-              attrs: { href: "https://medium.com/@becca.nelson" }
-            },
-            [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    width: "30",
-                    height: "25.379",
-                    viewBox: "0 -48.783 30 25.379",
-                    xmlns: "http://www.w3.org/2000/svg"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M9.994-44.046v19.638c0 .279-.07.516-.209.711-.14.195-.343.293-.61.293-.19 0-.375-.045-.553-.134l-7.785-3.9A1.424 1.424 0 0 1 .243-28 1.476 1.476 0 0 1 0-28.778v-19.085c0-.223.056-.413.167-.569a.56.56 0 0 1 .486-.234c.156 0 .402.083.737.25l8.554 4.287c.034.033.05.06.05.083zm1.072 1.691l8.94 14.498-8.94-4.453zM30-42.054v17.646c0 .279-.078.505-.234.678-.157.173-.369.259-.637.259a1.58 1.58 0 0 1-.786-.218l-7.383-3.683zm-.05-2.008c0 .033-1.432 2.374-4.294 7.022-2.863 4.649-4.54 7.37-5.031 8.162l-6.529-10.614 5.424-8.823c.19-.312.48-.468.87-.468a.96.96 0 0 1 .436.1l9.057 4.52c.044.022.067.056.067.1zm0 0"
-                    }
-                  })
-                ]
-              )
+              _c("path", {
+                attrs: {
+                  d:
+                    "M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+                }
+              })
             ]
           )
-        ])
-      ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "c-link--github",
+          attrs: { href: "https://github.com/beccanelson" }
+        },
+        [
+          _c(
+            "svg",
+            {
+              attrs: {
+                width: "25.714",
+                height: "25.117",
+                viewBox: "0 -48.689 25.714 25.117",
+                xmlns: "http://www.w3.org/2000/svg"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M12.857-48.689c-2.332 0-4.484.575-6.454 1.725a12.8 12.8 0 0 0-4.679 4.679C.574-40.315 0-38.165 0-35.831c0 2.8.818 5.32 2.453 7.558 1.635 2.238 3.747 3.786 6.336 4.646.301.056.525.017.67-.117a.655.655 0 0 0 .217-.503c0-.044-.002-.348-.008-.912-.006-.564-.008-1.058-.008-1.482l-.385.067a4.925 4.925 0 0 1-.93.059 7.15 7.15 0 0 1-1.163-.117 2.605 2.605 0 0 1-1.122-.502 2.122 2.122 0 0 1-.736-1.03l-.168-.385a4.187 4.187 0 0 0-.527-.854c-.24-.312-.483-.524-.728-.636l-.118-.084a1.224 1.224 0 0 1-.217-.2.922.922 0 0 1-.15-.235c-.034-.078-.006-.142.083-.193.09-.05.251-.075.485-.075l.335.05c.223.045.5.179.829.402.33.223.6.514.812.87.257.458.566.807.929 1.047.363.24.728.36 1.096.36.369 0 .687-.028.955-.084a3.32 3.32 0 0 0 .753-.25c.112-.749.385-1.323.82-1.725a11.466 11.466 0 0 1-1.716-.302 6.838 6.838 0 0 1-1.573-.652 4.51 4.51 0 0 1-1.348-1.122c-.357-.447-.65-1.033-.879-1.758-.229-.725-.343-1.562-.343-2.511 0-1.328.44-2.478 1.323-3.449-.413-1.015-.369-2.154.133-3.415.313-.1.787-.025 1.423.226.637.251 1.103.466 1.398.645.296.178.533.329.712.452 1.038-.29 2.11-.436 3.214-.436 1.105 0 2.176.145 3.214.436l.637-.402a9.017 9.017 0 0 1 1.54-.737c.591-.223 1.043-.284 1.356-.184.502 1.261.547 2.4.134 3.415.881.971 1.322 2.12 1.322 3.449 0 .949-.114 1.788-.343 2.52-.229.73-.524 1.316-.887 1.757a4.68 4.68 0 0 1-1.356 1.114 6.838 6.838 0 0 1-1.574.652c-.508.134-1.08.235-1.716.302.58.502.87 1.294.87 2.377 0 .68-.002 1.431-.008 2.252l-.008 1.28c0 .201.072.369.218.503.145.134.368.173.67.117 2.589-.86 4.7-2.408 6.336-4.646 1.635-2.238 2.452-4.757 2.452-7.558 0-2.333-.574-4.484-1.724-6.454a12.8 12.8 0 0 0-4.68-4.68c-1.969-1.149-4.12-1.724-6.453-1.724zM4.872-30.223c.033-.078-.006-.145-.118-.201-.111-.034-.184-.022-.217.033-.034.078.005.145.117.201.1.067.173.056.218-.033zm.519.569c.078-.056.067-.145-.034-.268-.111-.1-.2-.117-.268-.05-.078.056-.067.145.034.268.111.111.2.128.268.05zm.502.753c.1-.078.1-.184 0-.318-.09-.145-.184-.178-.285-.1-.1.056-.1.156 0 .301s.196.184.285.117zm.703.703c.09-.089.067-.195-.067-.318-.134-.134-.246-.15-.335-.05-.1.09-.078.195.067.318.134.134.246.15.335.05zm.954.419c.034-.123-.039-.212-.217-.268-.168-.045-.274-.005-.318.117-.045.123.027.207.217.251.168.067.274.034.318-.1zm1.055.084c0-.145-.095-.207-.285-.184-.178 0-.268.06-.268.184 0 .145.095.206.285.184.179 0 .268-.062.268-.184zm.97-.168c-.021-.122-.122-.173-.3-.15-.179.033-.257.117-.235.25.023.135.123.18.302.135.178-.045.256-.123.234-.235zm0 0"
+                }
+              })
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "c-link--behance",
+          attrs: { href: "https://www.behance.net/rebeccanelson" }
+        },
+        [
+          _c(
+            "svg",
+            {
+              attrs: {
+                width: "34.286",
+                height: "21.496",
+                viewBox: "0 -42.958 34.286 21.496",
+                xmlns: "http://www.w3.org/2000/svg"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M30.938-39.459h-8.555v-2.076h8.555zm-4.22 5.056c-1.004 0-1.818.293-2.443.879-.625.586-.971 1.381-1.038 2.386h6.83c-.2-2.177-1.317-3.265-3.348-3.265zm.269 9.794a4.23 4.23 0 0 0 2.042-.536c.659-.357 1.083-.843 1.272-1.457h3.7c-1.116 3.427-3.499 5.14-7.148 5.14-2.389 0-4.289-.737-5.7-2.21-1.412-1.473-2.118-3.41-2.118-5.809 0-2.321.728-4.25 2.184-5.784 1.457-1.535 3.335-2.302 5.634-2.302 1.54 0 2.882.38 4.026 1.138a7.02 7.02 0 0 1 2.561 2.997c.564 1.239.846 2.623.846 4.152 0 .19-.011.452-.034.787H23.237c0 1.239.32 2.196.962 2.87.642.676 1.571 1.014 2.788 1.014zm-22.35-.837h4.956c2.288 0 3.432-.932 3.432-2.796 0-2.01-1.11-3.014-3.332-3.014H4.637zm0-8.99h4.705c.87 0 1.56-.204 2.067-.611.508-.408.762-1.041.762-1.9 0-1.608-1.06-2.411-3.181-2.411H4.637zM0-42.958h9.944c.971 0 1.836.079 2.595.235a7.122 7.122 0 0 1 2.118.795 3.739 3.739 0 0 1 1.507 1.615c.351.704.527 1.563.527 2.579 0 2.02-.96 3.487-2.88 4.403 1.273.357 2.233.998 2.88 1.925.647.926.97 2.064.97 3.415 0 .837-.136 1.599-.41 2.285-.273.686-.641 1.264-1.104 1.733a6.332 6.332 0 0 1-1.65 1.188 7.923 7.923 0 0 1-2.025.704c-.714.145-1.462.217-2.243.217H0zm0 0"
+                }
+              })
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "c-link--medium",
+          attrs: { href: "https://medium.com/@becca.nelson" }
+        },
+        [
+          _c(
+            "svg",
+            {
+              attrs: {
+                width: "30",
+                height: "25.379",
+                viewBox: "0 -48.783 30 25.379",
+                xmlns: "http://www.w3.org/2000/svg"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M9.994-44.046v19.638c0 .279-.07.516-.209.711-.14.195-.343.293-.61.293-.19 0-.375-.045-.553-.134l-7.785-3.9A1.424 1.424 0 0 1 .243-28 1.476 1.476 0 0 1 0-28.778v-19.085c0-.223.056-.413.167-.569a.56.56 0 0 1 .486-.234c.156 0 .402.083.737.25l8.554 4.287c.034.033.05.06.05.083zm1.072 1.691l8.94 14.498-8.94-4.453zM30-42.054v17.646c0 .279-.078.505-.234.678-.157.173-.369.259-.637.259a1.58 1.58 0 0 1-.786-.218l-7.383-3.683zm-.05-2.008c0 .033-1.432 2.374-4.294 7.022-2.863 4.649-4.54 7.37-5.031 8.162l-6.529-10.614 5.424-8.823c.19-.312.48-.468.87-.468a.96.96 0 0 1 .436.1l9.057 4.52c.044.022.067.056.067.1zm0 0"
+                }
+              })
+            ]
+          )
+        ]
+      )
     ])
   ])
 }
@@ -13635,12 +13637,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _vm._v(
-        "\n        I'm a software engineer who loves to design things. I am currently a Software Crafter at "
+        "\n    I'm a software engineer who loves to design things. After previous career as an elementary fine arts teacher, I love helping artists and career changers understand software. I am currently a Software Crafter at "
       ),
       _c("a", { attrs: { href: "http://8thlight.com" } }, [
         _vm._v("8th Light")
       ]),
-      _vm._v(".\n      ")
+      _vm._v(".\n  ")
     ])
   },
   function() {
@@ -13649,7 +13651,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("a", { attrs: { href: "/assets/resume.pdf" } }, [
-        _vm._v("\n          View my Résumé\n        ")
+        _vm._v("\n      View my Résumé\n    ")
       ])
     ])
   }
@@ -13660,7 +13662,243 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6216a5ab", esExports)
+  }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "main",
+    { staticClass: "o-main" },
+    [
+      _c(
+        "div",
+        { staticClass: "o-main__home-content" },
+        [
+          _c(
+            "section",
+            { staticClass: "c-origami" },
+            [
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    name: "butterfly-move",
+                    "enter-active-class": "fly-in",
+                    "leave-active-class": "fly-out"
+                  }
+                },
+                [_vm.showButterfly ? _c("Butterfly") : _vm._e()],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("MainContent")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("Writing")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1fadd468", esExports)
+  }
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_394ebd87_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Writing_vue__ = __webpack_require__(21);
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_394ebd87_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Writing_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "javascript/components/Writing.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-394ebd87", Component.options)
+  } else {
+    hotAPI.reload("data-v-394ebd87", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "c-writing" }, [
+      _c("h2", [_vm._v("Writing")]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("8th Light Blog")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://8thlight.com/blog/becca-nelson/2018/08/30/dependency-inversion-in-react-with-render-props.html"
+              }
+            },
+            [_vm._v("Dependency Inversion in React with Render Props")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published August 30, 2018")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://8thlight.com/blog/becca-nelson/2017/07/18/a-conversation-with-jessi-chartier-app-camp-for-girls.html"
+              }
+            },
+            [
+              _vm._v(
+                "A Conversation with Jessi Chartier from App Camp for Girls"
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published July 18, 2017")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://8thlight.com/blog/becca-nelson/2017/05/22/two-design-patterns-youre-probably-already-using.html"
+              }
+            },
+            [_vm._v("Two Design Patterns You're Probably Already Using")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published May 22, 2017")])
+      ]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Medium")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://medium.com/@becca.nelson/the-problem-with-clean-code-c9f5a1167797"
+              }
+            },
+            [_vm._v('The Problem with "Clean Code"')]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published August 9, 2017")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://medium.com/@becca.nelson/is-it-worth-it-765a5df74567"
+              }
+            },
+            [
+              _vm._v(
+                "Is it worth it? My Non-scientific analysis of life after coding bootcamp"
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published March 25, 2017")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-394ebd87", esExports)
   }
 }
 
