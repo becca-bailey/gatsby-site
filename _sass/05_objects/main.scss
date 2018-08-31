@@ -1,18 +1,8 @@
 $content-width: 1000px;
 
 .o-main {
+  padding-top: $spacing-large;
+  padding-bottom: $spacing-large;
   max-width: $content-width;
   margin: 0 auto;
-}
-
-.o-main__home-content {
-  padding: $spacing-small;
-  display: flex;
-  flex-direction: column;
-  margin-top: $spacing-x-large;
-
-  @media #{$medium-up} {
-    align-items: center;
-    flex-direction: row;
-  }
 }

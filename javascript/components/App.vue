@@ -1,16 +1,20 @@
 <template lang="html">
   <main class="o-main">
-    <div class="o-main__home-content">
-      <section class="c-origami">
+    <div class="o-grid-6-columns">
+      <div class="o-span-6 o-span-3-med o-span-2-lg o-content">
         <transition name="butterfly-move"
                     enter-active-class="fly-in"
                     leave-active-class="fly-out">
           <Butterfly v-if="showButterfly"></Butterfly>
         </transition>
-      </section>
-      <MainContent />
+      </div>
+      <div class="o-span-6 o-span-3-med o-span-4-lg o-content">
+        <MainContent />
+      </div>
     </div>
-    <Writing />
+    <div class="o-content">
+      <Writing />
+    </div>
   </main>
 </template>
 

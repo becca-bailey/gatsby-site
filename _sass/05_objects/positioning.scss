@@ -1,3 +1,16 @@
+@mixin grid {
+  display: grid;
+  grid-column-gap: $spacing-large;
+}
+
+@mixin span($width) {
+  grid-column-end: span $width;
+}
+
+@mixin columns($n) {
+  grid-template-columns: repeat($n, 1fr);
+}
+
 .o-centered {
   display: flex;
   justify-content: center;
@@ -12,4 +25,37 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+@for $n from 2 through 12 {
+  .o-grid-#{$n}-columns {
+    @include grid;
+    @include columns($n);
+  }
+}
+
+@for $n from 1 through 12 {
+  .o-span-#{$n} {
+    @include span($n)
+  }
+}
+
+@for $n from 1 through 12 {
+  .o-span-#{$n}-med {
+    @media #{$medium-up} {
+      @include span($n);
+    }
+  }
+}
+
+@for $n from 1 through 12 {
+  .o-span-#{$n}-lg {
+    @media #{$large-up} {
+      @include span($n);
+    }
+  }
+}
+
+.o-content {
+  padding: $spacing-medium;
 }
