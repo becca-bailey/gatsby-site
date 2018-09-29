@@ -56,6 +56,13 @@
   }
 }
 
-.o-content {
+.o-content,
+.o-content--right {
   padding: $spacing-medium;
+}
+
+.o-content--right {
+  @media #{$medium-up} {
+    text-align: right;
+  }
 }

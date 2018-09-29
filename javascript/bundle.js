@@ -412,13 +412,52 @@ var _Writing = __webpack_require__(19);
 
 var _Writing2 = _interopRequireDefault(_Writing);
 
+var _Speaking = __webpack_require__(21);
+
+var _Speaking2 = _interopRequireDefault(_Speaking);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   components: {
     Butterfly: _Butterfly2.default,
     MainContent: _MainContent2.default,
-    Writing: _Writing2.default
+    Writing: _Writing2.default,
+    Speaking: _Speaking2.default
   },
   mounted: function mounted() {
     this.showButterfly = true;
@@ -428,26 +467,7 @@ exports.default = {
       showButterfly: false
     };
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 /* 4 */
@@ -12878,7 +12898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1fadd468_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(23);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -13737,7 +13757,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "c-writing" }, [
-      _c("h2", [_vm._v("Writing")]),
+      _c("h2", { attrs: { id: "writing" } }, [_vm._v("Writing")]),
       _vm._v(" "),
       _c("h3", [_vm._v("8th Light Blog")]),
       _vm._v(" "),
@@ -13853,6 +13873,103 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a812c896_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Speaking_vue__ = __webpack_require__(22);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = null
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a812c896_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Speaking_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "javascript/components/Speaking.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a812c896", Component.options)
+  } else {
+    hotAPI.reload("data-v-a812c896", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "c-writing" }, [
+      _c("h2", { attrs: { id: "speaking" } }, [_vm._v("Speaking")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c("a", [_vm._v("JavaScript Survival Skills - JS Camp, Chicago IL")])
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("September 22, 2018")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c("a", [_vm._v("JavaScript Survival Skills - RVA JS, Richmond VA")])
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("November 1, 2018")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a812c896", esExports)
+  }
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -13882,15 +13999,34 @@ var render = function() {
       _c(
         "div",
         { staticClass: "o-span-6 o-span-3-med o-span-4-lg o-content" },
-        [_c("MainContent")],
+        [_vm._m(0), _vm._v(" "), _c("MainContent")],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "o-content" }, [_c("Writing")], 1)
+    _c("div", { staticClass: "o-content" }, [_c("Writing")], 1),
+    _vm._v(" "),
+    _c("div", { staticClass: "o-content--right" }, [_c("Speaking")], 1)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "o-nav" }, [
+      _c("ul", [
+        _c("li", [
+          _c("a", { attrs: { href: "#writing" } }, [_vm._v("Writing")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#speaking" } }, [_vm._v("Speaking")])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

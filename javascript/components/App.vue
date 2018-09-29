@@ -9,11 +9,24 @@
         </transition>
       </div>
       <div class="o-span-6 o-span-3-med o-span-4-lg o-content">
+        <nav class="o-nav">
+          <ul>
+            <li>
+              <a href="#writing">Writing</a>
+            </li>
+            <li>
+              <a href="#speaking">Speaking</a>
+            </li>
+          </ul>
+        </nav>
         <MainContent />
       </div>
     </div>
     <div class="o-content">
       <Writing />
+    </div>
+    <div class="o-content--right">
+      <Speaking />
     </div>
   </main>
 </template>
@@ -22,12 +35,14 @@
 import Butterfly from "./origami/Butterfly.vue";
 import MainContent from "./MainContent.vue";
 import Writing from "./Writing.vue";
+import Speaking from "./Speaking.vue";
 
 export default {
   components: {
     Butterfly,
     MainContent,
-    Writing
+    Writing,
+    Speaking
   },
   mounted() {
     this.showButterfly = true;

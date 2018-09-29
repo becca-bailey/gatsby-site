@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="c-writing">
-    <h2>Writing</h2>
+    <h2 id="writing">Writing</h2>
     <h3>8th Light Blog</h3>
     <div class="c-project-link">
       <div>

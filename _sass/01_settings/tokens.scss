@@ -1,15 +1,18 @@
 // Colors
 // from https://flatuicolors.com/palette/in
 
-$color-background: #9AECDB;
 $color-purple: #82589F;
 $color-green: #55E6C1;
 $color-blue: #25CCF7;
 $color-orange: #F97F51;
 $color-red: #FD7272;
+$color-teal: #9AECDB;
+$color-indigo: #3B3B98;
 
 $color-primary: #B33771;
 $color-primary-hover: darken($color-primary, 10%);
+$color-secondary: #6D214F;
+$color-secondary-hover: darken($color-secondary, 10%);
 $color-white: #FFF;
 $color-black: #070707;
 $color-black-hover: darken($color-black, 10%);
@@ -26,9 +29,12 @@ $color-shadow: rgba(0, 0, 0, .15);
 
 $color-mask: rgba($color-black, .3);
 
+$color-background: #F0F0F0;
+
 // Fonts
 
-$font-family: Montserrat, 'Helvetica Neue', Arial, sans-serif;
+$font-family-headings: Rubik, "Helvetica Neue", sans-serif;
+$font-family: Lato, 'Helvetica Neue', Arial, sans-serif;
 $font-family-monospace: monospace;
 $font-weight-light: 300;
 $font-weight-regular: 400;
