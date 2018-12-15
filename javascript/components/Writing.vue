@@ -4,6 +4,12 @@
     <h3>8th Light Blog</h3>
     <div class="c-project-link">
       <div>
+        <a href="https://8thlight.com/blog/becca-nelson/2018/11/20/state-management-with-the-react-context-api.html">A New Approach to State Management with the React Context API</a>
+      </div>
+      <small>Published November 20, 2018</small>
+    </div>
+    <div class="c-project-link">
+      <div>
         <a href="https://8thlight.com/blog/becca-nelson/2018/08/30/dependency-inversion-in-react-with-render-props.html">Dependency Inversion in React with Render Props</a>
       </div>
       <small>Published August 30, 2018</small>

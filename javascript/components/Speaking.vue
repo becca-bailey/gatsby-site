@@ -5,13 +5,13 @@
       <div>
         <a>JavaScript Survival Skills - JS Camp, Chicago IL</a>
       </div>
-      <small>September 22, 2018</small>
+      <small>September 2018</small>
     </div>
     <div class="c-project-link">
       <div>
-        <a>JavaScript Survival Skills - RVA JS, Richmond VA</a>
+        <a href="https://www.youtube.com/watch?v=gD88CtfzkWQ&t=2s">JavaScript Survival Skills - RVA JS, Richmond VA</a>
       </div>
-      <small>November 1, 2018</small>
+      <small>November 2018</small>
     </div>
   </section>
 </template>
