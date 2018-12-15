@@ -6,7 +6,7 @@
     </p>
     <p>
       <a href="/assets/resume.pdf">
-        View my Résumé
+        View my Resume
       </a>
     <p>
     <div class="c-links">
