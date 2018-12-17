@@ -13675,7 +13675,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("a", { attrs: { href: "/assets/resume.pdf" } }, [
-        _vm._v("\n      View my Résumé\n    ")
+        _vm._v("\n      View my Resume\n    ")
       ])
     ])
   }
@@ -13760,6 +13760,27 @@ var staticRenderFns = [
       _c("h2", { attrs: { id: "writing" } }, [_vm._v("Writing")]),
       _vm._v(" "),
       _c("h3", [_vm._v("8th Light Blog")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "c-project-link" }, [
+        _c("div", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://8thlight.com/blog/becca-nelson/2018/11/20/state-management-with-the-react-context-api.html"
+              }
+            },
+            [
+              _vm._v(
+                "A New Approach to State Management with the React Context API"
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("small", [_vm._v("Published November 20, 2018")])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "c-project-link" }, [
         _c("div", [
@@ -13942,15 +13963,23 @@ var staticRenderFns = [
           _c("a", [_vm._v("JavaScript Survival Skills - JS Camp, Chicago IL")])
         ]),
         _vm._v(" "),
-        _c("small", [_vm._v("September 22, 2018")])
+        _c("small", [_vm._v("September 2018")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "c-project-link" }, [
         _c("div", [
-          _c("a", [_vm._v("JavaScript Survival Skills - RVA JS, Richmond VA")])
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://www.youtube.com/watch?v=gD88CtfzkWQ&t=2s"
+              }
+            },
+            [_vm._v("JavaScript Survival Skills - RVA JS, Richmond VA")]
+          )
         ]),
         _vm._v(" "),
-        _c("small", [_vm._v("November 1, 2018")])
+        _c("small", [_vm._v("November 2018")])
       ])
     ])
   }
