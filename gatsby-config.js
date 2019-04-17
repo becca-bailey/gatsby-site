@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Becca Nelson Bailey`,
-    author: `Becca Nelson Bailey`,
+    title: `Becca Bailey`,
+    author: `Becca Bailey`,
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {

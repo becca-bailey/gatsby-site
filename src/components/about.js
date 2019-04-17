@@ -15,6 +15,8 @@ import Container from "./container"
 import Fade from "react-reveal/Fade"
 
 const Heading = styled.h1`
+  display: flex;
+  align-items: center;
   font-size: ${rhythm(1.5)};
   margin-top: ${rhythm(1)};
 
@@ -54,11 +56,26 @@ const ImageContainer = styled.div`
   }
 `
 
+const SmallOnly = styled.div`
+  margin-right: ${rhythm(0.5)};
+  @media (min-width: ${medium}) {
+    display: none;
+  }
+`
+
+const MediumOnly = styled.div`
+  display: none;
+  @media (min-width: ${medium}) {
+    display: block;
+  }
+`
+
 const Becca = styled(Image)`
   align-self: center;
 
   @media (min-width: ${medium}) {
     margin-right: ${rhythm(1)};
+    display: block;
   }
 `
 
@@ -87,21 +104,39 @@ function About() {
             <Fade>
               <Container>
                 <Row>
-                  <Becca
-                    fadeIn={true}
-                    fixed={data.becca.childImageSharp.fixed}
-                    alt={author}
-                    style={{
-                      minWidth: 400,
-                      zIndex: -1,
-                    }}
-                    imgStyle={{
-                      borderRadius: `50%`,
-                    }}
-                  />
+                  <MediumOnly>
+                    <Becca
+                      fadeIn={true}
+                      fixed={data.becca.childImageSharp.fixed}
+                      alt={author}
+                      style={{
+                        minWidth: 400,
+                        maxWidth: "100%",
+                        zIndex: -1,
+                      }}
+                      imgStyle={{
+                        borderRadius: `50%`,
+                      }}
+                    />
+                  </MediumOnly>
                   <div>
                     <Fade top cascade>
-                      <Heading>Hi, I'm Becca!</Heading>
+                      <Heading>
+                        <SmallOnly>
+                          <Becca
+                            fadeIn={true}
+                            fixed={data.beccaSmall.childImageSharp.fixed}
+                            alt={author}
+                            style={{
+                              margin: `0 auto`,
+                            }}
+                            imgStyle={{
+                              borderRadius: `50%`,
+                            }}
+                          />
+                        </SmallOnly>
+                        Hi, I'm Becca!
+                      </Heading>
                     </Fade>
                     <Fade>
                       <p>
@@ -169,6 +204,13 @@ function About() {
 
 const aboutQuery = graphql`
   query AboutQuery {
+    beccaSmall: file(absolutePath: { regex: "/becca.png/" }) {
+      childImageSharp {
+        fixed(width: 150, height: 150) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     becca: file(absolutePath: { regex: "/becca.png/" }) {
       childImageSharp {
         fixed(width: 400, height: 400) {

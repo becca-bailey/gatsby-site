@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
+import { medium } from "../utils/breakpoints"
 
 const NavigationContainer = styled.div`
   display: flex;
@@ -21,6 +22,16 @@ const NavigationLink = styled.span`
   padding-right: 1rem;
 `
 
+const NavigationLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${medium}) {
+    flex-direction: row;
+    align-items: center;
+  }
+`
+
 class Navigation extends React.Component {
   render() {
     const { title } = this.props
@@ -29,7 +40,7 @@ class Navigation extends React.Component {
         <SiteTitle>
           <Link to="/">{title}</Link>
         </SiteTitle>
-        <span>
+        <NavigationLinks>
           <NavigationLink>
             <a href="#about">About</a>
           </NavigationLink>
@@ -39,7 +50,7 @@ class Navigation extends React.Component {
           <NavigationLink>
             <a href="#blog">Writing</a>
           </NavigationLink>
-        </span>
+        </NavigationLinks>
       </NavigationContainer>
     )
   }
