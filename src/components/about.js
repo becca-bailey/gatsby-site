@@ -16,11 +16,13 @@ import Fade from "react-reveal/Fade"
 
 const Heading = styled.h1`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   font-size: ${rhythm(1.5)};
   margin-top: ${rhythm(1)};
 
   @media (min-width: ${small}) {
+    align-items: center;
+    flex-direction: row;
     font-size: ${rhythm(2)};
   }
 
@@ -57,7 +59,10 @@ const ImageContainer = styled.div`
 `
 
 const SmallOnly = styled.div`
-  margin-right: ${rhythm(0.5)};
+  align-self: center;
+  @media (min-width: ${small}) {
+    margin-right: ${rhythm(0.5)};
+  }
   @media (min-width: ${medium}) {
     display: none;
   }
