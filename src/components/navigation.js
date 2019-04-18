@@ -50,6 +50,9 @@ class Navigation extends React.Component {
           <NavigationLink>
             <a href="#blog">Writing</a>
           </NavigationLink>
+          <NavigationLink>
+            <a href="#contact">Contact</a>
+          </NavigationLink>
         </NavigationLinks>
       </NavigationContainer>
     )

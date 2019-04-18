@@ -1,5 +1,5 @@
 import Typography from "typography"
-import { theme } from "./theme"
+import theme from "./theme"
 
 const typography = new Typography({
   headerFontFamily: ["Rubik", "sans-serif"],

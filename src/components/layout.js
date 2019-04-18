@@ -2,7 +2,7 @@ import React from "react"
 import { rhythm } from "../utils/typography"
 import Navigation from "./navigation"
 import styled, { ThemeProvider } from "styled-components"
-import { theme } from "../utils/theme"
+import colors from "../utils/colors"
 
 const Container = styled.div`
   margin-left: auto;
@@ -33,7 +33,7 @@ class Layout extends React.Component {
   render() {
     const { title, children } = this.props
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={colors}>
         <LayoutContainer>
           <Container>
             <Navigation title={title} />

@@ -1,6 +1,6 @@
-export const theme = {
-  background: "#F2F4F2",
-  text: "#2C3A47",
-  primary: "#6D214F",
-  accent: "#3B3B98",
-}
+import createTheme from "styled-components-theme"
+import colors from "./colors"
+
+const theme = createTheme(...Object.keys(colors))
+
+export default theme
