@@ -42,9 +42,7 @@ function Contact() {
                 <Textarea name="message" />
               </label>
             </Field>
-            <Field>
-              <Button type="submit">Submit</Button>
-            </Field>
+            <Button type="submit">Submit</Button>
           </Form>
         </Container>
       </Fade>

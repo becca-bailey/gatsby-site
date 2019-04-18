@@ -27,6 +27,11 @@ const LayoutContainer = styled.div`
 
 const Footer = styled.footer`
   text-align: center;
+  padding: ${rhythm(0.5)};
+
+  small {
+    display: block;
+  }
 `
 
 class Layout extends React.Component {
@@ -40,9 +45,12 @@ class Layout extends React.Component {
           </Container>
           <main>{children}</main>
           <Footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+            <small>Made with ❤️ by Becca Bailey</small>
+            <small>
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a>
+            </small>
           </Footer>
         </LayoutContainer>
       </ThemeProvider>
