@@ -168,14 +168,19 @@ function About() {
                         front-end development and design to create the best
                         possible experience for the user. In addition to my
                         technical work, I am also passionate about mentoring,
-                        apprenticeship, and diversity and inclusion. For more
-                        information,{" "}
+                        apprenticeship, and diversity and inclusion.
+                      </p>
+                      <p>
+                        For more information,{" "}
                         <a href={withPrefix("/resume.pdf")}>view my resume</a>{" "}
                         or{" "}
                         <a href={`https://twitter.com/${social.twitter}`}>
                           follow me on twitter
                         </a>
-                        !
+                        ! You can also follow me on
+                        [medium](https://medium.com/@becca.nelson) where I write
+                        about technology and other topics related to being
+                        human.
                       </p>
                     </Fade>
                   </div>
