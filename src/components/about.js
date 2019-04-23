@@ -178,9 +178,11 @@ function About() {
                           follow me on twitter
                         </a>
                         ! You can also follow me on
-                        [medium](https://medium.com/@becca.nelson) where I write
-                        about technology and other topics related to being
-                        human.
+                        <a href="https://medium.com/@becca.nelson">
+                          medium
+                        </a>{" "}
+                        where I write about technology and other topics related
+                        to being human.
                       </p>
                     </Fade>
                   </div>
