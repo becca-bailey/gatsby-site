@@ -21,7 +21,6 @@ class BlogIndex extends React.Component {
         <About />
         <Speaking />
         <Blog />
-        <Contact />
       </Layout>
     )
   }
