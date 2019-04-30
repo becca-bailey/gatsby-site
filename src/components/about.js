@@ -160,15 +160,9 @@ function About() {
                     </Fade>
                     <Fade>
                       <p>
-                        As a full-stack developer, I care about using the best
-                        tools available to solve technical problems. But when
-                        I’m building software that is being used by real people,
-                        I am especially interested in the user-facing parts of
-                        our applications, and continually learning how to use
-                        front-end development and design to create the best
-                        possible experience for the user. In addition to my
-                        technical work, I am also passionate about mentoring,
-                        apprenticeship, and diversity and inclusion.
+                        In addition to my technical work, I am also passionate
+                        about mentoring, apprenticeship, and diversity and
+                        inclusion.
                       </p>
                       <p>
                         For more information,{" "}
@@ -177,10 +171,8 @@ function About() {
                         <a href={`https://twitter.com/${social.twitter}`}>
                           follow me on twitter
                         </a>
-                        ! You can also follow me on
-                        <a href="https://medium.com/@becca.nelson">
-                          medium
-                        </a>{" "}
+                        ! You can also follow me on{" "}
+                        <a href="https://medium.com/@becca.nelson">medium</a>{" "}
                         where I write about technology and other topics related
                         to being human.
                       </p>
