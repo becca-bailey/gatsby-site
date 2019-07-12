@@ -18,6 +18,14 @@ const speakingEngagements = [
     conference: "Chicago JS Camp",
     date: "September 2018",
   },
+  {
+    id: 3,
+    title: "Beyond the WAT: Why Component Design Still Matters",
+    conference: "Fullstack JS London",
+    date: "July 2019",
+    url:
+      "https://skillsmatter.com/skillscasts/13877-beyond-the-wat-why-good-component-design-still-matters",
+  },
 ]
 
 const Title = styled.h3`
