@@ -18,7 +18,7 @@ const Heading = styled.h1`
   display: flex;
   flex-direction: column;
   font-size: ${rhythm(1.5)};
-  margin-top: ${rhythm(1)};
+  margin-top: 0;
 
   @media (min-width: ${small}) {
     align-items: center;
@@ -27,6 +27,7 @@ const Heading = styled.h1`
   }
 
   @media (min-width: ${medium}) {
+    margin-top: ${rhythm(1)};
     margin-left: -${rhythm(3)};
   }
 `
@@ -41,6 +42,12 @@ const Row = styled.div`
     flex-direction: row;
     align-items: center;
   }
+`
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1rem;
 `
 
 const ImageContainer = styled.div`
@@ -126,22 +133,7 @@ function About() {
                   </MediumOnly>
                   <div>
                     <Fade top cascade>
-                      <Heading>
-                        <SmallOnly>
-                          <Becca
-                            fadeIn={true}
-                            fixed={data.beccaSmall.childImageSharp.fixed}
-                            alt={author}
-                            style={{
-                              margin: `0 auto`,
-                            }}
-                            imgStyle={{
-                              borderRadius: `50%`,
-                            }}
-                          />
-                        </SmallOnly>
-                        Hi, I'm Becca!
-                      </Heading>
+                      <Heading>Hi, I'm Becca!</Heading>
                     </Fade>
                     <Fade>
                       <p>
@@ -178,25 +170,55 @@ function About() {
                       </p>
                     </Fade>
                   </div>
-                  <ImageContainer>
-                    <Coffee
+                  <MediumOnly>
+                    <ImageContainer>
+                      <Coffee
+                        fadeIn={true}
+                        fixed={data.coffee.childImageSharp.fixed}
+                        alt="Mmmm Coffee"
+                        imgStyle={{
+                          borderRadius: `50%`,
+                        }}
+                      />
+                      <Lucy
+                        fadeIn={true}
+                        fixed={data.lucy.childImageSharp.fixed}
+                        alt="Lucy Cat"
+                        imgStyle={{
+                          borderRadius: `50%`,
+                        }}
+                      />
+                    </ImageContainer>
+                  </MediumOnly>
+                </Row>
+                <SmallOnly>
+                  <Grid>
+                    <Image
                       fadeIn={true}
-                      fixed={data.coffee.childImageSharp.fixed}
+                      fluid={data.becca.childImageSharp.fluid}
+                      alt={author}
+                      imgStyle={{
+                        borderRadius: `50%`,
+                      }}
+                    />
+                    <Image
+                      fadeIn={true}
+                      fluid={data.coffee.childImageSharp.fluid}
                       alt="Mmmm Coffee"
                       imgStyle={{
                         borderRadius: `50%`,
                       }}
                     />
-                    <Lucy
+                    <Image
                       fadeIn={true}
-                      fixed={data.lucy.childImageSharp.fixed}
+                      fluid={data.lucy.childImageSharp.fluid}
                       alt="Lucy Cat"
                       imgStyle={{
                         borderRadius: `50%`,
                       }}
                     />
-                  </ImageContainer>
-                </Row>
+                  </Grid>
+                </SmallOnly>
               </Container>
             </Fade>
           </section>
@@ -208,17 +230,13 @@ function About() {
 
 const aboutQuery = graphql`
   query AboutQuery {
-    beccaSmall: file(absolutePath: { regex: "/becca.png/" }) {
-      childImageSharp {
-        fixed(width: 150, height: 150) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     becca: file(absolutePath: { regex: "/becca.png/" }) {
       childImageSharp {
         fixed(width: 400, height: 400) {
           ...GatsbyImageSharpFixed
+        }
+        fluid(maxWidth: 400) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
@@ -227,12 +245,18 @@ const aboutQuery = graphql`
         fixed(width: 300, height: 300) {
           ...GatsbyImageSharpFixed
         }
+        fluid(maxWidth: 400) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
     coffee: file(absolutePath: { regex: "/coffee.png/" }) {
       childImageSharp {
         fixed(width: 200, height: 200) {
           ...GatsbyImageSharpFixed
+        }
+        fluid(maxWidth: 400) {
+          ...GatsbyImageSharpFluid
         }
       }
     }

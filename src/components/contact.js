@@ -17,19 +17,19 @@ function Contact() {
           </p>
           <Form method="post" data-netflify="true">
             <Field>
-              <label for="name">
+              <label htmlFor="name">
                 <div>Name</div>
                 <Input type="text" name="name" />
               </label>
             </Field>
             <Field>
-              <label for="email">
+              <label htmlFor="email">
                 <div>Email</div>
                 <Input type="text" name="email" />
               </label>
             </Field>
             <Field>
-              <label for="message">
+              <label htmlFor="message">
                 <div>Message</div>
                 <Textarea name="message" />
               </label>
