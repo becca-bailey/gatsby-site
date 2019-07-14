@@ -45,7 +45,13 @@ class Layout extends React.Component {
           </Container>
           <main>{children}</main>
           <Footer>
-            <small>Made with ❤️ by Becca Bailey</small>
+            <small>
+              Made with{" "}
+              <span role="img" aria-label="love">
+                ❤️
+              </span>{" "}
+              by Becca Bailey
+            </small>
             <small>
               © {new Date().getFullYear()}, Built with
               {` `}
