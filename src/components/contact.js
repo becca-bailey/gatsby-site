@@ -15,7 +15,7 @@ function Contact() {
             talk to me about my cats? Leave me a message here and I will try to
             get back to you as soon as possible.
           </p>
-          <Form method="post" data-netflify="true">
+          <Form method="post" netlify>
             <Field>
               <label htmlFor="name">
                 <div>Name</div>
