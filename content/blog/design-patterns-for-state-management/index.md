@@ -32,11 +32,11 @@ React provides built-in state in class components. This is the most basic way to
 
 For example, we can create a simple card component with an `expanded` state property. This property can be updated with `setState` in a React component class.
 
-{% codesandbox goude module=/src/Home.tsx %}
+<iframe src="https://codesandbox.io/embed/modal-with-react-state-goude?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with React State" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This might be the first strategy we reach for becuase it is the simplest to use and understand. However, this basic method can only be used in React component classes. For functional components, we can use a `useState` hook to accomplish the same thing.
 
-{% codesandbox bmjb9 module=/src/Home.tsx %}
+<iframe src="https://codesandbox.io/embed/modal-with-state-hook-bmjb9?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with State Hook" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 The common pitfall of this approach is repetition. What if I wanted to have multiple kinds of modals in my application? I could take this basic component, and just reproduce the state logic, or I could create an abstraction that just handles state. This is where we might use render props or context.
 
@@ -46,7 +46,7 @@ This pattern has gained a lot of popularity over the past few years as a way to 
 
 In this example, we are going to create a `ModalManager` that passes down an `expanded` and `toggle` prop to its children, which can be used to open and close the modal.
 
-{% codesandbox 50nymw58rk module=/src/Home.tsx %}
+<iframe src="https://codesandbox.io/embed/dank-cache-50nymw58rk?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Render Props" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This pattern creates an inversion of dependency between a component and its state, reducing state-related repetition. However, when over-used this strategy can lead to what is known as "render prop hell". This is what happens when a component is wrapped with so many levels of nesting that becomes nearly unreadable.
 
@@ -58,7 +58,7 @@ Hooks are React's coolest new toy, but I promise I didn't include them here just
 
 We can create a custom hook to replace the render props in the example above. This custom hook provides the same functionality, but with slightly different syntax.
 
-{% codesandbox ivb8c module=/src/Home.tsx %}
+<iframe src="https://codesandbox.io/embed/dank-cache-50nymw58rk?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Render Props" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Hooks can be used with functional components, reducing the need to convert a component to a class component if a change in specification requires it to keep track of state. Hooks still come with their limitations--they can only be used at the top level of a functional component. Also, a React upgrade might be required in order to use hooks in an established project.
 
@@ -72,7 +72,7 @@ We can use context globally to share the state with the entire application, or w
 
 Note: In this example, we are using the `useContext` hook, though we can also use context with a `Context.Consumer` component and render props.
 
-{% codesandbox xo4x32o74z module=/src/Home.tsx %}
+<iframe src="https://codesandbox.io/embed/cool-noether-xo4x32o74z?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Context" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 When using this strategy, keep in mind that while every component can use a context consumer, not every component in your application should. Using context in a component couples it to a context provider, and will require you to use a provider or mock it out when using or testing this component. For example, low-level components like buttons, form fields, etc. should probably accept callback props instead of using context to keep them as flexible and reusable as possible.
 
