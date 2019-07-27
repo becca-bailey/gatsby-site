@@ -147,7 +147,7 @@ function About() {
                 </Row>
                 <Row>
                   <div>
-                    <Fade left cascade>
+                    <Fade top cascade>
                       <h2>Want to learn more?</h2>
                     </Fade>
                     <Fade>

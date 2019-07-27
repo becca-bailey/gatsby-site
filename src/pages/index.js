@@ -5,7 +5,7 @@ import Blog from "../components/writing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Speaking from "../components/speaking"
-import Contact from "../components/contact"
+// import Contact from "../components/contact"
 
 class BlogIndex extends React.Component {
   render() {

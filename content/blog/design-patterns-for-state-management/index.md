@@ -32,9 +32,65 @@ React provides built-in state in class components. This is the most basic way to
 
 For example, we can create a simple card component with an `expanded` state property. This property can be updated with `setState` in a React component class.
 
+```jsx
+class Home extends React.Component {
+  state = {
+    visible: false
+  };
+
+  render() {
+    return (
+      <Container>
+        <Button onClick={() => this.showModal()}>Click me!</Button>
+        <Modal visible={this.state.visible} onClose={() => this.hideModal()}>
+          <h1>Surprise!</h1>
+          <Button onClick={() => this.hideModal()}>Close</Button>
+        </Modal>
+      </Container>
+    );
+  }
+
+  private showModal() {
+    this.setState({
+      visible: true
+    });
+  }
+
+  private hideModal() {
+    this.setState({
+      visible: false
+    });
+  }
+}
+```
+
 <iframe src="https://codesandbox.io/embed/modal-with-react-state-goude?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with React State" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This might be the first strategy we reach for becuase it is the simplest to use and understand. However, this basic method can only be used in React component classes. For functional components, we can use a `useState` hook to accomplish the same thing.
+
+```jsx
+const Home: React.SFC = () => {
+  const [visible, setIsVisible] = React.useState(false)
+
+  function showModal() {
+    setIsVisible(true)
+  }
+
+  function hideModal() {
+    setIsVisible(false)
+  }
+
+  return (
+    <Container>
+      <Button onClick={showModal}>Click me!</Button>
+      <Modal visible={visible} onClose={hideModal}>
+        <h1>Surprise!</h1>
+        <Button onClick={hideModal}>Close</Button>
+      </Modal>
+    </Container>
+  )
+}
+```
 
 <iframe src="https://codesandbox.io/embed/modal-with-state-hook-bmjb9?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with State Hook" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
@@ -45,6 +101,28 @@ The common pitfall of this approach is repetition. What if I wanted to have mult
 This pattern has gained a lot of popularity over the past few years as a way to pass state from a parent to a child component in a way that is slightly more explicit than a higher-order component. [It can be implemented in a couple of different ways](https://reactjs.org/docs/render-props.html), but this example involves rendering children as a function to pass down state props.
 
 In this example, we are going to create a `ModalManager` that passes down an `expanded` and `toggle` prop to its children, which can be used to open and close the modal.
+
+```jsx
+const Home: React.SFC = () => {
+  return (
+    <Container>
+      <ModalManager>
+        {({ showModal, hideModal, visible }) => {
+          return (
+            <React.Fragment>
+              <Button onClick={() => showModal()}>Click me!</Button>
+              <Modal visible={visible}>
+                <h1>Surprise!</h1>
+                <Button onClick={() => hideModal()}>Close</Button>
+              </Modal>
+            </React.Fragment>
+          )
+        }}
+      </ModalManager>
+    </Container>
+  )
+}
+```
 
 <iframe src="https://codesandbox.io/embed/dank-cache-50nymw58rk?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Render Props" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
@@ -57,6 +135,35 @@ For this reason, in 2019 render props are largely being replaced with hooks.
 Hooks are React's coolest new toy, but I promise I didn't include them here just to sound hip and trendy. the [hooks API](https://reactjs.org/docs/hooks-reference.html) is React's answer to some of the downsides of class-based component state (as seen above) and render prop hell.
 
 We can create a custom hook to replace the render props in the example above. This custom hook provides the same functionality, but with slightly different syntax.
+
+```jsx
+function useModal(initialVisible = false) {
+  const [visible, updateVisible] = React.useState(initialVisible)
+
+  function showModal() {
+    updateVisible(true)
+  }
+
+  function hideModal() {
+    updateVisible(false)
+  }
+
+  return { visible, showModal, hideModal }
+}
+
+const Surprise: React.SFC = () => {
+  const { showModal, hideModal, visible } = useModal()
+  return (
+    <React.Fragment>
+      <Button onClick={() => showModal()}>Click me!</Button>
+      <Modal visible={visible}>
+        <h1>Surprise!</h1>
+        <Button onClick={() => hideModal()}>Close</Button>
+      </Modal>
+    </React.Fragment>
+  )
+}
+```
 
 <iframe src="https://codesandbox.io/embed/dank-cache-50nymw58rk?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Render Props" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
@@ -71,6 +178,22 @@ The [Context API](https://reactjs.org/docs/context.html) provides a way for indi
 We can use context globally to share the state with the entire application, or we can use it in a single view to create compound components, as we see in this example. In this example, we are creating a `ModalProvider` that keeps track of the visible modal ID and passes down a function to open and close any modal. Any component with a context consumer now has access to these variables and functions from the provider without explicitly receiving props.
 
 Note: In this example, we are using the `useContext` hook, though we can also use context with a `Context.Consumer` component and render props.
+
+```jsx
+const Home: React.SFC = () => {
+  const { showModal } = React.useContext(ModalContext)
+  return (
+    <Container>
+      <Button onClick={() => showModal("kittens")}>Click me!</Button>
+      <Modal id="kittens">
+        <h1>Kittens!</h1>
+        <Image src="/assets/kittens.gif" />
+        <Button onClick={() => showModal("error")}>Close</Button>
+      </Modal>
+    </Container>
+  )
+}
+```
 
 <iframe src="https://codesandbox.io/embed/cool-noether-xo4x32o74z?fontsize=14&module=%2Fsrc%2FHome.tsx" title="Modal with Context" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 

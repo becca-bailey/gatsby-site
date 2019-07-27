@@ -4,7 +4,8 @@ import theme from "./theme"
 const typography = new Typography({
   headerFontFamily: ["Rubik", "sans-serif"],
   bodyFontFamily: ["Lora", "serif"],
-  baseFontSize: 18,
+  headerWeight: 500,
+  baseFontSize: 20,
   bodyColor: theme.text,
   baseLineHeight: 1.75,
 })
