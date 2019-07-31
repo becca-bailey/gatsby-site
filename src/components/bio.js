@@ -31,7 +31,7 @@ function Bio() {
                 style={{
                   marginRight: rhythm(1 / 2),
                   marginBottom: 0,
-                  minWidth: 60,
+                  minWidth: 100,
                   borderRadius: `100%`,
                 }}
                 imgStyle={{
@@ -46,6 +46,7 @@ function Bio() {
                 <a href={`https://twitter.com/${social.twitter}`}>
                   You should follow me on Twitter
                 </a>
+                .
               </p>
             </div>
           </Container>
@@ -59,7 +60,7 @@ const bioQuery = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/becca.png/" }) {
       childImageSharp {
-        fixed(width: 60, height: 60) {
+        fixed(width: 100, height: 100) {
           ...GatsbyImageSharpFixed
         }
       }
