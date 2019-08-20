@@ -5,7 +5,8 @@ import Blog from "../components/writing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Speaking from "../components/speaking"
-// import Contact from "../components/contact"
+import Contact from "../components/contact"
+import ModalProvider from "../containers/modal-provider"
 
 class BlogIndex extends React.Component {
   render() {
@@ -13,16 +14,18 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title="Home"
-          keywords={[`becca`, `javascript`, `software engineer`]}
-        />
-        <About />
-        <Speaking />
-        <Blog />
-        {/* <Contact /> */}
-      </Layout>
+      <ModalProvider>
+        <Layout location={this.props.location} title={siteTitle}>
+          <SEO
+            title="Home"
+            keywords={[`becca`, `javascript`, `software engineer`]}
+          />
+          <About />
+          <Speaking />
+          <Blog />
+          <Contact />
+        </Layout>
+      </ModalProvider>
     )
   }
 }
