@@ -6,6 +6,8 @@ import Button from "./button"
 import ModalContext from "../containers/modal-context"
 import Modal from "./modal"
 
+const initialState = {}
+
 function encode(data) {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -13,7 +15,7 @@ function encode(data) {
 }
 
 function Contact() {
-  const [state, setState] = React.useState({})
+  const [state, setState] = React.useState(initialState)
   const { showModal, hideModal } = React.useContext(ModalContext)
 
   const handleChange = e => {
@@ -23,19 +25,22 @@ function Contact() {
   const handleSubmit = e => {
     e.preventDefault()
     const form = e.target
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        ...state,
-      }),
-    })
-      .then(() => {
-        showModal("thank-you")
-        setState({})
+    // Only submit if values have changed
+    if (state !== initialState) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": form.getAttribute("name"),
+          ...state,
+        }),
       })
-      .catch(error => console.error(error))
+        .then(() => {
+          showModal("thank-you")
+          setState(initialState)
+        })
+        .catch(error => console.error(error))
+    }
   }
 
   return (
@@ -66,19 +71,33 @@ function Contact() {
             <Field>
               <label htmlFor="name">
                 <div>Name</div>
-                <Input onChange={handleChange} type="text" name="name" />
+                <Input
+                  value={state.name || ""}
+                  onChange={handleChange}
+                  type="text"
+                  name="name"
+                />
               </label>
             </Field>
             <Field>
               <label htmlFor="email">
                 <div>Email</div>
-                <Input onChange={handleChange} type="text" name="email" />
+                <Input
+                  value={state.email || ""}
+                  onChange={handleChange}
+                  type="text"
+                  name="email"
+                />
               </label>
             </Field>
             <Field>
               <label htmlFor="message">
                 <div>Message</div>
-                <Textarea onChange={handleChange} name="message" />
+                <Textarea
+                  value={state.message || ""}
+                  onChange={handleChange}
+                  name="message"
+                />
               </label>
             </Field>
             <Button type="submit">Submit</Button>
