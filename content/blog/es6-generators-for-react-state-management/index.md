@@ -1,7 +1,7 @@
 ---
 title: ES6 Generators for State Management in React
 description: We can use ES6 Generator functions to manage state with very little React code.
-date: "10-10-2019"
+date: "2019-10-10"
 ---
 
 When we talk about state management in JavaScript, we’re usually talking about using framework-specific libraries or tools, like redux or `setState` in React. But as we are looking for a state management strategy, I think there are powerful tools at our disposal in ES6. If we are implementing sequential state updates (multi-step forms, carousels, animations, etc), one such tool is a generator.
