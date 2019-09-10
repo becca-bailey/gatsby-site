@@ -42,17 +42,17 @@ class Navigation extends React.Component {
         </SiteTitle>
         <NavigationLinks>
           <NavigationLink>
-            <a href="#about">About</a>
+            <Link to="/#about">About</Link>
           </NavigationLink>
           <NavigationLink>
-            <a href="#speaking">Speaking</a>
+            <Link to="/#speaking">Speaking</Link>
           </NavigationLink>
           <NavigationLink>
-            <a href="#blog">Writing</a>
+            <Link to="/#blog">Writing</Link>
           </NavigationLink>
-          {/* <NavigationLink>
-            <a href="#contact">Contact</a>
-          </NavigationLink> */}
+          <NavigationLink>
+            <Link to="/#contact">Contact</Link>
+          </NavigationLink>
         </NavigationLinks>
       </NavigationContainer>
     )
