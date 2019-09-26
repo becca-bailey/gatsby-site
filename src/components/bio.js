@@ -11,6 +11,24 @@ import Image from "gatsby-image"
 import Container from "../components/container"
 
 import { rhythm } from "../utils/typography"
+import styled from "styled-components"
+import { medium } from "../utils/breakpoints"
+
+const BioContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: ${medium}) {
+    flex-direction: row;
+  }
+`
 
 function Bio() {
   return (
@@ -20,18 +38,14 @@ function Bio() {
         const { author, social } = data.site.siteMetadata
         return (
           <Container>
-            <div
-              style={{
-                display: `flex`,
-              }}
-            >
+            <BioContainer>
               <Image
                 fixed={data.avatar.childImageSharp.fixed}
                 alt={author}
                 style={{
                   marginRight: rhythm(1 / 2),
                   marginBottom: 0,
-                  minWidth: 100,
+                  minWidth: 150,
                   borderRadius: `100%`,
                 }}
                 imgStyle={{
@@ -48,7 +62,7 @@ function Bio() {
                 </a>
                 .
               </p>
-            </div>
+            </BioContainer>
           </Container>
         )
       }}
@@ -60,7 +74,7 @@ const bioQuery = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/becca.png/" }) {
       childImageSharp {
-        fixed(width: 100, height: 100) {
+        fixed(width: 150, height: 150) {
           ...GatsbyImageSharpFixed
         }
       }

@@ -5,6 +5,12 @@
     "date": "2019-10-24"
   },
   {
+    "title": "Design Patterns for State Management with React and Typescript (Workshop)",
+    "conference": "Fullstack JS London",
+    "date": "2019-07-12",
+    "url": "https://github.com/beccanelson/react-typescript-state-design-patterns"
+  },
+  {
     "title": "Beyond the WAT: Why Component Design Still Matters",
     "conference": "Fullstack JS London",
     "date": "2019-07-11",

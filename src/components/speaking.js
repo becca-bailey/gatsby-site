@@ -4,7 +4,6 @@ import Container from "./container"
 import styled from "styled-components"
 import Fade from "react-reveal/Fade"
 import { graphql, StaticQuery } from "gatsby"
-import { format } from "date-fns"
 
 const Title = styled.h3`
   margin-bottom: ${rhythm(1 / 4)};
@@ -14,17 +13,13 @@ const Wrapper = styled.div`
   margin-bottom: ${rhythm(1 / 2)};
 `
 
-function getFormattedDate(isoStringDate) {
-  return format(new Date(isoStringDate), "MMMM D, YYYY")
-}
-
-function Engagement({ title, conference, date, url }) {
+function Engagement({ title, conference, url }) {
   return (
     <Wrapper>
       <Title>
-        <a href={url}>{`${title} - ${conference}`}</a>
+        <a href={url}>{title}</a>
       </Title>
-      <small>{getFormattedDate(date)}</small>
+      <p>{conference}</p>
     </Wrapper>
   )
 }
