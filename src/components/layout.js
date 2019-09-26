@@ -3,6 +3,7 @@ import { rhythm } from "../utils/typography"
 import Navigation from "./navigation"
 import styled, { ThemeProvider } from "styled-components"
 import colors from "../utils/colors"
+import { lighten } from "polished"
 
 const Container = styled.div`
   margin-left: auto;
@@ -13,6 +14,10 @@ const Container = styled.div`
 const LayoutContainer = styled.div`
   a {
     text-decoration: none;
+    color: ${props => lighten(0.15)(props.theme.primary)};
+  }
+
+  a:hover {
     color: ${props => props.theme.primary};
   }
 

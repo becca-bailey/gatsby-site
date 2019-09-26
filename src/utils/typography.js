@@ -5,7 +5,7 @@ const typography = new Typography({
   headerFontFamily: ["Rubik", "sans-serif"],
   bodyFontFamily: ["Lora", "serif"],
   headerWeight: 500,
-  baseFontSize: 20,
+  baseFontSize: 19,
   bodyColor: theme.text,
   baseLineHeight: 1.75,
 })

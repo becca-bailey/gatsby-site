@@ -12,7 +12,7 @@ import Container from "../components/container"
 
 import { rhythm } from "../utils/typography"
 import styled from "styled-components"
-import { medium } from "../utils/breakpoints"
+import { small } from "../utils/breakpoints"
 
 const BioContainer = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const BioContainer = styled.div`
     padding: 0;
   }
 
-  @media (min-width: ${medium}) {
+  @media (min-width: ${small}) {
     flex-direction: row;
   }
 `

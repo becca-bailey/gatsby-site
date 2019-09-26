@@ -13,11 +13,15 @@ const Wrapper = styled.div`
   margin-bottom: ${rhythm(1 / 2)};
 `
 
+const TitleText = styled.span`
+  color: ${props => props.theme.primary};
+`
+
 function Engagement({ title, conference, url }) {
   return (
     <Wrapper>
       <Title>
-        <a href={url}>{title}</a>
+        {url ? <a href={url}>{title}</a> : <TitleText>{title}</TitleText>}
       </Title>
       <p>{conference}</p>
     </Wrapper>

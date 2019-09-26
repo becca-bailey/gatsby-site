@@ -41,7 +41,7 @@ function Blog() {
                   )
                 })}
               </Fade>
-              <a href="/blog">View all</a>
+              <a href="/blog">View all →</a>
             </Container>
           </section>
         )
