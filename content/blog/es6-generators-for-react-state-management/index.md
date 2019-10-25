@@ -141,7 +141,7 @@ For most use cases, I actually wouldn’t recommend using generators over more t
 
 However, I think there is lots of potential here for creating incremental state updates, testing state in isolation from component rendering (but also integration testing your components), and sharing code between frameworks. I didn’t do this for the purpose of this post, but it would be pretty trivial to implement the same logic in Angular or Vue without changing the core logic.
 
-Thoughts? Questions? Concerns? Stay tuned for Part 2, where I implement a tic tac toe game using a generator.
+Thoughts? Questions? Concerns? I would love to hear from you!
 
 ---
 
