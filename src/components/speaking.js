@@ -4,6 +4,7 @@ import Container from "./container"
 import styled from "styled-components"
 import Fade from "react-reveal/Fade"
 import { graphql, StaticQuery } from "gatsby"
+import _ from "lodash"
 
 const Title = styled.h3`
   margin-bottom: ${rhythm(1 / 4)};
@@ -28,19 +29,42 @@ function Engagement({ title, conference, url }) {
   )
 }
 
+function mapDataToProps(data) {
+  const fromGraphQL = data.allAirtable.edges
+  const appearances = _.flatten(
+    fromGraphQL.map(({ node }) => {
+      const { Name, Date: date, Talks, Published } = node.data
+      const conference = Published ? Name : "To be announced..."
+      return Talks.map(({ data }) => {
+        const { Name: title, Recording } = data
+        let url = ""
+        if (Recording && Recording.length > 0) {
+          url = Recording[0].data.URL
+        }
+        return {
+          conference,
+          date,
+          title,
+          url,
+        }
+      })
+    })
+  )
+
+  return { appearances }
+}
+
 function Speaking() {
   return (
     <StaticQuery
       query={speakingEngagementsQuery}
       render={data => {
-        const engagements = data.allSpeakingJson.edges
+        const { appearances } = mapDataToProps(data)
         const today = new Date()
-        const upcoming = engagements.filter(
-          ({ node }) => new Date(node.date) >= today
+        const upcoming = appearances.filter(
+          ({ date }) => new Date(date) >= today
         )
-        const past = engagements.filter(
-          ({ node }) => new Date(node.date) < today
-        )
+        const past = appearances.filter(({ date }) => new Date(date) < today)
 
         return (
           <section id="speaking">
@@ -48,12 +72,12 @@ function Speaking() {
               <Container>
                 <h2>Appearances</h2>
                 {upcoming.length > 0 && <h3>Upcoming</h3>}
-                {upcoming.map(({ node }, i) => (
-                  <Engagement key={i} {...node} />
+                {upcoming.map((data, i) => (
+                  <Engagement key={i} {...data} />
                 ))}
                 <h3>Past</h3>
-                {past.map(({ node }, i) => (
-                  <Engagement key={i} {...node} />
+                {past.map((data, i) => (
+                  <Engagement key={i} {...data} />
                 ))}
               </Container>
             </Fade>
@@ -65,14 +89,28 @@ function Speaking() {
 }
 
 const speakingEngagementsQuery = graphql`
-  query SpeakingEngagementsQuery {
-    allSpeakingJson {
+  {
+    allAirtable(
+      filter: { table: { eq: "Conferences" } }
+      sort: { fields: data___Date, order: DESC }
+    ) {
       edges {
         node {
-          title
-          conference
-          date
-          url
+          data {
+            Name
+            Date
+            Published
+            Talks {
+              data {
+                Name
+                Recording {
+                  data {
+                    URL
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

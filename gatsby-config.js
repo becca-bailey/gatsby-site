@@ -10,6 +10,34 @@ module.exports = {
   },
   pathPrefix: "/",
   plugins: [
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Conferences`,
+            tableLinks: [`Talks`, `Recordings`, `Resources`],
+          },
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Talks`,
+            tableLinks: [`Conferences`, `Recording`, `Resources`],
+          },
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Recordings`,
+            tableLinks: [`Conference`, `Talk`],
+          },
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Resources`,
+            tableLinks: [`Conferences`, `Talk`],
+          },
+        ],
+      },
+    },
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
