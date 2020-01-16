@@ -142,6 +142,10 @@ function About() {
                         teacher, I love helping artists and career changers
                         understand software.{" "}
                       </p>
+                      <p>
+                        I am currently a Software Engineer at{" "}
+                        <a href="https://formidable.com">Formidable</a>.
+                      </p>
                     </Fade>
                   </div>
                 </Row>

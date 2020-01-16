@@ -46,8 +46,8 @@ function Speaking() {
           <section id="speaking">
             <Fade>
               <Container>
-                <h2>Speaking</h2>
-                <h3>Upcoming</h3>
+                <h2>Appearances</h2>
+                {upcoming.length > 0 && <h3>Upcoming</h3>}
                 {upcoming.map(({ node }, i) => (
                   <Engagement key={i} {...node} />
                 ))}
