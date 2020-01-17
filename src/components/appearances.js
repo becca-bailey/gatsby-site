@@ -18,7 +18,7 @@ const TitleText = styled.span`
   color: ${props => props.theme.primary};
 `
 
-function Engagement({ title, conference, url }) {
+function Appearance({ title, conference, url }) {
   return (
     <Wrapper>
       <Title>
@@ -35,13 +35,14 @@ function mapDataToProps(data) {
     fromGraphQL.map(({ node }) => {
       const { Name, Date: date, Talks, Published } = node.data
       const conference = Published ? Name : "To be announced..."
-      return Talks.map(({ data }) => {
+      return Talks.map(({ data, id }) => {
         const { Name: title, Recording } = data
         let url = ""
         if (Recording && Recording.length > 0) {
           url = Recording[0].data.URL
         }
         return {
+          id,
           conference,
           date,
           title,
@@ -54,7 +55,7 @@ function mapDataToProps(data) {
   return { appearances }
 }
 
-function Speaking() {
+function Appearances() {
   return (
     <StaticQuery
       query={speakingEngagementsQuery}
@@ -72,12 +73,12 @@ function Speaking() {
               <Container>
                 <h2>Appearances</h2>
                 {upcoming.length > 0 && <h3>Upcoming</h3>}
-                {upcoming.map((data, i) => (
-                  <Engagement key={i} {...data} />
+                {upcoming.map(({ id, ...data }) => (
+                  <Appearance key={id} {...data} />
                 ))}
                 <h3>Past</h3>
-                {past.map((data, i) => (
-                  <Engagement key={i} {...data} />
+                {past.map(({ id, ...data }) => (
+                  <Appearance key={id} {...data} />
                 ))}
               </Container>
             </Fade>
@@ -101,6 +102,7 @@ const speakingEngagementsQuery = graphql`
             Date
             Published
             Talks {
+              id
               data {
                 Name
                 Recording {
@@ -117,4 +119,4 @@ const speakingEngagementsQuery = graphql`
   }
 `
 
-export default Speaking
+export default Appearances

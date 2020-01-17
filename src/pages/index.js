@@ -4,7 +4,7 @@ import About from "../components/about"
 import Blog from "../components/writing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Speaking from "../components/speaking"
+import Appearances from "../components/appearances"
 import Contact from "../components/contact"
 import ModalProvider from "../containers/modal-provider"
 
@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
             keywords={[`becca`, `javascript`, `software engineer`]}
           />
           <About />
-          <Speaking />
+          <Appearances />
           <Blog />
           <Contact />
         </Layout>
