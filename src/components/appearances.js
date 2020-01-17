@@ -6,6 +6,8 @@ import Fade from "react-reveal/Fade"
 import { graphql, StaticQuery } from "gatsby"
 import _ from "lodash"
 
+const LIMIT = 5
+
 const Title = styled.h3`
   margin-bottom: ${rhythm(1 / 4)};
 `
@@ -52,7 +54,8 @@ function mapDataToProps(data) {
     })
   )
 
-  return { appearances }
+  // The size will always be consistent, even with flattened talks
+  return { appearances: _.take(appearances, LIMIT) }
 }
 
 function Appearances() {
@@ -80,6 +83,7 @@ function Appearances() {
                 {past.map(({ id, ...data }) => (
                   <Appearance key={id} {...data} />
                 ))}
+                <a href="/speaking">View all →</a>
               </Container>
             </Fade>
           </section>
@@ -92,6 +96,7 @@ function Appearances() {
 const speakingEngagementsQuery = graphql`
   {
     allAirtable(
+      limit: 5
       filter: { table: { eq: "Conferences" } }
       sort: { fields: data___Date, order: DESC }
     ) {
