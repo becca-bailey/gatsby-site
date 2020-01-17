@@ -33,7 +33,7 @@ function mapDataToProps(data) {
     if (Conferences) {
       presentations = Conferences.map(({ data, id: conferenceId }) => {
         const { Name, Date, Recordings, Published } = data
-        let url = ""
+        let url
         if (Recordings && Recordings.length > 0) {
           url = Recordings[0].data.URL
         }
@@ -84,11 +84,7 @@ function Talk({ name, abstract, isWorkshop, resources, presentations }) {
           <h3>Presentations</h3>
           <ul>
             {presentations.map(({ url, name, id }) => {
-              return (
-                <li key={id}>
-                  <a href={url}>{name}</a>
-                </li>
-              )
+              return <li key={id}>{url ? <a href={url}>{name}</a> : name}</li>
             })}
           </ul>
         </>
