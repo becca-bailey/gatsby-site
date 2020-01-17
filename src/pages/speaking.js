@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import theme from "../utils/theme"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
+import { small } from "../utils/breakpoints"
 
 function mapDataToProps(data) {
   const fromGraphQL = data.allAirtable.edges
@@ -59,11 +60,14 @@ function mapDataToProps(data) {
 }
 
 const TalkContainer = styled.div`
-  background-color: ${theme.background.lighten(0.03)};
-  border: 1px solid ${theme.background.darken(0.1)};
-  border-radius: 4px;
-  padding: ${rhythm(1)};
-  margin-bottom: ${rhythm(1)};
+  margin-bottom: ${rhythm(2)};
+  @media (min-width: ${small}) {
+    background-color: ${theme.background.lighten(0.03)};
+    border: 1px solid ${theme.background.darken(0.1)};
+    border-radius: 4px;
+    padding: ${rhythm(1)};
+    margin-bottom: ${rhythm(1)};
+  }
 `
 
 function Talk({ name, abstract, isWorkshop, resources, presentations }) {
