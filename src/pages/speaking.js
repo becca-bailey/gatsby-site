@@ -141,7 +141,7 @@ export const pageQuery = graphql`
     }
     allAirtable(
       filter: { table: { eq: "Talks" } }
-      sort: { fields: data___Date, order: DESC }
+      sort: { fields: data___Year, order: DESC }
     ) {
       edges {
         node {
@@ -152,6 +152,7 @@ export const pageQuery = graphql`
             Abstract
             Description
             Workshop
+            Year
             Resources {
               id
               data {
