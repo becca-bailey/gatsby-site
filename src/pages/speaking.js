@@ -32,15 +32,16 @@ function mapDataToProps(data) {
     let presentations = []
     if (Conferences) {
       presentations = Conferences.map(({ data, id: conferenceId }) => {
-        const { Name, Date, Recordings } = data
+        const { Name, Date, Recordings, Published } = data
         let url = ""
         if (Recordings && Recordings.length > 0) {
           url = Recordings[0].data.URL
         }
+        const name = Published ? Name : "To be announced..."
         return {
           id: conferenceId,
-          name: Name,
           date: Date,
+          name,
           url,
         }
       })
@@ -169,6 +170,7 @@ export const pageQuery = graphql`
               data {
                 Name
                 Date
+                Published
                 Recordings {
                   data {
                     URL
