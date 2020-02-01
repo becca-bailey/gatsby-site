@@ -35,6 +35,10 @@ module.exports = {
             tableName: `Resources`,
             tableLinks: [`Conferences`, `Talk`],
           },
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Podcasts`,
+          },
         ],
       },
     },
