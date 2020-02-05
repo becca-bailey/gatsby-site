@@ -36,10 +36,7 @@ function Conference({ title, conference, url }) {
       <Title>
         {url ? <a href={url}>{title}</a> : <TitleText>{title}</TitleText>}
       </Title>
-      <p>
-        {conference}
-        <Tag>conference</Tag>
-      </p>
+      <p>{conference}</p>
     </Wrapper>
   )
 }
