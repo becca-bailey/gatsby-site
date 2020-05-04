@@ -7,7 +7,7 @@ thumbnail: "./national-cancer-institute-L7en7Lb-Ovc-unsplash.jpg/"
 
 ![Cells](./national-cancer-institute-L7en7Lb-Ovc-unsplash.jpg)
 
-This blog post is the first part of a series where I am building Conway’s Game of Life.
+This blog post is the first part of a series where I am building [Conway’s Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
 If you aren’t familiar with Conway’s Game of Life, it is a zero-player game on a grid that mimics the life cycle of cells. There are four basic rules:
 
@@ -17,6 +17,8 @@ If you aren’t familiar with Conway’s Game of Life, it is a zero-player game 
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
 You should be able to start the game with a “seed”, or an initial set of live cells that can take any shape on the board. Then you should be able to run the game and see the cells change shape with each generation.
+
+![Example](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Gospers_glider_gun.gif)
 
 ## Building the game
 
