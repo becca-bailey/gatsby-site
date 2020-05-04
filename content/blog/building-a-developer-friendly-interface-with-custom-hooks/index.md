@@ -138,6 +138,11 @@ const World: React.SFC<WorldProps> = ({
     }, DELAY_MS)
   }
 
+  function getFill(cell) {
+    const { living } = cell
+    living ? FILL_COLOR : BACKGROUND
+  }
+
   return (
     <>
       <svg
@@ -152,6 +157,7 @@ const World: React.SFC<WorldProps> = ({
               key={`${x}-${y}`}
               size={cellSize}
               cell={cell}
+              fill={getFill(cell)}
               onClick={() => {
                 setLivingAt({ x, y })
               }}
