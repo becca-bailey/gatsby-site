@@ -18,7 +18,7 @@ If you aren’t familiar with Conway’s Game of Life, it is a zero-player game 
 
 You should be able to start the game with a “seed”, or an initial set of live cells that can take any shape on the board. Then you should be able to run the game and see the cells change shape with each generation.
 
-![Example](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Gospers_glider_gun.gif)
+![Example](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
 
 ## Building the game
 
