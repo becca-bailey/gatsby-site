@@ -1,7 +1,8 @@
 ---
 title: Building a Developer-Friendly Interafce With Custom Hooks
 date: "2020-05-04"
-description:
+description: We can treat our code as a user interface by creating readable hooks and tests. Here is some advice for using custom hooks to be a little kinder to yourself or your teammates.
+thumbnail: "./markus-spiske-C0koz3G1I4I-unsplash.jpg"
 ---
 
 ![Legos](./markus-spiske-C0koz3G1I4I-unsplash.jpg)

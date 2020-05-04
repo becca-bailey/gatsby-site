@@ -1,7 +1,8 @@
 ---
 title: Using React Hooks to Build Single Responsibility Components
 date: "2020-05-04"
-description:
+description: Why do we need to use React hooks? One reason we might find them useful is to separate our rendering from the more complex logic in our application. In this post, I'm using Conway's Game of Life to demonstrate that separation of concerns.
+thumbnail: "./national-cancer-institute-L7en7Lb-Ovc-unsplash.jpg/"
 ---
 
 ![Cells](./national-cancer-institute-L7en7Lb-Ovc-unsplash.jpg)

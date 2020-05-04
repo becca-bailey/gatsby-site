@@ -117,10 +117,11 @@ class Talks extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title="Talks"
-          keywords={[`speaking`, `conferences`, `talks`, `react`]}
+          keywords={[`speaking`, `conferences`, `talks`, `react`, `podcasts`]}
         />
         <Container small>
           <Fade cascade>
+            <h2>Talks</h2>
             {talks.map(({ id, ...talk }) => (
               <Talk key={id} {...talk}></Talk>
             ))}
