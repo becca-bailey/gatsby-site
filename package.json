@@ -34,7 +34,7 @@
     "lodash": "^4.17.15",
     "polished": "^3.4.1",
     "prism-theme-night-owl": "^1.4.0",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.25.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
