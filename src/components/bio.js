@@ -7,7 +7,7 @@
 
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Container from "../components/container"
 
 import { rhythm } from "../utils/typography"
@@ -39,8 +39,8 @@ function Bio() {
         return (
           <Container>
             <BioContainer>
-              <Image
-                fixed={data.avatar.childImageSharp.fixed}
+              <GatsbyImage
+                image={data.avatar.childImageSharp.gatsbyImageData}
                 alt={author}
                 style={{
                   marginRight: rhythm(1 / 2),
@@ -50,8 +50,7 @@ function Bio() {
                 }}
                 imgStyle={{
                   borderRadius: `50%`,
-                }}
-              />
+                }} />
               <p>
                 I'm a software engineer who loves to design things. After
                 previous career as an elementary fine arts teacher, I love
@@ -64,30 +63,27 @@ function Bio() {
               </p>
             </BioContainer>
           </Container>
-        )
+        );
       }}
     />
-  )
+  );
 }
 
-const bioQuery = graphql`
-  query BioQuery {
-    avatar: file(absolutePath: { regex: "/becca.png/" }) {
-      childImageSharp {
-        fixed(width: 150, height: 150) {
-          ...GatsbyImageSharpFixed
-        }
-      }
+const bioQuery = graphql`query BioQuery {
+  avatar: file(absolutePath: {regex: "/becca.png/"}) {
+    childImageSharp {
+      gatsbyImageData(width: 150, height: 150, layout: FIXED)
     }
-    site {
-      siteMetadata {
-        author
-        social {
-          twitter
-        }
+  }
+  site {
+    siteMetadata {
+      author
+      social {
+        twitter
       }
     }
   }
+}
 `
 
 export default Bio

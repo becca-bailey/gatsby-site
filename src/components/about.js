@@ -6,7 +6,7 @@
  */
 
 import { graphql, StaticQuery, withPrefix } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { medium, small } from "../utils/breakpoints"
@@ -82,7 +82,7 @@ const MediumOnly = styled.div`
   }
 `
 
-const Becca = styled(Image)`
+const Becca = styled(GatsbyImage)`
   align-self: center;
 
   @media (min-width: ${medium}) {
@@ -91,13 +91,13 @@ const Becca = styled(Image)`
   }
 `
 
-const Lucy = styled(Image)`
+const Lucy = styled(GatsbyImage)`
   @media (min-width: ${small}) {
     position: "relative";
   }
 `
 
-const Coffee = styled(Image)`
+const Coffee = styled(GatsbyImage)`
   @media (min-width: ${small}) {
     position: "relative";
     left: ${rhythm(1)};
@@ -109,7 +109,7 @@ function About() {
   return (
     <StaticQuery
       query={aboutQuery}
-      render={data => {
+      render={(data) => {
         const { author, social } = data.site.siteMetadata
         return (
           <section id="about">
@@ -119,7 +119,7 @@ function About() {
                   <MediumOnly>
                     <Becca
                       fadeIn={true}
-                      fixed={data.becca.childImageSharp.fixed}
+                      fixed={data.becca.childImageSharp.gatsbyImageData}
                       alt={author}
                       style={{
                         minWidth: 400,
@@ -178,7 +178,7 @@ function About() {
                     <ImageContainer>
                       <Coffee
                         fadeIn={true}
-                        fixed={data.coffee.childImageSharp.fixed}
+                        fixed={data.coffee.childImageSharp.gatsbyImageData}
                         alt="Mmmm Coffee"
                         imgStyle={{
                           borderRadius: `50%`,
@@ -186,7 +186,7 @@ function About() {
                       />
                       <Lucy
                         fadeIn={true}
-                        fixed={data.lucy.childImageSharp.fixed}
+                        fixed={data.lucy.childImageSharp.gatsbyImageData}
                         alt="Lucy Cat"
                         imgStyle={{
                           borderRadius: `50%`,
@@ -197,25 +197,25 @@ function About() {
                 </Row>
                 <SmallOnly>
                   <Grid>
-                    <Image
+                    <GatsbyImage
+                      image={data.becca.childImageSharp.gatsbyImageData}
                       fadeIn={true}
-                      fluid={data.becca.childImageSharp.fluid}
                       alt={author}
                       imgStyle={{
                         borderRadius: `50%`,
                       }}
                     />
-                    <Image
+                    <GatsbyImage
+                      image={data.coffee.childImageSharp.gatsbyImageData}
                       fadeIn={true}
-                      fluid={data.coffee.childImageSharp.fluid}
                       alt="Mmmm Coffee"
                       imgStyle={{
                         borderRadius: `50%`,
                       }}
                     />
-                    <Image
+                    <GatsbyImage
+                      image={data.lucy.childImageSharp.gatsbyImageData}
                       fadeIn={true}
-                      fluid={data.lucy.childImageSharp.fluid}
                       alt="Lucy Cat"
                       imgStyle={{
                         borderRadius: `50%`,
@@ -236,35 +236,19 @@ const aboutQuery = graphql`
   query AboutQuery {
     becca: file(absolutePath: { regex: "/becca.png/" }) {
       childImageSharp {
-        fixed(width: 400, height: 400) {
-          ...GatsbyImageSharpFixed
-        }
-        fluid(maxWidth: 400) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(width: 400, layout: CONSTRAINED)
       }
     }
     lucy: file(absolutePath: { regex: "/lucy.png/" }) {
       childImageSharp {
-        fixed(width: 300, height: 300) {
-          ...GatsbyImageSharpFixed
-        }
-        fluid(maxWidth: 400) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(width: 400, layout: CONSTRAINED)
       }
     }
     coffee: file(absolutePath: { regex: "/coffee.png/" }) {
       childImageSharp {
-        fixed(width: 200, height: 200) {
-          ...GatsbyImageSharpFixed
-        }
-        fluid(maxWidth: 400) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(width: 400, layout: CONSTRAINED)
       }
     }
-
     site {
       siteMetadata {
         author
