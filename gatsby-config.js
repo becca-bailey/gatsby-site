@@ -48,12 +48,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-json`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/data`,
-      },
-    },
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
