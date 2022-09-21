@@ -3,5 +3,21 @@
 }
 
 .becca {
+  min-width: 400px;
+  max-width: 100%;
   align-self: center;
+}
+
+@media (min-width: 600px) {
+  .coffee {
+    left: 1.75rem;
+    top: 12rem; 
+  }
+}
+
+@media (min-width: 900px)  {
+  .becca {
+    margin-right: 1.75rem;
+    display: block;
+  }
 }

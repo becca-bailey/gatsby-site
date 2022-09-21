@@ -83,29 +83,6 @@ const MediumOnly = styled.div`
   }
 `
 
-const Becca = styled(StaticImage)`
-  align-self: center;
-
-  @media (min-width: ${medium}) {
-    margin-right: ${rhythm(1)};
-    display: block;
-  }
-`
-
-const Lucy = styled(GatsbyImage)`
-  @media (min-width: ${small}) {
-    position: "relative";
-  }
-`
-
-const Coffee = styled(GatsbyImage)`
-  @media (min-width: ${small}) {
-    position: "relative";
-    left: ${rhythm(1)};
-    top: ${rhythm(5)};
-  }
-`
-
 function About() {
   return (
     <StaticQuery
@@ -122,6 +99,8 @@ function About() {
                       src="../../content/assets/becca.png"
                       alt={author}
                       className="image becca"
+                      width={400}
+                      height={400}
                     />
                   </MediumOnly>
                   <div>
@@ -130,13 +109,18 @@ function About() {
                     </Fade>
                     <Fade>
                       <p>
-                        I'm a software engineer who loves to design things.
-                        After previous career as an elementary fine arts
-                        teacher, I love helping artists and career changers
-                        understand software.{" "}
+                        I think I was drawn towards a career in tech because I
+                        am a huge fan of iterative processes and making things
+                        better. Seven years later, I still love improving
+                        things, whether it's web performance, team processes, or
+                        user experience. I am an engineering manager, a frequent
+                        user of the JavaScript dev tools, an occasional
+                        conference speaker, and a fan of a good diagram for
+                        explaining technical concepts to teammates and
+                        stakeholders.
                       </p>
                       <p>
-                        I am currently a Software Engineer at{" "}
+                        I am currently an Engineering Manager at{" "}
                         <a href="https://formidable.com">Formidable</a>.
                       </p>
                     </Fade>
@@ -149,9 +133,18 @@ function About() {
                     </Fade>
                     <Fade>
                       <p>
-                        In addition to my technical work, I am also passionate
-                        about mentoring, apprenticeship, and diversity and
-                        inclusion.
+                        Prior to my career in software, I majored in music
+                        education and worked in music and fine arts education.
+                        My current technical specialties include React, web
+                        performance, and data visualization. I have been one of
+                        the primary maintainers of{" "}
+                        <a href="https://formidable.com/open-source/victory">
+                          Victory
+                        </a>
+                        , Formidable's charting library written with React and
+                        d3. I manage people, and occasionally give conference
+                        talks on state management, refactoring, and building
+                        strong technical teams.
                       </p>
                       <p>
                         For more information,{" "}
@@ -160,10 +153,7 @@ function About() {
                         <a href={`https://twitter.com/${social.twitter}`}>
                           follow me on twitter
                         </a>
-                        ! You can also follow me on{" "}
-                        <a href="https://medium.com/@becca.nelson">medium</a>{" "}
-                        where I write about technology and other topics related
-                        to being human.
+                        !
                       </p>
                     </Fade>
                   </div>
@@ -172,12 +162,16 @@ function About() {
                       <StaticImage
                         src="../../content/assets/coffee.png"
                         alt="Mmmm Coffee"
-                        className="image"
+                        className="image coffee"
+                        width={200}
+                        height={200}
                       />
                       <StaticImage
                         src="../../content/assets/lucy.png"
                         alt="Lucy Cat"
-                        className="image"
+                        className="image lucy"
+                        width={300}
+                        height={300}
                       />
                     </ImageContainer>
                   </MediumOnly>
