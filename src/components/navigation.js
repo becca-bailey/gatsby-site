@@ -50,20 +50,6 @@ class Navigation extends React.Component {
           <NavigationLink>
             <Link to="/#contact">Contact</Link>
           </NavigationLink>
-          <a
-            style={{ display: "flex" }}
-            href="https://ko-fi.com/T6T21CWFA"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              height="36"
-              style={{ border: 0, height: 36, marginBottom: 0 }}
-              src="https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2"
-              border={0}
-              alt="Buy Me a Coffee at ko-fi.com"
-            />
-          </a>
         </NavigationLinks>
       </NavigationContainer>
     )

@@ -6,13 +6,14 @@
  */
 
 import { graphql, StaticQuery, withPrefix } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { medium, small } from "../utils/breakpoints"
 import { rhythm } from "../utils/typography"
 import Container from "./container"
 import Fade from "react-reveal/Fade"
+import "./about.css"
 
 const Heading = styled.h1`
   display: flex;
@@ -82,7 +83,7 @@ const MediumOnly = styled.div`
   }
 `
 
-const Becca = styled(GatsbyImage)`
+const Becca = styled(StaticImage)`
   align-self: center;
 
   @media (min-width: ${medium}) {
@@ -117,18 +118,10 @@ function About() {
               <Container>
                 <Row>
                   <MediumOnly>
-                    <Becca
-                      fadeIn={true}
-                      fixed={data.becca.childImageSharp.gatsbyImageData}
+                    <StaticImage
+                      src="../../content/assets/becca.png"
                       alt={author}
-                      style={{
-                        minWidth: 400,
-                        maxWidth: "100%",
-                        zIndex: -1,
-                      }}
-                      imgStyle={{
-                        borderRadius: `50%`,
-                      }}
+                      className="image becca"
                     />
                   </MediumOnly>
                   <div>
@@ -176,50 +169,35 @@ function About() {
                   </div>
                   <MediumOnly>
                     <ImageContainer>
-                      <Coffee
-                        fadeIn={true}
-                        fixed={data.coffee.childImageSharp.gatsbyImageData}
+                      <StaticImage
+                        src="../../content/assets/coffee.png"
                         alt="Mmmm Coffee"
-                        imgStyle={{
-                          borderRadius: `50%`,
-                        }}
+                        className="image"
                       />
-                      <Lucy
-                        fadeIn={true}
-                        fixed={data.lucy.childImageSharp.gatsbyImageData}
+                      <StaticImage
+                        src="../../content/assets/lucy.png"
                         alt="Lucy Cat"
-                        imgStyle={{
-                          borderRadius: `50%`,
-                        }}
+                        className="image"
                       />
                     </ImageContainer>
                   </MediumOnly>
                 </Row>
                 <SmallOnly>
                   <Grid>
-                    <GatsbyImage
-                      image={data.becca.childImageSharp.gatsbyImageData}
-                      fadeIn={true}
+                    <StaticImage
+                      src="../../content/assets/becca.png"
                       alt={author}
-                      imgStyle={{
-                        borderRadius: `50%`,
-                      }}
+                      className="image"
                     />
-                    <GatsbyImage
-                      image={data.coffee.childImageSharp.gatsbyImageData}
-                      fadeIn={true}
+                    <StaticImage
+                      src="../../content/assets/coffee.png"
                       alt="Mmmm Coffee"
-                      imgStyle={{
-                        borderRadius: `50%`,
-                      }}
+                      className="image"
                     />
-                    <GatsbyImage
-                      image={data.lucy.childImageSharp.gatsbyImageData}
-                      fadeIn={true}
+                    <StaticImage
+                      src="../../content/assets/lucy.png"
                       alt="Lucy Cat"
-                      imgStyle={{
-                        borderRadius: `50%`,
-                      }}
+                      className="image"
                     />
                   </Grid>
                 </SmallOnly>
@@ -234,21 +212,6 @@ function About() {
 
 const aboutQuery = graphql`
   query AboutQuery {
-    becca: file(absolutePath: { regex: "/becca.png/" }) {
-      childImageSharp {
-        gatsbyImageData(width: 400, layout: CONSTRAINED)
-      }
-    }
-    lucy: file(absolutePath: { regex: "/lucy.png/" }) {
-      childImageSharp {
-        gatsbyImageData(width: 400, layout: CONSTRAINED)
-      }
-    }
-    coffee: file(absolutePath: { regex: "/coffee.png/" }) {
-      childImageSharp {
-        gatsbyImageData(width: 400, layout: CONSTRAINED)
-      }
-    }
     site {
       siteMetadata {
         author

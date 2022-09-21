@@ -14,6 +14,7 @@ module.exports = {
   },
   pathPrefix: "/",
   plugins: [
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-airtable`,
       options: {
