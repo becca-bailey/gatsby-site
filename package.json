@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Becca's personal site",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Becca Bailey",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -35,7 +35,6 @@
     "gatsby-transformer-json": "^4.23.0",
     "gatsby-transformer-remark": "^5.23.0",
     "gatsby-transformer-sharp": "^4.23.0",
-    "libvips": "0.0.2",
     "lodash": "^4.17.21",
     "polished": "^4.2.2",
     "prism-theme-night-owl": "^1.4.0",
