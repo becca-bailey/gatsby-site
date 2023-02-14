@@ -45,6 +45,10 @@ module.exports = {
             baseId: `appOiICx5CYLlQTmi`,
             tableName: `Podcasts`,
           },
+          {
+            baseId: `appOiICx5CYLlQTmi`,
+            tableName: `Writing`,
+          },
         ],
       },
     },

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `
 
 const TitleText = styled.span`
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `
 
 const Tag = styled.span`
@@ -25,7 +25,7 @@ const Tag = styled.span`
   font-family: Rubik;
   font-size: 12px;
   border-radius: 4px;
-  background-color: ${props => props.theme.gray};
+  background-color: ${(props) => props.theme.gray};
   padding ${rhythm(1 / 6)};
   margin-left: ${rhythm(1 / 3)};
 `
@@ -70,7 +70,6 @@ function mapDataToProps(data) {
   const appearances = _.flatten(
     fromGraphQL.map(({ node }) => {
       const { table, data, id } = node
-      console.log(id)
       const { Name, Date: date, Talks, Published } = data
       if (table === "Conferences") {
         const conference = Published ? Name : "To be announced..."
@@ -112,7 +111,7 @@ function Appearances() {
   return (
     <StaticQuery
       query={speakingEngagementsQuery}
-      render={data => {
+      render={(data) => {
         const { appearances } = mapDataToProps(data)
         const today = new Date()
         const upcoming = appearances.filter(

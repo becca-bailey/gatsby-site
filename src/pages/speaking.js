@@ -107,7 +107,7 @@ function Talk({ name, abstract, isWorkshop, resources, presentations }) {
   )
 }
 
-class Talks extends React.Component {
+class Speaking extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
@@ -116,7 +116,7 @@ class Talks extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="Talks"
+          title="Speaking"
           keywords={[`speaking`, `conferences`, `talks`, `react`, `podcasts`]}
         />
         <Container small>
@@ -132,7 +132,7 @@ class Talks extends React.Component {
   }
 }
 
-export default Talks
+export default Speaking
 
 export const pageQuery = graphql`
   query {

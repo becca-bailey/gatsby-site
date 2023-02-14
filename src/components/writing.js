@@ -3,45 +3,47 @@ import React from "react"
 import { rhythm } from "../utils/typography"
 import Container from "./container"
 import Fade from "react-reveal/Fade"
+import { format } from "date-fns"
 
 function Blog() {
   return (
     <StaticQuery
       query={blogPreviewQuery}
-      render={data => {
-        const posts = data.allMarkdownRemark.edges
+      render={(data) => {
+        const posts = data.allAirtable.edges
         return (
           <section id="blog">
             <Container>
               <h2>Writing</h2>
               <Fade cascade>
                 {posts.map(({ node }) => {
-                  const title = node.frontmatter.title || node.fields.slug
+                  const { id, data } = node
+                  const {
+                    Name: name,
+                    Date: date,
+                    URL: url,
+                    Source: source,
+                  } = data
+                  const formattedDate = format(new Date(date), "MMMM do, yyyy")
                   return (
-                    <div key={node.fields.slug}>
+                    <div key={id}>
                       <h3
                         style={{
                           marginBottom: rhythm(1 / 4),
                         }}
                       >
-                        <Link
-                          style={{ boxShadow: `none` }}
-                          to={node.fields.slug}
-                        >
-                          {title}
+                        <Link style={{ boxShadow: `none` }} to={url}>
+                          {name}
                         </Link>
                       </h3>
-                      <small>{node.frontmatter.date}</small>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: node.frontmatter.description || node.excerpt,
-                        }}
-                      />
+                      <p>
+                        {source} - {formattedDate}
+                      </p>
                     </div>
                   )
                 })}
               </Fade>
-              <a href="/blog">View all →</a>
+              <a href="/writing">View all →</a>
             </Container>
           </section>
         )
@@ -51,21 +53,20 @@ function Blog() {
 }
 
 const blogPreviewQuery = graphql`
-  query {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 4
+  {
+    allAirtable(
+      limit: 5
+      filter: { table: { eq: "Writing" } }
+      sort: { fields: data___Date, order: DESC }
     ) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
+          id
+          data {
+            URL
+            Name
+            Date
+            Source
           }
         }
       }

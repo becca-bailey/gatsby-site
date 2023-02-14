@@ -45,7 +45,7 @@ class Navigation extends React.Component {
             <Link to="/speaking">Speaking</Link>
           </NavigationLink>
           <NavigationLink>
-            <Link to="/blog">Writing</Link>
+            <Link to="/writing">Writing</Link>
           </NavigationLink>
           <NavigationLink>
             <Link to="/#contact">Contact</Link>
