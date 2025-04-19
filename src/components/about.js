@@ -83,6 +83,36 @@ const MediumOnly = styled.div`
   }
 `
 
+const SocialLinks = styled.div`
+  margin-top: ${rhythm(1)};
+  text-align: left;
+`
+
+const SocialLink = styled.a`
+  display: flex;
+  align-items: center;
+  margin-bottom: ${rhythm(0.5)};
+  color: ${(props) => props.theme.primary};
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  svg {
+    margin-right: ${rhythm(0.25)};
+    width: 20px;
+    height: 20px;
+  }
+`
+
+const SocialIcon = styled.div`
+  display: inline-flex;
+  align-items: center;
+  margin-right: ${rhythm(0.25)};
+`
+
 function About() {
   return (
     <StaticQuery
@@ -119,6 +149,10 @@ function About() {
                         explaining technical concepts to teammates and
                         stakeholders.
                       </p>
+                      <p>
+                        I am currently looking for a new role as a Senior+
+                        Software Engineer or Engineering Manager.
+                      </p>
                     </Fade>
                   </div>
                 </Row>
@@ -142,6 +176,35 @@ function About() {
                         talks on state management, refactoring, and building
                         strong technical teams.
                       </p>
+                    </Fade>
+                    <Fade>
+                      <SocialLinks>
+                        <p>You can also find me on:</p>
+                        <SocialLink
+                          href="https://bsky.app/profile/becca.is"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <SocialIcon>
+                            <svg viewBox="0 0 600 535" fill="currentColor">
+                              <path d="M299.75 238.48C273.424 187.473 202.014 92.2 135.54 45.31 71.863.391 47.512 8.124 31.72 15.364c-18.428 8.392-21.719 36.692-21.719 53.311s9.05 136.57 15.138 156.48c19.745 66.145 89.674 88.522 154.17 81.282 3.29-.494 6.582-.987 10.037-1.316-3.29.493-6.746.987-10.037 1.316-94.445 13.986-178.52 48.374-68.284 170.96 121.1 125.38 166.02-26.82 189.06-104.15 23.035 77.169 49.526 223.94 186.75 104.15 103.17-104.15 28.301-156.97-66.145-170.96-3.29-.33-6.746-.823-10.037-1.316 3.455.493 6.746.822 10.037 1.316 64.499 7.24 134.59-15.138 154.17-81.282 5.923-20.074 15.138-139.86 15.138-156.48s-3.29-44.919-21.719-53.311c-15.96-7.24-40.148-14.973-103.82 29.946-66.967 47.058-138.38 142.16-164.7 193.17z" />
+                            </svg>
+                          </SocialIcon>
+                          Bluesky
+                        </SocialLink>
+                        <SocialLink
+                          href="https://www.linkedin.com/in/beccamakesthings/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <SocialIcon>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                          </SocialIcon>
+                          LinkedIn
+                        </SocialLink>
+                      </SocialLinks>
                     </Fade>
                   </div>
                   <MediumOnly>
