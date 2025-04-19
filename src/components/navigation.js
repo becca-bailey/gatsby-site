@@ -9,6 +9,7 @@ const NavigationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+  position: relative;
 `
 
 const SiteTitle = styled.h1`

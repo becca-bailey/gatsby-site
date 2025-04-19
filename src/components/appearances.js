@@ -32,9 +32,15 @@ const Tag = styled.span`
 
 function Conference({ title, conference, url }) {
   return (
-    <Wrapper>
+    <Wrapper role="listitem">
       <Title>
-        {url ? <a href={url}>{title}</a> : <TitleText>{title}</TitleText>}
+        {url ? (
+          <a href={url} aria-label={`View details about ${title}`}>
+            {title}
+          </a>
+        ) : (
+          <TitleText>{title}</TitleText>
+        )}
       </Title>
       <p>{conference}</p>
     </Wrapper>
@@ -43,9 +49,15 @@ function Conference({ title, conference, url }) {
 
 function Podcast({ podcast, name, url }) {
   return (
-    <Wrapper>
+    <Wrapper role="listitem">
       <Title>
-        {url ? <a href={url}>{name}</a> : <TitleText>{name}</TitleText>}
+        {url ? (
+          <a href={url} aria-label={`Listen to ${name} on ${podcast}`}>
+            {name}
+          </a>
+        ) : (
+          <TitleText>{name}</TitleText>
+        )}
       </Title>
       <p>
         {podcast}
@@ -120,19 +132,29 @@ function Appearances() {
         const past = appearances.filter(({ date }) => new Date(date) < today)
 
         return (
-          <section id="speaking">
+          <section id="speaking" aria-label="Speaking engagements">
             <Fade>
               <Container>
-                <h2>Appearances</h2>
-                {upcoming.length > 0 && <h3>Upcoming</h3>}
-                {upcoming.map(({ id, ...data }) => (
-                  <Appearance key={id} {...data} />
-                ))}
-                <h3>Past</h3>
-                {past.map(({ id, ...data }) => (
-                  <Appearance key={id} {...data} />
-                ))}
-                <a href="/speaking">View all →</a>
+                <h2 aria-level="2">Appearances</h2>
+                {upcoming.length > 0 && (
+                  <>
+                    <h3 aria-level="3">Upcoming</h3>
+                    <div role="list" aria-label="Upcoming appearances">
+                      {upcoming.map(({ id, ...data }) => (
+                        <Appearance key={id} {...data} />
+                      ))}
+                    </div>
+                  </>
+                )}
+                <h3 aria-level="3">Past</h3>
+                <div role="list" aria-label="Past appearances">
+                  {past.map(({ id, ...data }) => (
+                    <Appearance key={id} {...data} />
+                  ))}
+                </div>
+                <a href="/speaking" aria-label="View all speaking engagements">
+                  View all →
+                </a>
               </Container>
             </Fade>
           </section>
