@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import { graphql, StaticQuery, withPrefix } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
@@ -88,7 +88,7 @@ function About() {
     <StaticQuery
       query={aboutQuery}
       render={(data) => {
-        const { author, social } = data.site.siteMetadata
+        const { author } = data.site.siteMetadata
         return (
           <section id="about">
             <Fade>
@@ -119,10 +119,6 @@ function About() {
                         explaining technical concepts to teammates and
                         stakeholders.
                       </p>
-                      <p>
-                        I am currently an Engineering Manager at{" "}
-                        <a href="https://formidable.com">Formidable</a>.
-                      </p>
                     </Fade>
                   </div>
                 </Row>
@@ -145,15 +141,6 @@ function About() {
                         d3. I manage people, and occasionally give conference
                         talks on state management, refactoring, and building
                         strong technical teams.
-                      </p>
-                      <p>
-                        For more information,{" "}
-                        <a href={withPrefix("/resume.pdf")}>view my resume</a>{" "}
-                        or{" "}
-                        <a href={`https://twitter.com/${social.twitter}`}>
-                          follow me on twitter
-                        </a>
-                        !
                       </p>
                     </Fade>
                   </div>
@@ -209,9 +196,6 @@ const aboutQuery = graphql`
     site {
       siteMetadata {
         author
-        social {
-          twitter
-        }
       }
     }
   }
