@@ -2,7 +2,7 @@ import { graphql, Link, StaticQuery } from "gatsby"
 import React from "react"
 import { rhythm } from "../utils/typography"
 import Container from "./container"
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 import { format } from "date-fns"
 
 function Blog() {

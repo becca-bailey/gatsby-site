@@ -14,19 +14,19 @@ const Container = styled.div`
 const LayoutContainer = styled.div`
   a {
     text-decoration: none;
-    color: ${props => lighten(0.15)(props.theme.primary)};
+    color: ${(props) => lighten(0.15)(props.theme.primary)};
   }
 
   a:hover {
-    color: ${props => props.theme.primary};
+    color: ${(props) => props.theme.primary};
   }
 
   a:active {
-    color: ${props => props.theme.secondary};
+    color: ${(props) => props.theme.secondary};
   }
 
   section:nth-child(even) {
-    background-color: ${props => props.theme.background};
+    background-color: ${(props) => props.theme.background};
   }
 `
 

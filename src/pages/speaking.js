@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 import Container from "../components/container"
 import Layout from "../components/layout"
 import SEO from "../components/seo"

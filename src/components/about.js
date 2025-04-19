@@ -12,7 +12,7 @@ import styled from "styled-components"
 import { medium, small } from "../utils/breakpoints"
 import { rhythm } from "../utils/typography"
 import Container from "./container"
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 import "./about.css"
 
 const Heading = styled.h1`

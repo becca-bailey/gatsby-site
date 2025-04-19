@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Container from "../components/container"
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 
 class ThankYou extends React.Component {
   render() {

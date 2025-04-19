@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import Container from "../components/container"
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 import { format } from "date-fns"
 
 class BlogIndex extends React.Component {

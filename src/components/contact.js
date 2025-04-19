@@ -1,4 +1,4 @@
-import Fade from "react-reveal/Fade"
+import { Fade } from "react-swift-reveal"
 import React from "react"
 import Container from "./container"
 import { Form, Field, Input, Textarea } from "./form"
@@ -10,7 +10,7 @@ const initialState = {}
 
 function encode(data) {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&")
 }
 
@@ -18,11 +18,11 @@ function Contact() {
   const [state, setState] = React.useState(initialState)
   const { showModal, hideModal } = React.useContext(ModalContext)
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
     // Only submit if values have changed
@@ -39,7 +39,7 @@ function Contact() {
           showModal("thank-you")
           setState(initialState)
         })
-        .catch(error => console.error(error))
+        .catch((error) => console.error(error))
     }
   }
 
@@ -64,7 +64,7 @@ function Contact() {
             <input type="hidden" name="form-name" value="contact" />
             <p hidden>
               <label>
-                Don’t fill this out:{" "}
+                Don't fill this out:{" "}
                 <input name="bot-field" onChange={handleChange} />
               </label>
             </p>
