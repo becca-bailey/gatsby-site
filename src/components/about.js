@@ -118,7 +118,6 @@ function About() {
     <StaticQuery
       query={aboutQuery}
       render={(data) => {
-        const { author } = data.site.siteMetadata
         return (
           <section id="about" aria-label="About Becca">
             <Fade>
