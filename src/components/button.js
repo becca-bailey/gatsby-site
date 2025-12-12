@@ -1,20 +1,14 @@
-import styled from "styled-components"
-import { rhythm } from "../utils/typography"
-import theme from "../utils/theme"
+import React from "react"
 
-const Button = styled.button`
-  color: ${theme.white};
-  background-color: ${theme.primary};
-  border: none;
-  padding: ${rhythm(0.25)};
-  border-radius: 4px;
-  width: 100%;
-  cursor: pointer;
-  transition: 0.2s ease;
-
-  &:hover {
-    background-color: ${theme.primary.darken(0.2)};
-  }
-`
+function Button({ children, className = "", ...props }) {
+  return (
+    <button
+      className={`text-white bg-primary border-none py-[8.31px] rounded-[4px] w-full cursor-pointer transition-all duration-200 hover:bg-[#57163f] ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
 
 export default Button

@@ -10,26 +10,6 @@ import { StaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
 import Container from "../components/container"
 
-import { rhythm } from "../utils/typography"
-import styled from "styled-components"
-import { small } from "../utils/breakpoints"
-
-const BioContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  p {
-    margin: 0;
-    padding: 0;
-  }
-
-  @media (min-width: ${small}) {
-    flex-direction: row;
-  }
-`
-
 function Bio() {
   return (
     <StaticQuery
@@ -38,20 +18,15 @@ function Bio() {
         const { author, social } = data.site.siteMetadata
         return (
           <Container>
-            <BioContainer>
+            <div className="flex flex-col items-center justify-center small:flex-row">
               <GatsbyImage
                 image={data.avatar.childImageSharp.gatsbyImageData}
                 alt={author}
-                style={{
-                  marginRight: rhythm(1 / 2),
-                  marginBottom: 0,
-                  minWidth: 150,
-                  borderRadius: `100%`,
-                }}
+                className="mr-[16.625px] mb-0 min-w-[150px] rounded-full"
                 imgStyle={{
                   borderRadius: `50%`,
                 }} />
-              <p>
+              <p className="m-0 p-0">
                 I'm a software engineer who loves to design things. After
                 previous career as an elementary fine arts teacher, I love
                 helping artists and career changers understand software.
@@ -61,7 +36,7 @@ function Bio() {
                 </a>
                 .
               </p>
-            </BioContainer>
+            </div>
           </Container>
         );
       }}

@@ -1,5 +1,6 @@
 import { Fade } from "react-swift-reveal"
 import React from "react"
+import { Link } from "gatsby"
 import Container from "./container"
 import { Form, Field, Input, Textarea } from "./form"
 import Button from "./button"
@@ -47,11 +48,26 @@ function Contact() {
     <section id="contact">
       <Fade>
         <Container>
-          <h2>Contact me!</h2>
-          <p>
-            Do you need a speaker at your next JavaScript event? Do you want to
-            talk to me about my cats? Leave me a message here and I will try to
-            get back to you as soon as possible.
+          <h2>Get in touch</h2>
+          <p className="mb-4">
+            If you think we might work well together, feel free to reach out — or take a look at how I structure engagements.
+          </p>
+          <div className="mb-6 flex flex-col small:flex-row small:gap-4">
+            <Link
+              to="/work-with-me"
+              className="inline-block bg-primary text-white px-6 py-3 rounded hover:bg-[#57163f] transition-colors no-underline font-medium text-center"
+            >
+              Work With Me
+            </Link>
+            <a
+              href="mailto:becca@becca.is"
+              className="inline-block border-2 border-primary text-primary px-6 py-3 rounded hover:bg-primary hover:text-white transition-colors no-underline font-medium text-center"
+            >
+              Contact
+            </a>
+          </div>
+          <p className="text-sm text-gray-600 mb-4">
+            Or leave me a message here:
           </p>
           <Form
             name="contact"

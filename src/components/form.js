@@ -1,34 +1,38 @@
-import styled from "styled-components"
-import { rhythm } from "../utils/typography"
-import theme from "../utils/theme"
-import { small } from "../utils/breakpoints"
+import React from "react"
 
-export const Field = styled.div`
-  display: block;
-  padding-bottom: ${rhythm(0.75)};
-`
+export function Field({ children, className = "", ...props }) {
+  return (
+    <div className={`block pb-[24.94px] ${className}`} {...props}>
+      {children}
+    </div>
+  )
+}
 
-export const Input = styled.input`
-  width: 100%;
-  border: 1px solid ${theme.gray};
-  border-radius: 5px;
-  padding: ${rhythm(0.25)};
-`
+export function Input({ className = "", ...props }) {
+  return (
+    <input
+      className={`w-full border border-gray rounded-[5px] py-[8.31px] px-[8.31px] ${className}`}
+      {...props}
+    />
+  )
+}
 
-export const Textarea = styled.textarea`
-  width: 100%;
-  border: 1px solid ${theme.gray};
-  border-radius: 4px;
-  padding: ${rhythm(0.25)};
-  min-height: ${rhythm(4)};
-`
-export const Form = styled.form`
-  @media (min-width: ${small}) {
-    max-width: ${rhythm(20)};
-    margin: auto;
-    background-color: ${theme.background.lighten(0.03)};
-    border: 1px solid ${theme.background.darken(0.1)};
-    border-radius: 4px;
-    padding: ${rhythm(1)};
-  }
-`
+export function Textarea({ className = "", ...props }) {
+  return (
+    <textarea
+      className={`w-full border border-gray rounded-[4px] py-[8.31px] px-[8.31px] min-h-[133px] ${className}`}
+      {...props}
+    />
+  )
+}
+
+export function Form({ children, className = "", ...props }) {
+  return (
+    <form
+      className={`small:max-w-[665px] small:mx-auto small:bg-[#F5F7F5] small:border small:border-[#E0E5E0] small:rounded-[4px] small:p-[33.25px] ${className}`}
+      {...props}
+    >
+      {children}
+    </form>
+  )
+}

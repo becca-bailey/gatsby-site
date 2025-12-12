@@ -14,6 +14,7 @@ module.exports = {
   },
   pathPrefix: "/",
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
     {
@@ -53,7 +54,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-json`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

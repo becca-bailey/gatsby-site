@@ -1,69 +1,47 @@
 import React from "react"
-import { rhythm } from "../utils/typography"
 import Container from "./container"
-import styled from "styled-components"
 import { Fade } from "react-swift-reveal"
 import { graphql, StaticQuery } from "gatsby"
 import _ from "lodash"
 
 const LIMIT = 5
 
-const Title = styled.h3`
-  margin-bottom: ${rhythm(1 / 4)};
-`
-
-const Wrapper = styled.div`
-  margin-bottom: ${rhythm(1 / 2)};
-`
-
-const TitleText = styled.span`
-  color: ${(props) => props.theme.primary};
-`
-
-const Tag = styled.span`
-  line-height: 1rem;
-  font-family: Rubik;
-  font-size: 12px;
-  border-radius: 4px;
-  background-color: ${(props) => props.theme.gray};
-  padding ${rhythm(1 / 6)};
-  margin-left: ${rhythm(1 / 3)};
-`
-
 function Conference({ title, conference, url }) {
   return (
-    <Wrapper role="listitem">
-      <Title>
+    <div className="mb-[16.625px]" role="listitem">
+      <h3 className="mb-[8.31px]">
         {url ? (
           <a href={url} aria-label={`View details about ${title}`}>
             {title}
           </a>
         ) : (
-          <TitleText>{title}</TitleText>
+          <span className="text-primary">{title}</span>
         )}
-      </Title>
+      </h3>
       <p>{conference}</p>
-    </Wrapper>
+    </div>
   )
 }
 
 function Podcast({ podcast, name, url }) {
   return (
-    <Wrapper role="listitem">
-      <Title>
+    <div className="mb-[16.625px]" role="listitem">
+      <h3 className="mb-[8.31px]">
         {url ? (
           <a href={url} aria-label={`Listen to ${name} on ${podcast}`}>
             {name}
           </a>
         ) : (
-          <TitleText>{name}</TitleText>
+          <span className="text-primary">{name}</span>
         )}
-      </Title>
+      </h3>
       <p>
         {podcast}
-        <Tag>podcast</Tag>
+        <span className="leading-4 font-header text-xs rounded-[4px] bg-gray py-[5.54px] ml-[11.08px]">
+          podcast
+        </span>
       </p>
-    </Wrapper>
+    </div>
   )
 }
 

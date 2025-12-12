@@ -1,60 +1,28 @@
 import React from "react"
 import { Link } from "gatsby"
-import styled from "styled-components"
-import { rhythm } from "../utils/typography"
-import { medium } from "../utils/breakpoints"
 
-const NavigationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  position: relative;
-`
-
-const SiteTitle = styled.h1`
-  font-size: ${rhythm(1.25)};
-  text-transform: lowercase;
-  margin: 0;
-`
-
-const NavigationLink = styled.span`
-  text-transform: lowercase;
-  padding-right: 1rem;
-`
-
-const NavigationLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: ${medium}) {
-    flex-direction: row;
-    align-items: center;
-  }
-`
-
-class Navigation extends React.Component {
-  render() {
-    const { title } = this.props
-    return (
-      <NavigationContainer>
-        <SiteTitle>
-          <Link to="/">{title}</Link>
-        </SiteTitle>
-        <NavigationLinks>
-          <NavigationLink>
-            <Link to="/speaking">Speaking</Link>
-          </NavigationLink>
-          <NavigationLink>
-            <Link to="/writing">Writing</Link>
-          </NavigationLink>
-          <NavigationLink>
-            <Link to="/#contact">Contact</Link>
-          </NavigationLink>
-        </NavigationLinks>
-      </NavigationContainer>
-    )
-  }
+function Navigation({ title }) {
+  return (
+    <div className="flex items-center justify-between mb-4 relative">
+      <h1 className="text-[41.56px] lowercase m-0 font-header">
+        <Link to="/">{title}</Link>
+      </h1>
+      <div className="flex flex-col medium:flex-row medium:items-center">
+        <span className="lowercase pr-4">
+          <Link to="/work-with-me">Work with me</Link>
+        </span>
+        <span className="lowercase pr-4">
+          <Link to="/writing">Writing</Link>
+        </span>
+        <span className="lowercase pr-4">
+          <Link to="/speaking">Speaking</Link>
+        </span>
+        <span className="lowercase pr-4">
+          <Link to="/#contact">Contact</Link>
+        </span>
+      </div>
+    </div>
+  )
 }
 
 export default Navigation

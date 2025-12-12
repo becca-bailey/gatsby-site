@@ -1,9 +1,18 @@
-import styled from "styled-components"
-import { rhythm } from "../utils/typography"
+import React from "react"
 
-const Container = styled.div`
-  padding: ${rhythm(1)} ${rhythm(3 / 4)};
-  max-width: ${props => (props.small ? rhythm(28) : rhythm(32))};
-  margin: auto;
-`
+const Container = ({ children, small, className = "", ...props }) => {
+  const maxWidthClass = small
+    ? "max-w-[931px]"
+    : "max-w-[1064px]"
+  
+  return (
+    <div
+      className={`py-[33.25px] px-[24.94px] ${maxWidthClass} mx-auto ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
 export default Container

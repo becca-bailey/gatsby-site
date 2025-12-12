@@ -1,77 +1,31 @@
-import { graphql, Link, StaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
-import { rhythm } from "../utils/typography"
 import Container from "./container"
 import { Fade } from "react-swift-reveal"
-import { format } from "date-fns"
 
 function Blog() {
   return (
-    <StaticQuery
-      query={blogPreviewQuery}
-      render={(data) => {
-        const posts = data.allAirtable.edges
-        return (
-          <section id="blog">
-            <Container>
-              <h2>Writing</h2>
-              <Fade cascade>
-                {posts.map(({ node }) => {
-                  const { id, data } = node
-                  const {
-                    Name: name,
-                    Date: date,
-                    URL: url,
-                    Source: source,
-                  } = data
-                  const formattedDate = format(new Date(date), "MMMM do, yyyy")
-                  return (
-                    <div key={id}>
-                      <h3
-                        style={{
-                          marginBottom: rhythm(1 / 4),
-                        }}
-                      >
-                        <Link style={{ boxShadow: `none` }} to={url}>
-                          {name}
-                        </Link>
-                      </h3>
-                      <p>
-                        {source} - {formattedDate}
-                      </p>
-                    </div>
-                  )
-                })}
-              </Fade>
-              <a href="/writing">View all →</a>
-            </Container>
-          </section>
-        )
-      }}
-    />
+    <section id="blog">
+      <Fade>
+        <Container>
+          <h2>Writing & speaking</h2>
+          <p className="mb-4">
+            I write and speak about software systems, work, and decision-making — especially where technology intersects with people, power, and sustainability.
+          </p>
+          <div className="mb-4">
+            <Link to="/writing" className="text-primary font-medium hover:underline">
+              → Read my writing
+            </Link>
+          </div>
+          <div className="mb-4">
+            <Link to="/speaking" className="text-primary font-medium hover:underline">
+              → Talks & speaking engagements
+            </Link>
+          </div>
+        </Container>
+      </Fade>
+    </section>
   )
 }
-
-const blogPreviewQuery = graphql`
-  {
-    allAirtable(
-      limit: 5
-      filter: { table: { eq: "Writing" } }
-      sort: { fields: data___Date, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          data {
-            URL
-            Name
-            Date
-            Source
-          }
-        }
-      }
-    }
-  }
-`
 
 export default Blog
