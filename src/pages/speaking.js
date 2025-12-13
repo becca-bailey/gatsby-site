@@ -4,13 +4,13 @@ import { Fade } from "react-swift-reveal"
 import Container from "../components/container"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import theme from "../utils/theme"
-import styled from "styled-components"
-import { rhythm } from "../utils/typography"
-import { small } from "../utils/breakpoints"
+import Card from "../components/card"
 
 function mapDataToProps(data) {
-  const fromGraphQL = data.allAirtable.edges
+  const fromGraphQL = data.allAirtable?.edges || []
+  if (!fromGraphQL || fromGraphQL.length === 0) {
+    return { talks: [] }
+  }
   const talks = fromGraphQL.map(({ node }) => {
     const { data, id: talkId } = node
     const {
@@ -60,20 +60,9 @@ function mapDataToProps(data) {
   return { talks }
 }
 
-const TalkContainer = styled.div`
-  margin-bottom: ${rhythm(2)};
-  @media (min-width: ${small}) {
-    background-color: ${theme.background.lighten(0.03)};
-    border: 1px solid ${theme.background.darken(0.1)};
-    border-radius: 4px;
-    padding: ${rhythm(1)};
-    margin-bottom: ${rhythm(1)};
-  }
-`
-
 function Talk({ name, abstract, isWorkshop, resources, presentations }) {
   return (
-    <TalkContainer>
+    <Card>
       <h2>
         {name}
         {isWorkshop && " (Workshop)"}
@@ -103,33 +92,30 @@ function Talk({ name, abstract, isWorkshop, resources, presentations }) {
           </ul>
         </>
       )}
-    </TalkContainer>
+    </Card>
   )
 }
 
-class Speaking extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const { talks } = mapDataToProps(data)
+function Speaking({ data, location }) {
+  const siteTitle = data.site.siteMetadata.title
+  const { talks } = mapDataToProps(data)
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title="Speaking"
-          keywords={[`speaking`, `conferences`, `talks`, `react`, `podcasts`]}
-        />
-        <Container small>
-          <Fade cascade>
-            <h2>Talks</h2>
-            {talks.map(({ id, ...talk }) => (
-              <Talk key={id} {...talk}></Talk>
-            ))}
-          </Fade>
-        </Container>
-      </Layout>
-    )
-  }
+  return (
+    <Layout location={location} title={siteTitle}>
+      <SEO
+        title="Speaking"
+        keywords={[`speaking`, `conferences`, `talks`, `react`, `podcasts`]}
+      />
+      <Container small>
+        <Fade cascade>
+          <h2>Talks</h2>
+          {talks.map(({ id, ...talk }) => (
+            <Talk key={id} {...talk}></Talk>
+          ))}
+        </Fade>
+      </Container>
+    </Layout>
+  )
 }
 
 export default Speaking
@@ -143,7 +129,7 @@ export const pageQuery = graphql`
     }
     allAirtable(
       filter: { table: { eq: "Talks" } }
-      sort: { fields: data___Year, order: DESC }
+      sort: { data: { Year: DESC } }
     ) {
       edges {
         node {

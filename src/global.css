@@ -1,3 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Lora', serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: #4E473F; /* stone-brown */
+    background-color: #FBF9F8; /* cream */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #4E473F; /* stone-brown */
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: 2.125rem; /* 34px */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  /* Base link styles for body/inline links */
+  a {
+    text-decoration: none;
+    color: #7CAEF3; /* blue */
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  /* Remove alternating background pattern - sections handle their own backgrounds */
+  /* main section:nth-child(even) {
+    background-color: #F2F4F2;
+  } */
+
+  .image {
+    border-radius: 50%;
+  }
+
+  /* Better section spacing with organic feel */
+  main section {
+    padding-top: 3rem; /* 48px */
+    padding-bottom: 3rem; /* 48px */
+  }
+
+  main section + section {
+    border-top: 1px solid #FFE0D3; /* peach */
+  }
+
+  /* Hand-drawn frame for hero portrait */
+  .hand-drawn-frame {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+    background: #FBF9F8;
+  }
+
+  .hand-drawn-frame img {
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 600px) {
+    main section {
+      padding-top: 4rem; /* 64px */
+      padding-bottom: 4rem; /* 64px */
+    }
+  }
+
+  @media (min-width: 900px) {
+    main section {
+      padding-top: 5rem; /* 80px */
+      padding-bottom: 5rem; /* 80px */
+    }
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+  }
+
+  ul, ol {
+    margin-bottom: 1.25rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 600px) {
+    h1 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h2 {
+      font-size: 2.125rem; /* 34px */
+    }
+
+    h3 {
+      font-size: 1.75rem; /* 28px */
+    }
+    
+    main section {
+      padding-top: 5rem; /* 80px */
+      padding-bottom: 5rem; /* 80px */
+    }
+  }
+
+  @media (min-width: 900px) {
+    h1 {
+      font-size: 3rem; /* 48px */
+    }
+
+    h2 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h3 {
+      font-size: 2rem; /* 32px */
+    }
+  }
+}
+
+.modal-enter {
+  opacity: 0.01;
+}
+
+.modal-enter .modal-view {
+  transform: scale(0.9) translateY(20%);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+
+.modal-enter-active .modal-view {
+  transform: scale(1) translateY(0%);
+}
+
+.modal-exit {
+  opacity: 1;
+}
+
+.modal-exit .modal-view {
+  transform: scale(1) translateY(0%);
+}
+
+.modal-exit-active {
+  opacity: 0.01;
+  transition: all 300ms ease-out;
+}
+
+.modal-exit-active .modal-view {
+  transform: scale(0.9) translateY(20%);
+}
+
 :not(pre) > code[class*="language-"] {
   color: #403f53;
   background: none;

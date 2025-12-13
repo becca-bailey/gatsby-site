@@ -1,6 +1,19 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+// Load environment variables
+// Try NODE_ENV-specific file first, then fall back to .env.development, then .env
+const fs = require("fs")
+const nodeEnv = process.env.NODE_ENV || "development"
+const envFiles = [
+  `.env.${nodeEnv}`,
+  `.env.development`, // Fallback to development env
+  `.env`, // Fallback to default .env
+]
+
+for (const envFile of envFiles) {
+  if (fs.existsSync(envFile)) {
+    require("dotenv").config({ path: envFile })
+    break
+  }
+}
 
 module.exports = {
   siteMetadata: {
@@ -14,6 +27,7 @@ module.exports = {
   },
   pathPrefix: "/",
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
     {
@@ -53,7 +67,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-json`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

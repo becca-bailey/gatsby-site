@@ -1,5 +1,6 @@
 import { Fade } from "react-swift-reveal"
 import React from "react"
+import { Link } from "gatsby"
 import Container from "./container"
 import { Form, Field, Input, Textarea } from "./form"
 import Button from "./button"
@@ -47,11 +48,9 @@ function Contact() {
     <section id="contact">
       <Fade>
         <Container>
-          <h2>Contact me!</h2>
-          <p>
-            Do you need a speaker at your next JavaScript event? Do you want to
-            talk to me about my cats? Leave me a message here and I will try to
-            get back to you as soon as possible.
+          <h2 className="text-stone-brown">Contact form</h2>
+          <p className="text-sm text-stone-brown/70 mb-6 font-medium">
+            Leave me a message here:
           </p>
           <Form
             name="contact"
@@ -100,7 +99,7 @@ function Contact() {
                 />
               </label>
             </Field>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" fullWidth>Submit</Button>
           </Form>
         </Container>
       </Fade>

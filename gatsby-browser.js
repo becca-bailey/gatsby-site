@@ -1,6 +1,6 @@
 // custom typefaces
 import "typeface-lora"
-import "typeface-rubik"
+// Note: Gibson font needs to be loaded separately (self-hosted or via font service)
 
 // syntax highlighting
 import "prism-theme-night-owl/build/light.css"

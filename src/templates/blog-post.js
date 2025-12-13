@@ -4,7 +4,6 @@ import Bio from "../components/bio"
 import Container from "../components/container"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
@@ -21,14 +20,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         <article aria-label="Blog post">
           <header>
             <h1>{post.frontmatter.title}</h1>
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-                marginTop: rhythm(-0.5),
-              }}
-            >
+            <p className="block mb-[33.25px] -mt-[16.625px] text-base">
               {post.frontmatter.date}
             </p>
           </header>
@@ -36,23 +28,13 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </main>
           <hr
-            style={{
-              marginBottom: rhythm(1),
-            }}
+            className="mb-[33.25px]"
             aria-hidden="true"
           />
           <Bio />
 
           <nav aria-label="Blog post navigation">
-            <ul
-              style={{
-                display: `flex`,
-                flexWrap: `wrap`,
-                justifyContent: `space-between`,
-                listStyle: `none`,
-                padding: 0,
-              }}
-            >
+            <ul className="flex flex-wrap justify-between list-none p-0">
               <li>
                 {previous && (
                   <Link

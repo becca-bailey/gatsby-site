@@ -1,77 +1,37 @@
-import { graphql, Link, StaticQuery } from "gatsby"
 import React from "react"
-import { rhythm } from "../utils/typography"
 import Container from "./container"
 import { Fade } from "react-swift-reveal"
-import { format } from "date-fns"
+import { ButtonLink } from "./button"
 
 function Blog() {
   return (
-    <StaticQuery
-      query={blogPreviewQuery}
-      render={(data) => {
-        const posts = data.allAirtable.edges
-        return (
-          <section id="blog">
-            <Container>
-              <h2>Writing</h2>
-              <Fade cascade>
-                {posts.map(({ node }) => {
-                  const { id, data } = node
-                  const {
-                    Name: name,
-                    Date: date,
-                    URL: url,
-                    Source: source,
-                  } = data
-                  const formattedDate = format(new Date(date), "MMMM do, yyyy")
-                  return (
-                    <div key={id}>
-                      <h3
-                        style={{
-                          marginBottom: rhythm(1 / 4),
-                        }}
-                      >
-                        <Link style={{ boxShadow: `none` }} to={url}>
-                          {name}
-                        </Link>
-                      </h3>
-                      <p>
-                        {source} - {formattedDate}
-                      </p>
-                    </div>
-                  )
-                })}
-              </Fade>
-              <a href="/writing">View all →</a>
-            </Container>
-          </section>
-        )
-      }}
-    />
+    <section id="blog" className="bg-cream">
+      <Fade>
+        <Container>
+          <h2 className="text-stone-brown">Writing & speaking</h2>
+          <p className="mb-6 text-stone-brown text-lg leading-relaxed">
+            I write and speak about software systems, work, and decision-making — especially where technology intersects with people, power, and sustainability.
+          </p>
+          <div className="flex flex-col small:flex-row gap-4">
+            <ButtonLink 
+              to="/writing" 
+              variant="secondary"
+              className="px-6 py-3"
+            >
+              Read my writing →
+            </ButtonLink>
+            <ButtonLink 
+              to="/speaking" 
+              variant="secondary"
+              className="px-6 py-3"
+            >
+              Talks & speaking engagements →
+            </ButtonLink>
+          </div>
+        </Container>
+      </Fade>
+    </section>
   )
 }
-
-const blogPreviewQuery = graphql`
-  {
-    allAirtable(
-      limit: 5
-      filter: { table: { eq: "Writing" } }
-      sort: { fields: data___Date, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          data {
-            URL
-            Name
-            Date
-            Source
-          }
-        }
-      }
-    }
-  }
-`
 
 export default Blog
