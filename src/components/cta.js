@@ -16,14 +16,12 @@ function CTA() {
             <ButtonLink
               to="/work-with-me"
               variant="primary"
-              className="px-8 py-4"
             >
               Work With Me
             </ButtonLink>
             <ButtonLink
               to="/contact"
               variant="secondary"
-              className="px-8 py-4"
             >
               Contact
             </ButtonLink>
