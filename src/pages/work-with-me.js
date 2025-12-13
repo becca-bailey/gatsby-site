@@ -195,7 +195,7 @@ function WorkWithMe({ data, location }) {
               If it is, we'll define scope, timeline, and expectations clearly before any work begins.
             </p>
             <a
-              href="mailto:becca@becca.is?subject=Work%20with%20me%20inquiry"
+              href="mailto:beccanelsonbailey@gmail.com?subject=Work%20with%20me%20inquiry"
               className="inline-block bg-gold text-stone-brown hover:bg-gold/90 shadow-sm hover:shadow-md px-6 py-3 rounded-lg font-medium text-center transition-all duration-200 cursor-pointer no-underline"
             >
               Schedule an intro call

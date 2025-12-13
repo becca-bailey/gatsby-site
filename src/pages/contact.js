@@ -38,10 +38,10 @@ function ContactPage({ data, location }) {
                 <div>
                   <p className="text-stone-brown font-medium mb-2">Email</p>
                   <a
-                    href="mailto:becca@becca.is"
+                    href="mailto:beccanelsonbailey@gmail.com"
                     className="text-blue transition-colors"
                   >
-                    becca@becca.is
+                    beccanelsonbailey@gmail.com
                   </a>
                 </div>
                 <div>
