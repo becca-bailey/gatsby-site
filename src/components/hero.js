@@ -67,7 +67,7 @@ function Hero() {
                   <ButtonLink
                     to="/work-with-me"
                     variant="primary"
-                    className="text-sm small:text-base medium:text-lg px-5 small:px-6 medium:px-8 py-2.5 small:py-3 medium:py-4"
+                    className="text-sm small:text-base medium:text-lg"
                   >
                     Work with me
                   </ButtonLink>

@@ -1,7 +1,7 @@
 import React from "react"
 import Container from "./container"
 import { Fade } from "react-swift-reveal"
-import { ButtonLink } from "./button"
+import { Link } from "gatsby"
 
 function Blog() {
   return (
@@ -12,21 +12,19 @@ function Blog() {
           <p className="mb-6 text-stone-brown text-lg leading-relaxed">
             I write and speak about software systems, work, and decision-making — especially where technology intersects with people, power, and sustainability.
           </p>
-          <div className="flex flex-col small:flex-row gap-4">
-            <ButtonLink 
-              to="/writing" 
-              variant="secondary"
-              className="px-6 py-3"
+          <div className="flex flex-col gap-4">
+            <Link
+              to="/writing"
+              className="inline-block text-blue font-medium hover:opacity-80 transition-opacity underline decoration-2 underline-offset-4 text-lg"
             >
               Read my writing →
-            </ButtonLink>
-            <ButtonLink 
-              to="/speaking" 
-              variant="secondary"
-              className="px-6 py-3"
+            </Link>
+            <Link
+              to="/speaking"
+              className="inline-block text-blue font-medium hover:opacity-80 transition-opacity underline decoration-2 underline-offset-4 text-lg"
             >
               Talks & speaking engagements →
-            </ButtonLink>
+            </Link>
           </div>
         </Container>
       </Fade>
