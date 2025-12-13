@@ -25,7 +25,9 @@ function BlogIndex({ data, location }) {
       />
       <Container small>
         <Fade cascade>
-          <h1>On Substack</h1>
+          <h1>Writing</h1>
+          
+          <h2>On Substack</h2>
           {substack.map(({ node }) => {
             const { id, data } = node
             const { Name: name, Date: date, URL: url } = data
@@ -41,11 +43,8 @@ function BlogIndex({ data, location }) {
               </div>
             )
           })}
-        </Fade>
-      </Container>
-      <Container small>
-        <Fade cascade>
-          <h1>Elsewhere</h1>
+
+          <h2>Elsewhere</h2>
           {rest.map(({ node }) => {
             const { id, data } = node
             const { Name: name, Date: date, URL: url, Source: source } = data
@@ -63,11 +62,8 @@ function BlogIndex({ data, location }) {
               </div>
             )
           })}
-        </Fade>
-      </Container>
-      <Container small>
-        <Fade cascade>
-          <h1>On Here</h1>
+
+          <h2>On Here</h2>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
             return (
