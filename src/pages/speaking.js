@@ -4,9 +4,13 @@ import { Fade } from "react-swift-reveal"
 import Container from "../components/container"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Card from "../components/card"
 
 function mapDataToProps(data) {
-  const fromGraphQL = data.allAirtable.edges
+  const fromGraphQL = data.allAirtable?.edges || []
+  if (!fromGraphQL || fromGraphQL.length === 0) {
+    return { talks: [] }
+  }
   const talks = fromGraphQL.map(({ node }) => {
     const { data, id: talkId } = node
     const {
@@ -58,7 +62,7 @@ function mapDataToProps(data) {
 
 function Talk({ name, abstract, isWorkshop, resources, presentations }) {
   return (
-    <div className="mb-[66.5px] small:bg-[#F5F7F5] small:border small:border-[#E0E5E0] small:rounded-[4px] small:p-[33.25px] small:mb-[33.25px]">
+    <Card>
       <h2>
         {name}
         {isWorkshop && " (Workshop)"}
@@ -88,7 +92,7 @@ function Talk({ name, abstract, isWorkshop, resources, presentations }) {
           </ul>
         </>
       )}
-    </div>
+    </Card>
   )
 }
 
@@ -125,7 +129,7 @@ export const pageQuery = graphql`
     }
     allAirtable(
       filter: { table: { eq: "Talks" } }
-      sort: { fields: data___Year, order: DESC }
+      sort: { data: { Year: DESC } }
     ) {
       edges {
         node {

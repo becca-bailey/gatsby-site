@@ -48,26 +48,9 @@ function Contact() {
     <section id="contact">
       <Fade>
         <Container>
-          <h2>Get in touch</h2>
-          <p className="mb-4">
-            If you think we might work well together, feel free to reach out — or take a look at how I structure engagements.
-          </p>
-          <div className="mb-6 flex flex-col small:flex-row small:gap-4">
-            <Link
-              to="/work-with-me"
-              className="inline-block bg-primary text-white px-6 py-3 rounded hover:bg-[#57163f] transition-colors no-underline font-medium text-center"
-            >
-              Work With Me
-            </Link>
-            <a
-              href="mailto:becca@becca.is"
-              className="inline-block border-2 border-primary text-primary px-6 py-3 rounded hover:bg-primary hover:text-white transition-colors no-underline font-medium text-center"
-            >
-              Contact
-            </a>
-          </div>
-          <p className="text-sm text-gray-600 mb-4">
-            Or leave me a message here:
+          <h2 className="text-stone-brown">Contact form</h2>
+          <p className="text-sm text-stone-brown/70 mb-6 font-medium">
+            Leave me a message here:
           </p>
           <Form
             name="contact"
@@ -116,7 +99,7 @@ function Contact() {
                 />
               </label>
             </Field>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" fullWidth>Submit</Button>
           </Form>
         </Container>
       </Fade>

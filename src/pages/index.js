@@ -6,7 +6,7 @@ import WaysToWork from "../components/ways-to-work"
 import Blog from "../components/writing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Contact from "../components/contact"
+import CTA from "../components/cta"
 import ModalProvider from "../containers/modal-provider"
 
 function BlogIndex({ data, location }) {
@@ -17,13 +17,19 @@ function BlogIndex({ data, location }) {
       <Layout location={location} title={siteTitle}>
         <SEO
           title="Home"
-          keywords={[`becca`, `javascript`, `software engineer`, `consulting`, `technical advisory`]}
+          keywords={[
+            `becca`,
+            `javascript`,
+            `software engineer`,
+            `consulting`,
+            `technical advisory`,
+          ]}
         />
         <Hero />
         <FocusedOn />
         <WaysToWork />
         <Blog />
-        <Contact />
+        <CTA />
       </Layout>
     </ModalProvider>
   )

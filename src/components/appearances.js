@@ -147,7 +147,7 @@ const speakingEngagementsQuery = graphql`
     allAirtable(
       limit: 5
       filter: { table: { in: ["Conferences", "Podcasts"] } }
-      sort: { fields: data___Date, order: DESC }
+      sort: { data: { Date: DESC } }
     ) {
       edges {
         node {

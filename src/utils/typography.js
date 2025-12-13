@@ -2,7 +2,7 @@ import Typography from "typography"
 import colors from "./colors"
 
 const typography = new Typography({
-  headerFontFamily: ["Rubik", "sans-serif"],
+  headerFontFamily: ["DM Sans", "sans-serif"],
   bodyFontFamily: ["Lora", "serif"],
   headerWeight: 500,
   baseFontSize: 19,

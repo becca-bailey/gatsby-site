@@ -7,7 +7,7 @@ const Container = ({ children, small, className = "", ...props }) => {
   
   return (
     <div
-      className={`py-[33.25px] px-[24.94px] ${maxWidthClass} mx-auto ${className}`}
+      className={`py-8 px-6 small:py-12 small:px-8 medium:py-16 medium:px-12 ${maxWidthClass} mx-auto ${className}`}
       {...props}
     >
       {children}

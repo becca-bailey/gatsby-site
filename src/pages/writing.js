@@ -33,7 +33,7 @@ function BlogIndex({ data, location }) {
             return (
               <div key={id}>
                 <h3 className="mb-[8.31px]">
-                  <Link className="shadow-none" to={url}>
+                  <Link to={url}>
                     {name}
                   </Link>
                 </h3>
@@ -53,7 +53,7 @@ function BlogIndex({ data, location }) {
             return (
               <div key={id}>
                 <h3 className="mb-[8.31px]">
-                  <Link className="shadow-none" to={url}>
+                  <Link to={url}>
                     {name}
                   </Link>
                 </h3>
@@ -73,7 +73,7 @@ function BlogIndex({ data, location }) {
             return (
               <div key={node.fields.slug}>
                 <h3 className="mb-[8.31px]">
-                  <Link className="shadow-none" to={node.fields.slug}>
+                  <Link to={node.fields.slug}>
                     {title}
                   </Link>
                 </h3>
@@ -101,7 +101,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       edges {
         node {
           excerpt
@@ -118,7 +118,7 @@ export const pageQuery = graphql`
     }
     allAirtable(
       filter: { table: { eq: "Writing" } }
-      sort: { fields: data___Date, order: DESC }
+      sort: { data: { Date: DESC } }
     ) {
       edges {
         node {
