@@ -15,7 +15,7 @@ function WorkWithMe({ data, location }) {
       />
       <Container small>
         <div className="max-w-3xl mx-auto">
-          <h1 className="font-header text-4xl mb-8">Working With Me</h1>
+          <h1 className="mb-8">Working With Me</h1>
           
           <div className="mb-12">
             <p className="text-lg mb-4">
@@ -30,7 +30,7 @@ function WorkWithMe({ data, location }) {
           </div>
 
           <div className="mb-12">
-            <h2 className="font-header text-3xl mb-6">How I Work</h2>
+            <h2 className="mb-6">How I Work</h2>
             <p className="mb-6">
               I keep my work intentionally focused and finite. Each engagement has a clear scope, a clear timeline, and a clear end, so you always know what to expect.
             </p>
@@ -38,7 +38,7 @@ function WorkWithMe({ data, location }) {
             <div className="space-y-12">
               {/* Diagnostic Sprint */}
               <div className="border-b border-gray pb-8">
-                <h3 className="font-header text-2xl mb-4">1. Diagnostic Sprint</h3>
+                <h3 className="mb-4">1. Diagnostic Sprint</h3>
                 <p className="text-lg mb-4 font-medium">Starting at $2,000</p>
                 
                 <div className="mb-4">
@@ -84,7 +84,7 @@ function WorkWithMe({ data, location }) {
 
               {/* Fixed-Scope Build */}
               <div className="border-b border-gray pb-8">
-                <h3 className="font-header text-2xl mb-4">2. Fixed-Scope Build</h3>
+                <h3 className="mb-4">2. Fixed-Scope Build</h3>
                 <p className="text-lg mb-4 font-medium">Typically $3,000–$6,000</p>
                 
                 <div className="mb-4">
@@ -125,7 +125,7 @@ function WorkWithMe({ data, location }) {
 
               {/* Technical Office Hours */}
               <div className="pb-8">
-                <h3 className="font-header text-2xl mb-4">3. Technical Office Hours</h3>
+                <h3 className="mb-4">3. Technical Office Hours</h3>
                 <p className="mb-4">Advisory support, without handing off execution</p>
                 
                 <div className="mb-4">
@@ -157,7 +157,7 @@ function WorkWithMe({ data, location }) {
           </div>
 
           <div className="mb-12">
-            <h2 className="font-header text-3xl mb-6">Fit & Expectations</h2>
+            <h2 className="mb-6">Fit & Expectations</h2>
             
             <div className="mb-6">
               <p className="font-medium mb-2">I'm a good fit for:</p>
@@ -180,14 +180,14 @@ function WorkWithMe({ data, location }) {
           </div>
 
           <div className="mb-12">
-            <h2 className="font-header text-3xl mb-4">Availability</h2>
+            <h2 className="mb-4">Availability</h2>
             <p>
               I take on a limited number of projects at a time so I can stay focused and do this work well.
             </p>
           </div>
 
           <div className="mb-12">
-            <h2 className="font-header text-3xl mb-4">Getting Started</h2>
+            <h2 className="mb-4">Getting Started</h2>
             <p className="mb-4">
               The first step is a short intro call to see whether a Diagnostic Sprint is the right fit.
             </p>

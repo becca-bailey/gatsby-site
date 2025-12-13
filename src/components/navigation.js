@@ -45,7 +45,7 @@ function Navigation({ title }) {
   return (
     <>
       <div className="flex items-center justify-between mb-4 relative">
-        <h1 className="text-4xl m-0 font-header text-stone-brown">
+        <h1 className="m-0 text-stone-brown">
           <Link to="/" className="text-stone-brown hover:text-blue transition-colors" onClick={closeMenu}>
             {title}
           </Link>

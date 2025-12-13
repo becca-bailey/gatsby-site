@@ -108,6 +108,7 @@ function Speaking({ data, location }) {
       />
       <Container small>
         <Fade cascade>
+          <h1>Speaking</h1>
           <h2>Talks</h2>
           {talks.map(({ id, ...talk }) => (
             <Talk key={id} {...talk}></Talk>
