@@ -3,6 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from "../components/container"
+import coffeeImage from "../../content/assets/coffee.png"
 
 function WorkWithMe({ data, location }) {
   const siteTitle = data.site.siteMetadata.title
@@ -20,6 +21,13 @@ function WorkWithMe({ data, location }) {
       />
       <Container small>
         <div className="max-w-3xl mx-auto">
+          <div className="flex justify-center mb-8">
+            <img
+              src={coffeeImage}
+              alt="Coffee cup"
+              className="w-40 h-40 rounded-full object-cover"
+            />
+          </div>
           <h1 className="mb-8">Working With Me</h1>
 
           <div className="mb-12">
@@ -35,8 +43,9 @@ function WorkWithMe({ data, location }) {
             </p>
             <p>
               I work in short, well-defined engagements because that's where I
-              do my best work — and because it makes expectations clear from the
-              start.
+              do my best work. This model exists because most technical problems
+              aren’t caused by lack of effort—they’re caused by unclear systems
+              and fuzzy decisions.
             </p>
           </div>
 
@@ -170,7 +179,7 @@ function WorkWithMe({ data, location }) {
               </div>
 
               {/* Technical Office Hours */}
-              <div className="pb-8">
+              <div className="pb-8 border-b border-gray">
                 <h3 className="mb-4">3. Technical Office Hours</h3>
                 <p className="mb-4">
                   Advisory support, without handing off execution
@@ -240,24 +249,27 @@ function WorkWithMe({ data, location }) {
               The first step is a short intro call to see whether a Diagnostic
               Sprint is the right fit.
             </p>
-            <p className="mb-6">
-              If it is, we'll define scope, timeline, and expectations clearly
+
+            <p className="mb-4">
+              If it is, we’ll define scope, timeline, and expectations clearly
               before any work begins.
             </p>
+
+            <p className="mb-6 text-sm text-gray-600">
+              Most clients start with a Diagnostic Sprint. Some stop there.
+              Others continue into a Fixed-Scope Build once priorities are
+              clear.
+            </p>
+
+            <p className="mb-6"></p>
             <a
-              href="mailto:beccanelsonbailey@gmail.com?subject=Work%20with%20me%20inquiry"
+              href="https://calendly.com/beccanelsonbailey/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-gold text-stone-brown hover:bg-gold/90 shadow-sm hover:shadow-md px-6 py-3 rounded-lg font-medium text-center transition-all duration-200 cursor-pointer no-underline"
             >
               Schedule an intro call
             </a>
-          </div>
-
-          <div className="text-sm text-gray-600 italic">
-            <p>
-              I care a lot about building systems that are sustainable — not
-              just technically, but for the people working with them. My goal is
-              to leave you with clarity, not dependency.
-            </p>
           </div>
         </div>
       </Container>
