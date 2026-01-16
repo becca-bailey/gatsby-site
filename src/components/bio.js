@@ -7,14 +7,14 @@
 
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import Container from "../components/container"
 
 function Bio() {
   return (
     <StaticQuery
       query={bioQuery}
-      render={data => {
+      render={(data) => {
         const { author, social } = data.site.siteMetadata
         return (
           <Container>
@@ -25,7 +25,8 @@ function Bio() {
                 className="mr-[16.625px] mb-0 min-w-[150px] rounded-full"
                 imgStyle={{
                   borderRadius: `50%`,
-                }} />
+                }}
+              />
               <p className="m-0 p-0">
                 I'm a software engineer who loves to design things. After
                 previous career as an elementary fine arts teacher, I love
@@ -38,27 +39,28 @@ function Bio() {
               </p>
             </div>
           </Container>
-        );
+        )
       }}
     />
-  );
+  )
 }
 
-const bioQuery = graphql`query BioQuery {
-  avatar: file(absolutePath: {regex: "/becca.png/"}) {
-    childImageSharp {
-      gatsbyImageData(width: 150, height: 150, layout: FIXED)
+const bioQuery = graphql`
+  query BioQuery {
+    avatar: file(absolutePath: { regex: "/becca.png/" }) {
+      childImageSharp {
+        gatsbyImageData(width: 150, height: 150, layout: FIXED)
+      }
     }
-  }
-  site {
-    siteMetadata {
-      author
-      social {
-        twitter
+    site {
+      siteMetadata {
+        author
+        social {
+          twitter
+        }
       }
     }
   }
-}
 `
 
 export default Bio

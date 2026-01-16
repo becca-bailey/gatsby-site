@@ -11,23 +11,41 @@ function WaysToWork() {
         <Container>
           <div className="flex flex-col medium:flex-row medium:items-center medium:gap-12">
             <div className="flex-1 order-2 medium:order-1">
-              <h2 aria-level="2" className="text-stone-brown">Ways we might work together</h2>
+              <h2 aria-level="2" className="text-stone-brown">
+                Ways we might work together
+              </h2>
               <ul className="list-none space-y-5 ml-0 mb-6">
                 <li className="flex items-start">
-                  <span className="text-pink mr-4 text-2xl leading-none">→</span>
-                  <span className="text-stone-brown text-lg leading-relaxed flex-1">Technical diagnostic sprints to identify what's working, what's fragile, and what matters most</span>
+                  <span className="text-pink mr-4 text-2xl leading-none">
+                    →
+                  </span>
+                  <span className="text-stone-brown text-lg leading-relaxed flex-1">
+                    Technical diagnostic sprints to identify what's working,
+                    what's fragile, and what matters most
+                  </span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-pink mr-4 text-2xl leading-none">→</span>
-                  <span className="text-stone-brown text-lg leading-relaxed flex-1">Fixed-scope implementation projects with clear outcomes and clear boundaries</span>
+                  <span className="text-pink mr-4 text-2xl leading-none">
+                    →
+                  </span>
+                  <span className="text-stone-brown text-lg leading-relaxed flex-1">
+                    Fixed-scope implementation projects with clear outcomes and
+                    clear boundaries
+                  </span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-pink mr-4 text-2xl leading-none">→</span>
-                  <span className="text-stone-brown text-lg leading-relaxed flex-1">Advisory sessions for architecture decisions, code reviews, and prioritization</span>
+                  <span className="text-pink mr-4 text-2xl leading-none">
+                    →
+                  </span>
+                  <span className="text-stone-brown text-lg leading-relaxed flex-1">
+                    Advisory sessions for architecture decisions, code reviews,
+                    and prioritization
+                  </span>
                 </li>
               </ul>
               <p className="mb-6 text-stone-brown text-lg">
-                I work in short, well-defined engagements rather than open-ended freelancing.
+                I work in short, well-defined engagements rather than open-ended
+                freelancing.
               </p>
               <Link
                 to="/work-with-me"
@@ -54,4 +72,3 @@ function WaysToWork() {
 }
 
 export default WaysToWork
-

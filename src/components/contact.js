@@ -99,7 +99,9 @@ function Contact() {
                 />
               </label>
             </Field>
-            <Button type="submit" fullWidth>Submit</Button>
+            <Button type="submit" fullWidth>
+              Submit
+            </Button>
           </Form>
         </Container>
       </Fade>

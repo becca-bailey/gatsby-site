@@ -27,10 +27,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <main id="main-content">
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </main>
-          <hr
-            className="mb-[33.25px]"
-            aria-hidden="true"
-          />
+          <hr className="mb-[33.25px]" aria-hidden="true" />
           <Bio />
 
           <nav aria-label="Blog post navigation">

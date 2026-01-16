@@ -32,7 +32,12 @@ function About() {
                   </div>
                   <div>
                     <Fade top cascade>
-                      <h1 className="flex flex-col text-[49.88px] mt-0 small:items-center small:flex-row small:text-[66.5px] medium:mt-[33.25px] medium:-ml-[99.75px]" aria-level="1">Hi, I'm Becca!</h1>
+                      <h1
+                        className="flex flex-col text-[49.88px] mt-0 small:items-center small:flex-row small:text-[66.5px] medium:mt-[33.25px] medium:-ml-[99.75px]"
+                        aria-level="1"
+                      >
+                        Hi, I'm Becca!
+                      </h1>
                     </Fade>
                     <Fade>
                       <p>
@@ -78,7 +83,10 @@ function About() {
                       </p>
                     </Fade>
                     <Fade>
-                      <div className="mt-[33.25px] text-left" aria-label="Social media links">
+                      <div
+                        className="mt-[33.25px] text-left"
+                        aria-label="Social media links"
+                      >
                         <p>You can also find me on:</p>
                         <a
                           href="https://bsky.app/profile/becca.is"
