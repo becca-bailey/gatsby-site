@@ -54,14 +54,19 @@ function Hero() {
                 <p className="text-base small:text-lg text-stone-brown mb-3 small:mb-4 leading-relaxed">
                   I help founders and small teams make sense of complex,
                   half-built technical systems — and decide what to do next with
-                  clarity and confidence.
+                  clarity and confidence, especially when the stakes are high.
                 </p>
-                <p className="text-base small:text-lg text-stone-brown mb-5 small:mb-6 medium:mb-8 leading-relaxed">
+                <p className="text-base small:text-lg text-stone-brown mb-3 small:mb-4 leading-relaxed">
                   I'm a senior software engineer and technical leader with a
                   background in frontend architecture, performance, and systems
-                  thinking. These days, I focus on work that's thoughtful,
-                  finite, and sustainable — for both the product and the people
-                  maintaining it.
+                  thinking. I'm currently the CTO and Lead Engineer at a
+                  worker-centered legal tech startup, where I build privacy-first
+                  systems and AI-assisted workflows for real-world use.
+                </p>
+                <p className="text-base small:text-lg text-stone-brown mb-5 small:mb-6 medium:mb-8 leading-relaxed">
+                  These days, I focus on work that's thoughtful, finite, and
+                  sustainable — for both the product and the people maintaining
+                  it.
                 </p>
                 <div className="flex flex-col small:flex-row small:items-center gap-3 small:gap-4">
                   <ButtonLink

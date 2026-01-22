@@ -45,6 +45,13 @@ function FocusedOn() {
                 <li className="flex items-start">
                   <span className="text-peach mr-3 text-xl">•</span>
                   <span className="text-stone-brown text-lg leading-relaxed">
+                    Designing and building high-trust systems in legal and
+                    mission-driven contexts
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-peach mr-3 text-xl">•</span>
+                  <span className="text-stone-brown text-lg leading-relaxed">
                     Writing and speaking about sustainable engineering,
                     decision-making, and systems that support people (not just
                     growth)
